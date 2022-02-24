@@ -16,4 +16,4 @@ jobs:
     - name: Checkout
       uses: actions/checkout@v2
     - name: Build
-      run: dotnet build --configuration Release src/Project
+      run: dotnet build --configuration Release src/IoTunas.Core

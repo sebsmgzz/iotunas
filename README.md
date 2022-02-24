@@ -1,7 +1,12 @@
-# Template repository
+Internet of Tunas (aka IoTunas)
+===============================
 
-<img src="" alt="reository-icon" height="200" style="display: block; margin: auto;">
-${REPOSITORY_DESCRIPTION}
+<img src="assets/icon.png" alt="iotunas-logo" height="200" style="display: block; margin: auto;">
+
+The *Internet of Tunas* (aka IoTunas) is the new shiny framework for IoT development. 
+It targets in Azure IoTEdge capable devices and provides a way to easily leverage
+dependency injection into an edge module, as well as providing the well known
+cloud capabilities in the module over-the-air. 
 
 Not sure where to start? Check out our commity files:
 - [License](/LICENSE)
@@ -21,9 +26,9 @@ Getting started
 ### Installation
 To install it simply position yourself in your project's root and run the following command.
 ```powershell
-Install-Package ProjectNameHere
+Install-Package IoTunas.Core
 ```
 
 ### Usage
 Learn more about how to use each individual extension by reading their [documentation](/docs/README.md). 
-Or if you prefer a full blown example checkout our [demo](/demo/README.md).
+Or if you prefer a full blown example checkout our [demo IoT solution](/demo/README.md).

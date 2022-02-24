@@ -1,0 +1,31 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.0.32014.148
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "IoTunas.Connectivity.Tests", "IoTunas.Connectivity.Tests.csproj", "{A0F90409-73F3-4A0F-9B0F-F93E9D93EF14}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "IoTunas.Connectivity", "..\..\src\IoTunas.Connectivity\IoTunas.Connectivity.csproj", "{9BF40889-61EF-447D-B523-9ACB44220C33}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{A0F90409-73F3-4A0F-9B0F-F93E9D93EF14}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A0F90409-73F3-4A0F-9B0F-F93E9D93EF14}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A0F90409-73F3-4A0F-9B0F-F93E9D93EF14}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A0F90409-73F3-4A0F-9B0F-F93E9D93EF14}.Release|Any CPU.Build.0 = Release|Any CPU
+		{9BF40889-61EF-447D-B523-9ACB44220C33}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{9BF40889-61EF-447D-B523-9ACB44220C33}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{9BF40889-61EF-447D-B523-9ACB44220C33}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{9BF40889-61EF-447D-B523-9ACB44220C33}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {F236B845-A5D3-4425-A0B0-8757C45898E5}
+	EndGlobalSection
+EndGlobal

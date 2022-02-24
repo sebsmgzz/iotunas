@@ -14,11 +14,9 @@ Contents:
   - [Versioning](#versioning)
   - [Git commit messages](#git-commit-messages)
   - [Git branching strategy](#git-branching-strategy)
-    - [**Release** - Represents a published package](#release---represents-a-published-package)
     - [**Main** - One to rule them all](#main---one-to-rule-them-all)
-    - [**Develop** - Code integration happens here](#develop---code-integration-happens-here)
-    - [**Hotfix** - Buggy bugs fixes](#hotfix---buggy-bugs-fixes)
-    - [**Task** - Here is where the magic happens](#task---here-is-where-the-magic-happens)
+    - [**Development** - Code integration happens here](#development---code-integration-happens-here)
+    - [**Issue** - Here is where the magic happens](#issue---here-is-where-the-magic-happens)
     - [**Experimental** - Temporary branches](#experimental---temporary-branches)
   - [Workflows](#workflows)
     - [Feature development](#feature-development)
@@ -70,6 +68,7 @@ Git commit messages
 | `refact:`  | Used when refactoring code. Modifying the code without changing the "under the hood" implementation to improve readability, cohesion, coupling, duplication, etc. (i.e. The renaming variables, moving classes into multiple files, etc).
 | `style:`   | Used when applying changes to comply with style guidelines. (i.e. Indentation changes, brackets alignment, etc).
 | `cicd:`    | Used for anything related to CI/CD workflows.
+| `chore:`   | Used for non-code related changes. Updating images and assets, changing configuration files, etc.
 
 Git branching strategy
 ----------------------
@@ -77,28 +76,15 @@ This section explains the different type of branches allowed in the repository.
 This will help you name and differentiate between the different branches and easily identify the kind of work being done overall in the repository.
 The following table presents a resume of the strategy, for a detailed explanation on each branch keep scrolling.
 
-| Branch          | Checkout from | Merges into |
-| :-              | :-            | :-          |
-| `main`          | None          | None
-| `develop`       | `main`        | `main`
-| `feat/#`        | `develop`     | `develop`
-| `exp/#`         | Any           | None
-| `hfix/#`        | `main`        | `main` and `develop` 
-
-### **Release** - Represents a published package
-- *Naming*: `release/#` where `#` is the version number.
-- *Description*: This is a published package you can also find in nuget, pip, npm, etc.
-- *Lifetime*: Eternal, never deleted
-- *Created from*: `main`
-- *Merges into*: None
-- *Details*:
-  - This branches are stored for safe-keeping and as a reference only.  
-  - No pull requests will be allowed into this branches.
-  - This branches are the representation of a finished milestone.
-  - No direct commits are allowed here
+| Type         | Name                             | Checkout from | Merges into |
+| :-           | :-                               | :-            | :-          |
+| Main         | `main`                           | None          | None
+| Development  | `develop`                        | `main`        | `main`
+| Issue        | `feat/#`, `docs/#`, `fix/#`, etc | `develop`     | `develop`
+| Experimental | `exp/#`                          | Any           | None
 
 ### **Main** - One to rule them all
-- *Naming*: `main` (aka `master`)
+- *Naming*: `main` (aka `master`).
 - *Description*: This is considered the most up-to-date and stable version of the repository.
 - *Lifetime*: Eternal, never deleted
 - *Created from*: None
@@ -108,37 +94,28 @@ The following table presents a resume of the strategy, for a detailed explanatio
   - Never push commits directly to this branch, except when initially setting up a repository.
   - No direct commits are allowed here
 
-### **Develop** - Code integration happens here
-- *Naming*: `develop` (aka `dev`, `development`)
+### **Development** - Code integration happens here
+- *Naming*: `develop` (aka `dev`, `development`).
 - *Description*: Point of integration for all features.
 - *Lifetime*: Eternal, never deleted
 - *Created from*: `main`
 - *Merges into*: None
 - *Notes*:
   - Only one `develop` branch shall exist at any given time.
-  - Direct commits are only allowed by maintainers, but the recommendation is using a proper `feat\#` branch.
+  - Direct commits are only allowed by maintainers, but the recommendation is using a proper issue branch.
 
-### **Hotfix** - Buggy bugs fixes
-- *Naming*: `hfix/#` where `#` is the issue id of the bug if any, else provide an unique descriptive name
-- *Created from*: `release/#` or `main`
-- *Merges into*: `release/#` and/or `main` and/or `develop`
-- *Lifetime*: Short lived, deleted after PR
-- *Notes*:
-  - The bug fixes usually have a thight relationship to the production environment.
-  - Multiple hot fixes branches can exists at the time but the recomendation is to have one at a time, it depends on the situation (i.e. Create 2 branches for 2 bugs (one for each) when you already known that are the bugs are unreleated to each other).
-  - The fixes require a patch version increment. (i.e. `1.0.0` changes to `1.0.1`)
-
-### **Task** - Here is where the magic happens
-- *Naming*: `task/#` where `#` is the id of the task. If none, provide an unique identifier.
+### **Issue** - Here is where the magic happens
+- *Naming*: The recommendation is naming the branch accordingly to the work to be done in it. (i.e `feat/#` when working in features, `bug/#` when working in bugs, `docs\#` when working in documentation, etc. where `#` represents the number of the issue related).
 - *Created from*: `develop` 
 - *Merges into*: `develop`
 - *Lifetime*: Short lived, deleted after PR
 - *Notes*:
   - In case the branch you want to work on already exists we encourage you to pick a different one.
   - Alternatively, contact the person working on the other branch and align up to cooperate on it.
+  - At the very least, append a dash followed by your username if you still decide to work on this. 
 
 ### **Experimental** - Temporary branches
-- *Naming*: `exp/#` where `#` is a unique name to identify the experiment
+- *Naming*: `exp/#` where `#` is a unique name to identify the experiment.
 - *Created from*: Any
 - *Merges into*: None
 - *Lifetime*: Variable
@@ -161,7 +138,7 @@ Workflows
   1. Remeber to follow the style guidelines.
   2. Document your code.
   3. Add unit testing accordingly.
-5. Create a pull request using the `feat_integration` template.
+5. Create a pull request using the feat integration template.
 6. If the PR is denied, perform the required changes and push them again.
 
 ### Release process
