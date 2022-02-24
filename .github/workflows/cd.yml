@@ -80,13 +80,13 @@ jobs:
       uses: actions/checkout@v2
       with:
         ref: ${GITHUB_REF_NAME}
-      - name: Build code
-        run: dotnet build --configuration Release src/IoTunas.Core
-      - name: Push to github releases
-        uses: actions/upload-artifact@v2
-        with:
-          name: ${{ needs.variables.outputs.milestone-title }}
-          path: src/IoTunas.Core/bin/Release
+    - name: Build code
+      run: dotnet build --configuration Release src/IoTunas.Core
+    - name: Push to github releases
+      uses: actions/upload-artifact@v2
+      with:
+        name: ${{ needs.variables.outputs.milestone-title }}
+        path: src/IoTunas.Core/bin/Release
 
   # Push to nuget
   upload-nuget-package:
