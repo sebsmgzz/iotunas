@@ -1,6 +1,6 @@
 ---
 name: CICD request
-about: Report a change in the workflows
+about: Report a change in the workflows. Is there some manual work taking too much time from you? File an automation request so we can handle it.
 title: "[CICD] A descriptive title"
 labels: cicd, priority::importance::low, priority::urgency::low, work::disorder
 assignees: ''

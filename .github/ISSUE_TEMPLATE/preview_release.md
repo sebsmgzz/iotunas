@@ -1,7 +1,7 @@
 ---
 name: Preview release
 about: Do you need a sneak-peak of the current features? Let's try and deploy! (Not on fridays) 
-title: "[Preview] A descrptive title"
+title: "[Preview] A descriptive title"
 labels: priority::importance::low, priority::urgency::low, work::disorder
 assignees: ''
 

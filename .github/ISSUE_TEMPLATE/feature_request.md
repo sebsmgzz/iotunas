@@ -1,6 +1,6 @@
 ---
 name: Feature request
-about: Suggest an idea for this project
+about: Suggest an idea for this project. Issues to get new functionality in the repository.
 title: "[Feature] A descriptive title"
 labels: feature, priority::importance::low, priority::urgency::low, work::disorder
 assignees: ''
