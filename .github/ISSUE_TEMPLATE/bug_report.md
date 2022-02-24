@@ -1,7 +1,7 @@
 ---
 name: Bug report
 about: Report a bug
-title: "[Bug] A descrptive title"
+title: "[Bug] A descriptive title"
 labels: bug, priority::importance::low, priority::urgency::low, work::disorder
 assignees: ''
 
