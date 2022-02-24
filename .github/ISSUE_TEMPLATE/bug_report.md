@@ -1,6 +1,6 @@
 ---
 name: Bug report
-about: Report a bug
+about: ssues related to unreported bugs
 title: "[Bug] A descriptive title"
 labels: bug, priority::importance::low, priority::urgency::low, work::disorder
 assignees: ''
