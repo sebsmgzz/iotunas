@@ -1,0 +1,106 @@
+# Useful links:
+#   Events: https://docs.github.com/en/actions/using-workflows/events-that-trigger-workflows
+#   Environment: https://docs.github.com/en/actions/learn-github-actions/environment-variables
+#   Webhooks: https://docs.github.com/en/developers/webhooks-and-events/webhooks/webhook-events-and-payloads
+name: Continuous deployment
+description: Handles releases by tagging main branch, deploying to github releases and nuget packages. Asummes milestones are closed when pushed to main.
+on:
+  push:
+    branches:
+      - master
+  pull_request:
+    types: [ closed ]
+    branches:
+      - master
+jobs:
+
+  # Read variables and set them as outputs
+  variables:
+    runs-on: ubuntu-latest
+    outputs:
+      version: 
+        description: "The version in the .csproj file" 
+        value: ${{ steps.csproj.outputs.version }}
+      milestone-title:
+        description: "The title of the milestone for the release of this version"
+        value: ${{ steps.milestone.outputs.title }}
+      milestone-state:
+        description: "The state of the milestone for the release of this version"
+        value: ${{ steps.milestone.outputs.state }}
+    steps:
+    - id: checkout
+      name: Checkout repo
+      uses: actions/checkout@v2
+    - id: csproj
+      name: Set the variables from the .csproj
+      shell: pwsh
+      run: |
+        $xml = [Xml] (Get-Content \src\Project\Project.csproj)
+        $version = $xml.Project.PropertyGroup.Version
+        echo "VERSION=$version" >> $GITHUB_ENV
+        echo "::set-output name=version::$version"
+    - id: milestone
+      name: Set the milestone variables
+      shell: pwsh
+      run: |
+        $title = "Release v${VERSION}"
+        echo "::set-output name=title::$title"
+        milestones=$(curl \
+          -H "Accept: application/vnd.github.v3+json" \
+          $GITHUB_SERVER_URL/repos/$GITHUB_REPOSITORY/milestones)
+        milestone=$(echo $milestones | \
+          jq --arg TITLE $title '.[] | \
+          select(.title==$TITLE)')
+        state=$(echo $milestone | jq --raw-output '.state')
+        echo "::set-output name=state::$state"
+
+  # Tags the main branch with the assigned version
+  tagging:
+    runs-on: ubuntu-latest
+    if: ${{ needs.variables.outputs.milestone-version }} == ${{ needs.variables.outputs.csproj-version }}
+    needs:
+    - variables
+    steps:
+    - name: Checkout repo
+      uses: actions/checkout@v2
+    - name: Tag main branch
+      run: git tag "v${{ needs.variables.outputs.csproj-version }}"
+    - name: Push tag
+      run: git push origin "v${{ needs.variables.outputs.csproj-version }}"
+    
+  # Push to github
+  upload-github-release:
+    description: Upload artifact to github releases
+    runs-on: ubuntu-latest
+    needs: 
+    - variables
+    - tagging
+    steps:
+    - name: Checkout repo
+      uses: actions/checkout@v2
+      with:
+        ref: ${GITHUB_REF_NAME}
+      - name: Build code
+        run: dotnet build --configuration Release src/Project
+      - name: Push to github releases
+        uses: actions/upload-artifact@v2
+        with:
+          name: ${{ needs.variables.outputs.milestone-title }}
+          path: src/Project/bin/Release
+
+  # Push to nuget
+  upload-nuget-package:
+    description: Upload artifact to nuget packages
+    runs-on: ubuntu-latest
+    needs:
+    - variables
+    - tagging
+    steps:
+    - name: Checkout repo
+      uses: actions/checkout@v2
+    - name: Package code
+      run: dotnet package --configuration Release src/Project
+    - name: Push to nuget packages
+      run: dotnet nuget push "src/Project/bin/Release/Project.${VERSION}.nupkg" `
+        -k ${{ secrets.nugetApiKey }} `
+        -s https://api.nuget.org/v3/index.json

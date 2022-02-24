@@ -1,0 +1,17 @@
+blank_issues_enabled: false
+contact_links:
+  - name: File a bug report
+    url: https://github.com/${OWNER}/${REPO}/issues/new?template=bug_report.md
+    about: Issues related to unreported bugs
+  - name: Request a new feature
+    url: https://github.com/${OWNER}/${REPO}/issues/new?template=feature_request.md
+    about: Issues to get new functionality in the repository.
+  - name: Documentation request
+    url: https://github.com/${OWNER}/Prism-Documentation/issues/new?template=documentation_request.md
+    about: Did we miss something on the docs? Let us know here!
+  - name: Share an idea
+    url: https://github.com/${OWNER}/${REPO}/discussions/new?category=ideas
+    about: Did you created a snippet or have something in mind that you want to share with us? Do it here.
+  - name: Ask a question
+    url: https://github.com/${OWNER}/${REPO}/discussions/new?category=q-a
+    about: Please ask and answer questions under discussions Q&A.

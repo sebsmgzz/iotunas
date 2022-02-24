@@ -1,0 +1,20 @@
+[
+    {
+        "emoji": ":mega:",
+        "title": "Announcements",
+        "description": "Updates from maintainers",
+        "format": "Announcements"
+    },
+    {
+        "emoji": ":pray:",
+        "title": "Q&A",
+        "description": "Ask the community for help",
+        "format": "QuestionAnswer"
+    },
+    {
+        "emoji": ":pencil:",
+        "title": "Snippets",
+        "description": "OpenEndDiscussion",
+        "format": ""
+    }
+]

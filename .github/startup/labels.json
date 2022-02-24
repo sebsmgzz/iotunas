@@ -1,0 +1,112 @@
+{
+    "generics": {
+        "description": "Use this labels for the tagging and categorizing of issues and pull requests. Add as many of these as required.",
+        "labels": [
+            {
+                "name": "bug",
+                "description": "Indicates something related to a bug-report.",
+                "color": "#9F2B00"
+            },
+            {
+                "name": "feature",
+                "description": "Indicates something related to a feature request.",
+                "color": "#489C17"
+            },
+            {
+                "name": "documentation",
+                "description": "Indicates a need for improvements or additions to documentation.",
+                "color": "#0000FF"
+            },
+            {
+                "name": "invalid",
+                "description": "Indicates that an issue, pull/merge request, or discussion is no longer relevant.",
+                "color": "#523A28"
+            }
+        ]
+    },
+    "priority": {
+        "description": "Uses the Eisenhower Decision Principle. This labels must be provided in pairs, always *importance* + *urgency*. The *importance* determines how likely is the issue to affect long-term goals or milestones. The *urgency* determines how much of a fast response is required. The resulting combination dictates the action to take with the issue: \n- `priority::importance::high` + `priority::urgency::high` = Must be done asap \n- `priority::importance::high` + `priority::urgency::low` = Schedule them to be done in a calm and proper matter \n- `priority::importance::low` + `priority::urgency::high` = Delegate to someone that can approach the issue asap \n- `priority::importance::low` + `priority::urgency::low` = Won't do",
+        "labesl": [
+            {
+                "name": "priority::importance::high",
+                "description": "Issue is likely to block/affect future work.",
+                "color": "#C85250"
+            },
+            {
+                "name": "priority::importance::low",
+                "description": "Issue won't affect future work in a negative way.",
+                "color": "#F7BEC0"
+            },
+            {
+                "name": "priority::urgency::high",
+                "description": "Issue has a close deadline, or asap attention.",
+                "color": "#C85250"
+            },
+            {
+                "name": "priority::urgency::low",
+                "description": "Issue deadline is far away.",
+                "color": "#F7BEC0"
+            }
+        ]
+    },
+    "work": {
+        "description": "Based of the Cynefin framework. This label dictates the level of effor for a specific issue. The more *disorder* the label indicates, the more knowledge is required to solve it. Project managers and architects as well as the author of the issue should be able to  work together to break down highly disorderd issues into smaller ones with a specific target in it. The amount of breakdown needed is directly dependand on the experience of the technical team working in the project. For example, a senior developer might be able to take *complex* tasks, whereas a junior developer will require the task to be broken down into *simple* tasks in order for them to accomplish it correctly.",
+        "labels": [
+            {
+                "name": "work::simple",
+                "description": "Consists of `known knowns`. The cause and effect relationship is clear: if you do X, expect Y.",
+                "color": "#E6E6FA"
+            },
+            {
+                "name": "work::complicated",
+                "description": "Consists of `known unknowns`. The cause and effect relationship requires analysis or expertise.",
+                "color": "#B1B1B1"
+            },
+            {
+                "name": "work::complex",
+                "description": "Consists of `unknown unknowns`. The cause and effect relationship can only be deduced in retrospect.",
+                "color": "#747474"
+            },
+            {
+                "name": "work::chaotic",
+                "description": "Issue is `too confusing to wait for a knowledge-based response`. The cause and effect relationship is unclear.",
+                "color": "#444444"
+            },
+            {
+                "name": "work::disorder",
+                "description": "Issue with no clarity of which kind of consistency or work applies.",
+                "color": "#0A0708"
+            }
+        ]
+    },
+    "status": {
+        "description": "Based of the basic Kanban framework. This label dictates the status of a current issue. Ultimately issues are open or closed, but there are also intermediate states that are required to be labeled for better tracking. Feel free to add as many as you need, since this depends on the available environments for the project, and the project itself.",
+        "labels": [
+            {
+                "name": "status::ongoing",
+                "description": "The issue is moving towards completion as there is work being made to solve it.",
+                "color": "#00B140"
+            },
+            {
+                "name": "status::testing",
+                "description": "A solution for the issue has been provided and we are awaiting resolution on the implementation.",
+                "color": "#FBB80F"
+            },
+            {
+                "name": "status::blocked",
+                "description": "The issue is blocked and unable to work on due to a different open issue in the repository.",
+                "color": "#DC143C"
+            },
+            {
+                "name": "status::help-wanted",
+                "description": "Issue requires help from external parties.",
+                "color": "#008672"
+            },
+            {
+                "name": "status::deprecated",
+                "description": "Issue is irrelevant due to a recent commit, pull request or update deprecating it.",
+                "color": "#E4E669"
+            }
+        ]
+    }
+}

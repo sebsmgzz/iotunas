@@ -1,0 +1,19 @@
+name: CI
+description: Manages continuous integration of PRs into the develop branch
+on:
+  push:
+    branches:
+    - develop
+  pull_request:
+    branches:
+    - develop
+jobs:
+
+  build:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+    - name: Checkout
+      uses: actions/checkout@v2
+    - name: Build
+      run: dotnet build --configuration Release src/Project
