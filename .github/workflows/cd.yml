@@ -2,8 +2,9 @@
 #   Events: https://docs.github.com/en/actions/using-workflows/events-that-trigger-workflows
 #   Environment: https://docs.github.com/en/actions/learn-github-actions/environment-variables
 #   Webhooks: https://docs.github.com/en/developers/webhooks-and-events/webhooks/webhook-events-and-payloads
-name: Continuous deployment
-description: Handles releases by tagging main branch, deploying to github releases and nuget packages. Asummes milestones are closed when pushed to main.
+
+# Handles releases by tagging main branch, deploying to github releases and nuget packages. 
+name: CD
 on:
   push:
     branches:
@@ -70,7 +71,6 @@ jobs:
     
   # Push to github
   upload-github-release:
-    description: Upload artifact to github releases
     runs-on: ubuntu-latest
     needs: 
     - variables
@@ -90,7 +90,6 @@ jobs:
 
   # Push to nuget
   upload-nuget-package:
-    description: Upload artifact to nuget packages
     runs-on: ubuntu-latest
     needs:
     - variables

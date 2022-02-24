@@ -1,5 +1,10 @@
+# Useful links:
+#   Events: https://docs.github.com/en/actions/using-workflows/events-that-trigger-workflows
+#   Environment: https://docs.github.com/en/actions/learn-github-actions/environment-variables
+#   Webhooks: https://docs.github.com/en/developers/webhooks-and-events/webhooks/webhook-events-and-payloads
+
+# Manages continuous integration of PRs into the develop branch
 name: CI
-description: Manages continuous integration of PRs into the develop branch
 on:
   push:
     branches:
