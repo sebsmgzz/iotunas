@@ -12,9 +12,9 @@
         "format": "QuestionAnswer"
     },
     {
-        "emoji": ":pencil:",
-        "title": "Snippets",
-        "description": "OpenEndDiscussion",
+        "emoji": ":raised_hands:",
+        "title": "Show and tell",
+        "description": "Show off something you've made ",
         "format": ""
     }
 ]
