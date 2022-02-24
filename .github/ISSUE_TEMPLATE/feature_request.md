@@ -1,7 +1,7 @@
 ---
 name: Feature request
 about: Suggest an idea for this project
-title: "[Feature] A descrptive title"
+title: "[Feature] A descriptive title"
 labels: feature, priority::importance::low, priority::urgency::low, work::disorder
 assignees: ''
 

@@ -1,17 +1,29 @@
 blank_issues_enabled: false
 contact_links:
   - name: File a bug report
-    url: https://github.com/${OWNER}/${REPO}/issues/new?template=bug_report.md
+    url: https://github.com/sebsmgzz/IIoTunas/issues/new?template=bug_report.md
     about: Issues related to unreported bugs
   - name: Request a new feature
-    url: https://github.com/${OWNER}/${REPO}/issues/new?template=feature_request.md
+    url: https://github.com/sebsmgzz/IIoTunas/issues/new?template=feature_request.md
     about: Issues to get new functionality in the repository.
   - name: Documentation request
-    url: https://github.com/${OWNER}/Prism-Documentation/issues/new?template=documentation_request.md
+    url: https://github.com/sebsmgzz/IoTunas/issues/new?template=documentation_request.md
     about: Did we miss something on the docs? Let us know here!
-  - name: Share an idea
-    url: https://github.com/${OWNER}/${REPO}/discussions/new?category=ideas
+  - name: Testing update
+    url: https://github.com/sebsmgzz/IoTunas/issues/new?template=testing_update.md
+    about: Are we missing tests? Is there something obselete on them? Lets change those!
+  - name: CI/CD request
+    url: https://github.com/sebsmgzz/IoTunas/issues/new?template=cicd_request.md
+    about: Is there some manual work taking too much time from you? File an automation request so we can handle it.
+  - name: Preview release
+    url: https://github.com/sebsmgzz/IoTunas/issues/new?template=preview_release.md
+    about: Do you need a sneak-peak of the current features? Let's try and deploy! (Not on fridays) 
+  - name: Vulnerability found
+    url: https://github.com/sebsmgzz/IoTunas/security/policy
+    about: Did you find a severe vulnerability? Please do NOT file a pubic issue. Take a look at our security policy.
+  - name: Show and tell
+    url: https://github.com/sebsmgzz/IIoTunas/discussions/new?category=show-and-tell
     about: Did you created a snippet or have something in mind that you want to share with us? Do it here.
   - name: Ask a question
-    url: https://github.com/${OWNER}/${REPO}/discussions/new?category=q-a
+    url: https://github.com/sebsmgzz/IIoTunas/discussions/new?category=q-a
     about: Please ask and answer questions under discussions Q&A.

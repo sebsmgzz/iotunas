@@ -196,7 +196,9 @@ Add as many of these as required.
 | #9F2B00 | `bug` | Indicates something related to a bug-report.
 | #489C17 | `feature` | Indicates something related to a feature request. 
 | #0000FF | `documentation` | Indicates a need for improvements or additions to documentation.
-| #523A28 | `invalid` | Indicates that an issue, pull/merge request, or discussion is no longer relevant.
+| #523A28 | `cicd` | Indicates anything related to the CI/CD workflows.
+| #F0D618 | `dependecy` | Indicates issues that require modifying the dependencies.
+| #18DDF0 | `tests` | Indicates issues involved with tests.
 
 #### Priority labels
 Uses the Eisenhower Decision Principle.
