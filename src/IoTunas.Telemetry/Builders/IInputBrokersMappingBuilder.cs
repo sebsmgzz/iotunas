@@ -1,8 +1,8 @@
-﻿namespace IoTunas.Telemetry.Receivers.Collections;
+﻿namespace IoTunas.Telemetry.Builders;
 
 using IoTunas.Telemetry.Models;
 
-public interface IInputTelemetryBrokerMapping
+public interface IInputBrokersMappingBuilder
 {
 
     void AddReceiver<T>(string inputName) where T : IInputTelemetryBroker;
@@ -11,6 +11,6 @@ public interface IInputTelemetryBrokerMapping
 
     void MapReceivers();
     
-    IReadOnlyDictionary<string, Type> AsReadOnlyDictionary();
+    IReadOnlyDictionary<string, Type> Build();
 
 }

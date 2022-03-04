@@ -39,11 +39,4 @@
     <PackageReference Include="Microsoft.Extensions.Hosting" Version="6.0.*" />
   </ItemGroup>
 
-  <ItemGroup>
-    <ProjectReference Include="..\IoTunas.Commands\IoTunas.Commands.csproj" />
-    <ProjectReference Include="..\IoTunas.Connectivity\IoTunas.Connectivity.csproj" />
-    <ProjectReference Include="..\IoTunas.Telemetry\IoTunas.Telemetry.csproj" />
-    <ProjectReference Include="..\IoTunas.Twin\IoTunas.Twin.csproj" />
-  </ItemGroup>
-
 </Project>

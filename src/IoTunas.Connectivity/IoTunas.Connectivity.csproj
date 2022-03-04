@@ -10,4 +10,8 @@
     <PackageReference Include="Microsoft.Azure.Devices.Client" Version="1.39.*" />
   </ItemGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\IoTunas.Core\IoTunas.Core.csproj" />
+  </ItemGroup>
+
 </Project>

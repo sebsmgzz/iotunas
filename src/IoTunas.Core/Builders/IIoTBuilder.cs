@@ -1,10 +1,6 @@
 ﻿namespace IoTunas.Core.Builders;
 
-using IoTunas.Commands.Builders;
-using IoTunas.Connectivity.Builders;
 using IoTunas.Core.Building;
-using IoTunas.Telemetry.Builders;
-using IoTunas.Twin.Builders;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
@@ -39,33 +35,11 @@ public interface IIoTBuilder
     /// <param name="configureClientAction">An action to configure the client builder.</param>
     void ConfigureClient(
         Action<IClientBuilder> configureClientAction);
-
     /// <summary>
-    /// Enables connectivity services from the <see cref="Connectivity"/> extension.
+    /// Configures the services available in the DI.
+    /// Calls to this method are acumulated.
     /// </summary>
-    /// <param name="configure">A</param>
-    void UseConnectivityServices(
-        Action<IConnectionServicesBuilder> configure);
-
-    /// <summary>
-    /// Enables direct methods services from the <see cref="Commands"/> extension.
-    /// </summary>
-    /// <param name="configure">An action to configure the direct methods services.</param>
-    void UseDirectMethodServices(
-        Action<ICommandServicesBuilder> configure);
-
-    /// <summary>
-    /// Enables routed message telemetry services from the <see cref="Telemetry"/> extension.
-    /// </summary>
-    /// <param name="configure">An action to configure the telemetry services.</param>
-    void UseTelemetryServices(
-        Action<ITelemetryServicesBuilder> configure);
-
-    /// <summary>
-    /// Enables twin properties services from the <see cref="Twin"/> extension.
-    /// </summary>
-    /// <param name="configure">An action to configure the twin services.</param>
-    void UseTwinServices(
-        Action<ITwinServicesBuilder> configure);
+    /// <param name="configureAction">The method to invoke whenever the configuration of the services takes place.</param>
+    void ConfigureServices(Action<IServiceCollection> configureAction);
 
 }

@@ -1,11 +1,7 @@
 ﻿namespace IoTunas.Core.Builders;
 
-using IoTunas.Commands.Builders;
-using IoTunas.Connectivity.Builders;
 using IoTunas.Core.Building;
 using IoTunas.Core.Services;
-using IoTunas.Telemetry.Builders;
-using IoTunas.Twin.Builders;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
@@ -43,36 +39,9 @@ internal class IoTBuilder : IIoTBuilder
         this.configureClientAction = configureClientAction;
     }
 
-    public void UseDirectMethodServices(
-        Action<ICommandServicesBuilder> configure)
+    public void ConfigureServices(Action<IServiceCollection> configureAction)
     {
-        configureActions.Add(
-            services => configure.Invoke(
-                new CommandServicesBuilder(services)));
-    }
-
-    public void UseTelemetryServices(
-        Action<ITelemetryServicesBuilder> configure)
-    {
-        configureActions.Add(
-            services => configure.Invoke(
-                new TelemetryServicesBuilder(services)));
-    }
-
-    public void UseConnectivityServices(
-        Action<IConnectionServicesBuilder> configure)
-    {
-        configureActions.Add(
-            services => configure.Invoke(
-                new ConnectionServicesBuilder(services)));
-    }
-
-    public void UseTwinServices(
-        Action<ITwinServicesBuilder> configure)
-    {
-        configureActions.Add(
-            services => configure.Invoke(
-                new TwinServicesBuilder(services)));
+        configureActions.Add(configureAction);
     }
 
     /// <summary>
