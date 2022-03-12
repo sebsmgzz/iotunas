@@ -25,7 +25,7 @@ public static class Extensions
         });
     }
 
-    public static void UseTwinDesiredProperties(
+    public static void UseTwinReportedProperties(
         this IoTModuleBuilder module,
         Action<ITwinPropertyMappingBuilder<ReportedProperty>> configureAction)
     {
