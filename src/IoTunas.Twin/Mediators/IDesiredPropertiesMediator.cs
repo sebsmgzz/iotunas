@@ -1,4 +1,4 @@
-﻿namespace IoTunas.Twin.Mediators;
+﻿namespace IoTunas.Extensions.Twin.Mediators;
 
 using Microsoft.Azure.Devices.Shared;
 using System.Threading;

@@ -1,6 +1,6 @@
-﻿namespace IoTunas.Twin.Factories;
+﻿namespace IoTunas.Extensions.Twin.Factories;
 
-using IoTunas.Twin.Models;
+using IoTunas.Extensions.Twin.Models;
 
 public interface IPropertyFactory<T> where T : ITwinProperty
 {

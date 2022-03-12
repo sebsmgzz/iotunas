@@ -1,6 +1,6 @@
-﻿namespace IoTunas.Twin.Builders;
+﻿namespace IoTunas.Extensions.Twin.Builders;
 
-using IoTunas.Twin.Models;
+using IoTunas.Extensions.Twin.Models;
 
 public interface ITwinPropertyMappingBuilder<T> where T : ITwinProperty
 {

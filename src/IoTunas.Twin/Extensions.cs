@@ -1,10 +1,10 @@
-﻿namespace IoTunas.Twin;
+﻿namespace IoTunas.Extensions.Twin;
 
 using IoTunas.Core.Builders.Containers;
-using IoTunas.Twin.Builders;
-using IoTunas.Twin.Factories;
-using IoTunas.Twin.Mediators;
-using IoTunas.Twin.Models;
+using IoTunas.Extensions.Twin.Builders;
+using IoTunas.Extensions.Twin.Factories;
+using IoTunas.Extensions.Twin.Mediators;
+using IoTunas.Extensions.Twin.Models;
 using Microsoft.Azure.Devices.Client;
 using Microsoft.Extensions.DependencyInjection;
 

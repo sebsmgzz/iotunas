@@ -1,7 +1,7 @@
-﻿namespace IoTunas.Twin.Mediators;
+﻿namespace IoTunas.Extensions.Twin.Mediators;
 
-using IoTunas.Twin.Factories;
-using IoTunas.Twin.Models;
+using IoTunas.Extensions.Twin.Factories;
+using IoTunas.Extensions.Twin.Models;
 using Microsoft.Azure.Devices.Client;
 using Microsoft.Azure.Devices.Shared;
 using Microsoft.Extensions.Logging;

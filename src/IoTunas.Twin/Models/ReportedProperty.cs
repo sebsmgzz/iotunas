@@ -1,4 +1,4 @@
-﻿namespace IoTunas.Twin.Models;
+﻿namespace IoTunas.Extensions.Twin.Models;
 
 using Microsoft.Azure.Devices.Shared;
 using Newtonsoft.Json.Linq;

@@ -1,7 +1,7 @@
-﻿namespace IoTunas.Twin.Builders;
+﻿namespace IoTunas.Extensions.Twin.Builders;
 
-using IoTunas.Twin.Models;
-using IoTunas.Twin.Reflection;
+using IoTunas.Extensions.Twin.Models;
+using IoTunas.Extensions.Twin.Reflection;
 using System.Reflection;
 
 public class TwinPropertyMappingBuilder<T> : ITwinPropertyMappingBuilder<T> where T : ITwinProperty
