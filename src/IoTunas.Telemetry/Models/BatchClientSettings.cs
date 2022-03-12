@@ -1,4 +1,4 @@
-﻿namespace IoTunas.Telemetry.Models;
+﻿namespace IoTunas.Extensions.Telemetry.Models;
 
 public class BatchClientSettings
 {

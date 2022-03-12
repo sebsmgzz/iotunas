@@ -1,4 +1,4 @@
-﻿namespace IoTunas.Commands.Factories;
+﻿namespace IoTunas.Extensions.Commands.Factories;
 
 using Microsoft.Azure.Devices.Client;
 

@@ -1,6 +1,6 @@
-﻿namespace IoTunas.Connectivity.Factories;
+﻿namespace IoTunas.Extensions.Connectivity.Factories;
 
-using IoTunas.Connectivity.Models;
+using IoTunas.Extensions.Connectivity.Models;
 using Microsoft.Extensions.DependencyInjection;
 using System;
 using System.Collections.Generic;

@@ -1,6 +1,6 @@
-﻿namespace IoTunas.Telemetry.Factories;
+﻿namespace IoTunas.Extensions.Telemetry.Factories;
 
-using IoTunas.Telemetry.Models;
+using IoTunas.Extensions.Telemetry.Models;
 using Microsoft.Extensions.DependencyInjection;
 
 public class TelemetryEndpointFactory : ITelemetryEndpointFactory

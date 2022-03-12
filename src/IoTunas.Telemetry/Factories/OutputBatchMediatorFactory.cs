@@ -1,7 +1,7 @@
-﻿namespace IoTunas.Telemetry.Factories;
+﻿namespace IoTunas.Extensions.Telemetry.Factories;
 
-using IoTunas.Telemetry.Mediators;
-using IoTunas.Telemetry.Models;
+using IoTunas.Extensions.Telemetry.Mediators;
+using IoTunas.Extensions.Telemetry.Models;
 using Microsoft.Azure.Devices.Client;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;

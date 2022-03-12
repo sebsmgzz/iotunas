@@ -1,4 +1,4 @@
-﻿namespace IoTunas.Telemetry.Factories;
+﻿namespace IoTunas.Extensions.Telemetry.Factories;
 
 using Microsoft.Azure.Devices.Client;
 using Newtonsoft.Json;

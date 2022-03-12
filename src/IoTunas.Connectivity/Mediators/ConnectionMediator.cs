@@ -1,7 +1,7 @@
-﻿namespace IoTunas.Connectivity.Mediators;
+﻿namespace IoTunas.Extensions.Connectivity.Mediators;
 
-using IoTunas.Connectivity.Factories;
-using IoTunas.Connectivity.Models;
+using IoTunas.Extensions.Connectivity.Factories;
+using IoTunas.Extensions.Connectivity.Models;
 using Microsoft.Azure.Devices.Client;
 using Microsoft.Extensions.Logging;
 
@@ -25,7 +25,7 @@ public class ConnectionMediator : IConnectionMediator
         this.logger = logger;
     }
 
-    private void HandleConnectionChange(ConnectionStatus status, ConnectionStatusChangeReason reason)
+    public void HandleConnectionChange(ConnectionStatus status, ConnectionStatusChangeReason reason)
     {
         HandleConnectionChangeAsync(status, reason).Wait();
     }

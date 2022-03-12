@@ -1,6 +1,6 @@
-﻿namespace IoTunas.Telemetry.Factories;
+﻿namespace IoTunas.Extensions.Telemetry.Factories;
 
-using IoTunas.Telemetry.Models;
+using IoTunas.Extensions.Telemetry.Models;
 
 public interface ITelemetryEndpointFactory
 {

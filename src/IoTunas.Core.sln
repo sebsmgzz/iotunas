@@ -5,13 +5,13 @@ VisualStudioVersion = 17.0.32014.148
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "IoTunas.Core", "IoTunas.Core\IoTunas.Core.csproj", "{8D7AB175-CD38-4A97-87F4-1D684B292562}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "IoTunas.Commands", "IoTunas.Commands\IoTunas.Commands.csproj", "{D2437DA7-0A3D-4B56-8956-4C7D345CC26F}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "IoTunas.Extensions.Commands", "IoTunas.Commands\IoTunas.Extensions.Commands.csproj", "{D2437DA7-0A3D-4B56-8956-4C7D345CC26F}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "IoTunas.Connectivity", "IoTunas.Connectivity\IoTunas.Connectivity.csproj", "{6F139D87-DC1B-49DF-95B8-C72A4012E51D}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "IoTunas.Extensions.Connectivity", "IoTunas.Connectivity\IoTunas.Extensions.Connectivity.csproj", "{6F139D87-DC1B-49DF-95B8-C72A4012E51D}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "IoTunas.Telemetry", "IoTunas.Telemetry\IoTunas.Telemetry.csproj", "{EC495E54-30EF-4D24-9682-E84E5B18493D}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "IoTunas.Extensions.Telemetry", "IoTunas.Telemetry\IoTunas.Extensions.Telemetry.csproj", "{EC495E54-30EF-4D24-9682-E84E5B18493D}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "IoTunas.Twin", "IoTunas.Twin\IoTunas.Twin.csproj", "{D37EC130-FBA8-4551-B429-967934972F56}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "IoTunas.Extensions.Twin", "IoTunas.Twin\IoTunas.Extensions.Twin.csproj", "{D37EC130-FBA8-4551-B429-967934972F56}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

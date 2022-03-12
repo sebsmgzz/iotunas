@@ -1,7 +1,7 @@
-﻿namespace IoTunas.Telemetry.Factories;
+﻿namespace IoTunas.Extensions.Telemetry.Factories;
 
-using IoTunas.Telemetry.Mediators;
-using IoTunas.Telemetry.Models;
+using IoTunas.Extensions.Telemetry.Mediators;
+using IoTunas.Extensions.Telemetry.Models;
 
 public interface IOutputBatchMediatorFactory
 {
