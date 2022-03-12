@@ -18,7 +18,11 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\..\..\src\IoTunas.Commands\IoTunas.Extensions.Commands.csproj" />
+    <ProjectReference Include="..\..\..\src\IoTunas.Connectivity\IoTunas.Extensions.Connectivity.csproj" />
     <ProjectReference Include="..\..\..\src\IoTunas.Core\IoTunas.Core.csproj" />
+    <ProjectReference Include="..\..\..\src\IoTunas.Telemetry\IoTunas.Extensions.Telemetry.csproj" />
+    <ProjectReference Include="..\..\..\src\IoTunas.Twin\IoTunas.Extensions.Twin.csproj" />
   </ItemGroup>
 	
 </Project>

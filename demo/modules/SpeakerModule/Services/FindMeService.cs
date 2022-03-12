@@ -1,7 +1,6 @@
 ﻿namespace SpeakerModule.Services;
 
 using Microsoft.Extensions.Logging;
-using SpeakerModule.Models;
 using System;
 using System.Threading;
 using System.Threading.Tasks;
@@ -32,9 +31,8 @@ public class FindMeService : IFindMeService
         this.logger = logger;
     }
 
-    public async Task StartAsync(FindMeOptions options = null)
+    public async Task StartAsync(TimeSpan duration)
     {
-        options ??= FindMeOptions.Defaults();
         logger.LogInformation($"Starting new {nameof(IFindMeService)}");
         currentTask = Task.Factory.StartNew(() =>
         {
@@ -42,7 +40,7 @@ public class FindMeService : IFindMeService
             // TODO: Make call to hardware so the speaker emits a loud noise
             // Code in here, may vary depending on the implementation
             // of the call to the hardware
-            Thread.Sleep(options.Duration);
+            Thread.Sleep(duration);
         });
         await Task.CompletedTask;
     }

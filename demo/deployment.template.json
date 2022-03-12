@@ -51,13 +51,13 @@
           }
         },
         "modules": {
-          "TemperatureModule": {
+          "SpeakerModule": {
             "version": "1.0",
             "type": "docker",
             "status": "running",
             "restartPolicy": "always",
             "settings": {
-              "image": "${MODULES.TemperatureModule}",
+              "image": "${MODULES.SpeakerModule}",
               "createOptions": {}
             }
           },

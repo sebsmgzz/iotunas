@@ -1,6 +1,5 @@
 ﻿namespace SpeakerModule.Services;
 
-using SpeakerModule.Models;
 using System;
 using System.Threading.Tasks;
 
@@ -11,6 +10,6 @@ public interface IFindMeService
 
     TimeSpan CompletesIn { get; }
 
-    Task StartAsync(FindMeOptions options = null);
+    Task StartAsync(TimeSpan duration);
 
 }
