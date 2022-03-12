@@ -1,4 +1,4 @@
-﻿namespace IoTunas.Commands.Reflection;
+﻿namespace IoTunas.Extensions.Commands.Reflection;
 
 [AttributeUsage(AttributeTargets.Class, AllowMultiple = false, Inherited = false)]
 public class CommandNameAttribute : Attribute

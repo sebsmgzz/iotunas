@@ -1,10 +1,10 @@
-﻿namespace IoTunas.Core.Building.Strategies;
+﻿namespace IoTunas.Core.Builders.ModuleClients.Strategies;
 
 using Microsoft.Azure.Devices.Client;
-using IoTunas.Core.Building;
+using IoTunas.Core.Builders.ModuleClients;
 
-/// <inheritdoc cref="IClientBuilderStrategy"/>
-public class ConnectionStringStrategy : IClientBuilderStrategy
+/// <inheritdoc cref="IModuleClientBuilderStrategy"/>
+public class ConnectionStringStrategy : IModuleClientBuilderStrategy
 {
 
     /// <summary>

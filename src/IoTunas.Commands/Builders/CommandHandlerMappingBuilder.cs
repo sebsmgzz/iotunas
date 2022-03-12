@@ -1,7 +1,7 @@
-﻿namespace IoTunas.Commands.Builders;
+﻿namespace IoTunas.Extensions.Commands.Builders;
 
-using IoTunas.Commands.Models;
-using IoTunas.Commands.Reflection;
+using IoTunas.Extensions.Commands.Models;
+using IoTunas.Extensions.Commands.Reflection;
 using System.Reflection;
 
 public class CommandHandlerMappingBuilder : ICommandHandlerMappingBuilder
@@ -53,7 +53,7 @@ public class CommandHandlerMappingBuilder : ICommandHandlerMappingBuilder
         }
     }
 
-    public IReadOnlyDictionary<string, Type> Builder()
+    public IReadOnlyDictionary<string, Type> Build()
     {
         return new Dictionary<string, Type>(mappings);
     }

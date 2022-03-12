@@ -1,6 +1,6 @@
-﻿namespace IoTunas.Connectivity.Builders;
+﻿namespace IoTunas.Extensions.Connectivity.Builders;
 
-using IoTunas.Connectivity.Models;
+using IoTunas.Extensions.Connectivity.Models;
 
 public interface IConnectionObserversListBuilder
 {

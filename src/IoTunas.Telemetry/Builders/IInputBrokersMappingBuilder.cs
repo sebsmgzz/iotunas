@@ -1,6 +1,6 @@
-﻿namespace IoTunas.Telemetry.Builders;
+﻿namespace IoTunas.Extensions.Telemetry.Builders;
 
-using IoTunas.Telemetry.Models;
+using IoTunas.Extensions.Telemetry.Models;
 
 public interface IInputBrokersMappingBuilder
 {

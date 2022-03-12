@@ -1,4 +1,4 @@
-﻿namespace IoTunas.Commands.Models;
+﻿namespace IoTunas.Extensions.Commands.Models;
 
 using Microsoft.Azure.Devices.Client;
 using System.Threading.Tasks;

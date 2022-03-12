@@ -1,8 +1,7 @@
-﻿namespace IoTunas.Core.Building;
+﻿namespace IoTunas.Core.Collections;
 
 using Microsoft.Azure.Devices.Client;
 using Microsoft.Azure.Devices.Client.Transport.Mqtt;
-using System;
 
 /// <summary>
 /// A list of client

@@ -1,6 +1,6 @@
-﻿namespace IoTunas.Commands.Builders;
+﻿namespace IoTunas.Extensions.Commands.Builders;
 
-using IoTunas.Commands.Models;
+using IoTunas.Extensions.Commands.Models;
 
 public interface ICommandHandlerMappingBuilder
 {

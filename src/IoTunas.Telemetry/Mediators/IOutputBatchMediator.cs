@@ -1,6 +1,6 @@
-﻿namespace IoTunas.Telemetry.Mediators;
+﻿namespace IoTunas.Extensions.Telemetry.Mediators;
 
-using IoTunas.Telemetry.Models;
+using IoTunas.Extensions.Telemetry.Models;
 using Microsoft.Azure.Devices.Client;
 using System.Threading.Tasks;
 

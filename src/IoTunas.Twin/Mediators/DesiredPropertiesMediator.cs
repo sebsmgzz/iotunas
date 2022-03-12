@@ -28,12 +28,10 @@ public class DesiredPropertiesMediator : IDesiredPropertiesMediator
         CancellationToken cancellationToken = default)
     {
         var twin = await client.GetTwinAsync(cancellationToken);
-        await UpdateDesiredPropertiesAsync(
-            twin.Properties.Desired, this, cancellationToken);
+        await UpdateDesiredPropertiesAsync(twin.Properties.Desired, this);
     }
 
-    private async Task UpdateDesiredPropertiesAsync(
-        TwinCollection desiredProperties, object userContext, CancellationToken cancellationToken)
+    public async Task UpdateDesiredPropertiesAsync(TwinCollection desiredProperties, object userContext)
     {
         logger.LogInformation($"Invoking desired properties update");
         foreach (var propertyName in factory.PropertyNames)

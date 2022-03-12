@@ -1,8 +1,9 @@
-﻿namespace IoTunas.Core.Building.Strategies;
+﻿namespace IoTunas.Core.Builders.ModuleClients.Strategies;
 
+using IoTunas.Core.Builders.ModuleClients;
 using Microsoft.Azure.Devices.Client;
 
-/// <inheritdoc cref="IClientBuilderStrategy"/>
+/// <inheritdoc cref="IModuleClientBuilderStrategy"/>
 public class GatewayConnectionStrategy : HostConnectionStrategy
 {
 

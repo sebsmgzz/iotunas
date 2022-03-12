@@ -1,33 +1,24 @@
-﻿namespace IoTunas.Core.Building;
+﻿namespace IoTunas.Core.Builders.DeviceClients;
 
+using IoTunas.Core.Builders.DeviceClients.Strategies;
 using Microsoft.Azure.Devices.Client;
-using IoTunas.Core.Building.Strategies;
 
-/// <inheritdoc cref="IClientBuilder"/>
-public class ClientBuilder : IClientBuilder
+internal class DeviceClientBuilder : ClientBuilderBase, IDeviceClientBuilder
 {
 
-    private IClientBuilderStrategy strategy;
-    private ClientOptions? clientOptions;
+    private IDeviceClientBuilderStrategy strategy;
 
-    public TransportSettingsList TransportSettings { get; }
-
-    public ClientOptions Options => clientOptions ??= new ClientOptions();
-
-    public ClientBuilder(IClientBuilderStrategy strategy)
+    public DeviceClientBuilder(IDeviceClientBuilderStrategy strategy)
     {
         this.strategy = strategy;
-        TransportSettings = new TransportSettingsList();
     }
 
-    public static ClientBuilder FromEnvironment()
+    public static DeviceClientBuilder FromConnectionString(string connectionString)
     {
-        return new ClientBuilder(new EnvironmentStrategy());
-    }
-
-    public void UseEnvironment()
-    {
-        strategy = new EnvironmentStrategy();
+        return new DeviceClientBuilder(new ConnectionStringStrategy()
+        {
+            ConnectionString = connectionString
+        });
     }
 
     public void UseConnectionString(string connectionString)
@@ -72,11 +63,12 @@ public class ClientBuilder : IClientBuilder
         this.strategy = strategy;
     }
 
-    public ModuleClient Build()
+    public DeviceClient Build()
     {
-        return strategy.Build(
+        return strategy!.Build(
             transportSettings: TransportSettings.ToArray(),
-            clientOptions: clientOptions);
+            clientOptions: clientOptions.IsValueCreated ?
+                clientOptions.Value : null);
     }
 
 }

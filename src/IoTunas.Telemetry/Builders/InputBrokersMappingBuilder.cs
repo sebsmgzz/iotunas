@@ -1,7 +1,7 @@
-﻿namespace IoTunas.Telemetry.Builders;
+﻿namespace IoTunas.Extensions.Telemetry.Builders;
 
-using IoTunas.Telemetry.Models;
-using IoTunas.Telemetry.Reflection;
+using IoTunas.Extensions.Telemetry.Models;
+using IoTunas.Extensions.Telemetry.Reflection;
 using System.Collections.Generic;
 using System.Reflection;
 

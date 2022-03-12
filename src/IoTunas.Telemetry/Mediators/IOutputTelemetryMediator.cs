@@ -1,4 +1,4 @@
-﻿namespace IoTunas.Telemetry.Mediators;
+﻿namespace IoTunas.Extensions.Telemetry.Mediators;
 
 using Microsoft.Azure.Devices.Client;
 using System;

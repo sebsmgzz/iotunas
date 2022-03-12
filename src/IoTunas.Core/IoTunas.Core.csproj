@@ -1,42 +1,43 @@
-﻿<Project Sdk="Microsoft.NET.Sdk">
+﻿
+<Project Sdk="Microsoft.NET.Sdk">
 
-  <PropertyGroup>
-    <TargetFramework>net6.0</TargetFramework>
-    <ImplicitUsings>enable</ImplicitUsings>
-    <Nullable>enable</Nullable>
-    <Version>0.0.0</Version>
-    <PackageId>IoTunas.Core</PackageId>
-    <Description>Lightweight library for azure iot edge module development.</Description>
-    <PackageTags>iot;azure;iotedge;edge;tunas</PackageTags>
-    <Authors>sebsmgzz</Authors>
-    <Company>IoTunas</Company>
-    <PackageProjectUrl>https://github.com/sebsmgzz/IoTunas/</PackageProjectUrl>
-    <RepositoryUrl>https://github.com/sebsmgzz/IoTunas/</RepositoryUrl>
-    <RepositoryType>git</RepositoryType>
-    <PackageIcon>icon.png</PackageIcon>
-    <PackageReadmeFile>README.md</PackageReadmeFile>
-    <PackageLicenseFile>LICENSE</PackageLicenseFile>
-    <PackageRequireLicenseAcceptance>True</PackageRequireLicenseAcceptance>
-  </PropertyGroup>
+	<PropertyGroup>
+		<TargetFramework>net6.0</TargetFramework>
+		<ImplicitUsings>enable</ImplicitUsings>
+		<Nullable>enable</Nullable>
+		<Version>0.0.0</Version>
+		<PackageId>IoTunas.Core</PackageId>
+		<Description>Lightweight library for azure iot edge module development.</Description>
+		<PackageTags>iot;azure;iotedge;edge;tunas</PackageTags>
+		<Authors>sebsmgzz</Authors>
+		<Company>IoTunas</Company>
+		<PackageProjectUrl>https://github.com/sebsmgzz/IoTunas/</PackageProjectUrl>
+		<RepositoryUrl>https://github.com/sebsmgzz/IoTunas/</RepositoryUrl>
+		<RepositoryType>git</RepositoryType>
+		<PackageIcon>core.ico</PackageIcon>
+		<PackageReadmeFile>README.md</PackageReadmeFile>
+		<PackageLicenseFile>LICENSE</PackageLicenseFile>
+		<PackageRequireLicenseAcceptance>True</PackageRequireLicenseAcceptance>
+	</PropertyGroup>
 
-  <ItemGroup>
-    <None Include="..\..\assets\icon.png">
-      <Pack>True</Pack>
-      <PackagePath>\</PackagePath>
-    </None>
-    <None Include="..\..\README.md">
-      <Pack>True</Pack>
-      <PackagePath>\</PackagePath>
-    </None>
-	  <None Include="..\..\LICENSE">
-		  <Pack>True</Pack>
-		  <PackagePath>\</PackagePath>
-	  </None>
-  </ItemGroup>
+	<ItemGroup>
+		<None Include="..\..\assets\icons\core.ico">
+			<Pack>True</Pack>
+			<PackagePath>\</PackagePath>
+		</None>
+		<None Include="..\..\README.md">
+			<Pack>True</Pack>
+			<PackagePath>\</PackagePath>
+		</None>
+		<None Include="..\..\LICENSE">
+			<Pack>True</Pack>
+			<PackagePath>\</PackagePath>
+		</None>
+	</ItemGroup>
 
-  <ItemGroup>
-    <PackageReference Include="Microsoft.Azure.Devices.Client" Version="1.39.*" />
-    <PackageReference Include="Microsoft.Extensions.Hosting" Version="6.0.*" />
-  </ItemGroup>
+	<ItemGroup>
+		<PackageReference Include="Microsoft.Azure.Devices.Client" Version="1.40.*" />
+		<PackageReference Include="Microsoft.Extensions.Hosting" Version="6.0.*" />
+	</ItemGroup>
 
 </Project>

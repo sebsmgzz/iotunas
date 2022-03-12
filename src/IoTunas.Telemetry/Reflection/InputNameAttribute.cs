@@ -1,4 +1,4 @@
-﻿namespace IoTunas.Telemetry.Reflection;
+﻿namespace IoTunas.Extensions.Telemetry.Reflection;
 
 using System;
 
