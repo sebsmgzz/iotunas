@@ -15,4 +15,6 @@ public interface IMethodResponseFactory
 
     MethodResponse Ok(object? payload = null);
 
+    MethodResponse Conflict(object? payload = null);
+
 }

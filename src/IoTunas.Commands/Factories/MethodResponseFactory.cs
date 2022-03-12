@@ -32,6 +32,11 @@ public class MethodResponseFactory : IMethodResponseFactory
         return Respond(500, payload);
     }
 
+    public MethodResponse Conflict(object? payload = null)
+    {
+        return Respond(409, payload);
+    }
+
     private static MethodResponse Respond(int statusCode, object? payload = null)
     {
         var json = JsonConvert.SerializeObject(payload);
