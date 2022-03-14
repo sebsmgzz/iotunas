@@ -1,5 +1,4 @@
 {
-  "$schema-template": "4.0.0",
   "modulesContent": {
     "$edgeAgent": {
       "properties.desired": {
@@ -17,7 +16,7 @@
             "type": "docker",
             "settings": {
               "image": "mcr.microsoft.com/azureiotedge-agent:1.1",
-              "createOptions": {}
+              "createOptions": "{}"
             }
           },
           "edgeHub": {
@@ -26,27 +25,7 @@
             "restartPolicy": "always",
             "settings": {
               "image": "mcr.microsoft.com/azureiotedge-hub:1.1",
-              "createOptions": {
-                "HostConfig": {
-                  "PortBindings": {
-                    "5671/tcp": [
-                      {
-                        "HostPort": "5671"
-                      }
-                    ],
-                    "8883/tcp": [
-                      {
-                        "HostPort": "8883"
-                      }
-                    ],
-                    "443/tcp": [
-                      {
-                        "HostPort": "443"
-                      }
-                    ]
-                  }
-                }
-              }
+              "createOptions": "{\"HostConfig\":{\"PortBindings\":{\"5671/tcp\":[{\"HostPort\":\"5671\"}],\"8883/tcp\":[{\"HostPort\":\"8883\"}],\"443/tcp\":[{\"HostPort\":\"443\"}]}}}"
             }
           }
         },
@@ -57,8 +36,8 @@
             "status": "running",
             "restartPolicy": "always",
             "settings": {
-              "image": "${MODULES.SpeakerModule}",
-              "createOptions": {}
+              "image": "localhost:5000/speakermodule:0.0.1-amd64",
+              "createOptions": "{}"
             }
           },
           "CameraModule": {
@@ -67,8 +46,8 @@
             "status": "running",
             "restartPolicy": "always",
             "settings": {
-              "image": "${MODULES.CameraModule}",
-              "createOptions": {}
+              "image": "localhost:5000/cameramodule:0.0.1-amd64",
+              "createOptions": "{}"
             }
           }
         }

@@ -1,0 +1,26 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+	
+	<PropertyGroup>
+		<OutputType>Exe</OutputType>
+		<TargetFramework>net6.0</TargetFramework>
+	</PropertyGroup>
+  
+	<PropertyGroup Condition="'$(Configuration)|$(TargetFramework)|$(Platform)'=='Debug|netcoreapp3.1|AnyCPU'">
+		<TreatWarningsAsErrors>True</TreatWarningsAsErrors>
+		<TreatSpecificWarningsAsErrors />
+	</PropertyGroup>
+
+
+	<ItemGroup>
+		<PackageReference Include="Microsoft.Extensions.Hosting" Version="6.0.0" />
+	</ItemGroup>
+
+	<ItemGroup>
+		<ProjectReference Include="..\..\..\src\IoTunas.Commands\IoTunas.Extensions.Commands.csproj" />
+		<ProjectReference Include="..\..\..\src\IoTunas.Connectivity\IoTunas.Extensions.Connectivity.csproj" />
+		<ProjectReference Include="..\..\..\src\IoTunas.Core\IoTunas.Core.csproj" />
+		<ProjectReference Include="..\..\..\src\IoTunas.Telemetry\IoTunas.Extensions.Telemetry.csproj" />
+		<ProjectReference Include="..\..\..\src\IoTunas.Twin\IoTunas.Extensions.Twin.csproj" />
+	</ItemGroup>
+	
+</Project>
