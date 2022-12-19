@@ -19,9 +19,7 @@ public class ConnectionStringStrategy : IModuleClientBuilderStrategy
         return ModuleClient.CreateFromConnectionString(
             transportSettings: transportSettings,
             options: clientOptions,
-            connectionString: ConnectionString ??
-                throw new ArgumentNullException(
-                    "Connection string cannot be empty."));
+            connectionString: ConnectionString!);
     }
 
 }

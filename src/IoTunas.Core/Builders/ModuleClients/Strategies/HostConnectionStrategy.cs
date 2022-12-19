@@ -24,12 +24,8 @@ public class HostConnectionStrategy : IModuleClientBuilderStrategy
         return ModuleClient.Create(
             transportSettings: transportSettings,
             options: clientOptions,
-            hostname: Hostname ??
-                throw new ArgumentNullException(
-                    "Hostname cannot be emtpy."),
-            authenticationMethod: AuthenticationMethod ??
-                throw new ArgumentNullException(
-                    "Authentication method cannot be empty."));
+            hostname: Hostname!,
+            authenticationMethod: AuthenticationMethod!);
 
     }
 

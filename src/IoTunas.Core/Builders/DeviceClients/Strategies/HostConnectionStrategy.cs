@@ -1,7 +1,6 @@
 ﻿namespace IoTunas.Core.Builders.DeviceClients.Strategies;
 
 using Microsoft.Azure.Devices.Client;
-using System;
 
 public class HostConnectionStrategy : IDeviceClientBuilderStrategy
 {
@@ -17,12 +16,8 @@ public class HostConnectionStrategy : IDeviceClientBuilderStrategy
         return DeviceClient.Create(
             transportSettings: transportSettings,
             options: clientOptions,
-            hostname: Hostname ??
-                throw new ArgumentNullException(
-                    "Hostname cannot be emtpy."),
-            authenticationMethod: AuthenticationMethod ??
-                throw new ArgumentNullException(
-                    "Authentication method cannot be empty."));
+            hostname: Hostname!,
+            authenticationMethod: AuthenticationMethod!);
     }
 
 }
