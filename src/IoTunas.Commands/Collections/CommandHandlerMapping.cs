@@ -1,17 +1,23 @@
-﻿namespace IoTunas.Extensions.Commands.Builders;
+﻿namespace IoTunas.Extensions.Commands.Collections;
 
 using IoTunas.Extensions.Commands.Models;
 using IoTunas.Extensions.Commands.Reflection;
+using System.Diagnostics.CodeAnalysis;
 using System.Reflection;
 
-public class CommandHandlerMappingBuilder : ICommandHandlerMappingBuilder
+public class CommandHandlerMapping : ICommandHandlerMapping
 {
 
-    private readonly Dictionary<string, Type> mappings = new();
+    private readonly Dictionary<string, Type> mapping;
 
-    public int Count => mappings.Count;
+    public int Count => mapping.Count;
 
-    private void AddHandler(string methodName, Type handlerType)
+    public CommandHandlerMapping()
+    {
+        mapping = new Dictionary<string, Type>();
+    }
+
+    public void AddHandler(string methodName, Type handlerType)
     {
         if (!handlerType.IsAssignableTo(typeof(ICommandHandler)))
         {
@@ -19,15 +25,15 @@ public class CommandHandlerMappingBuilder : ICommandHandlerMappingBuilder
                 $"A handler must implement the {nameof(ICommandHandler)} " +
                 $"interface in order to handle commands.");
         }
-        mappings.Add(methodName, handlerType);
+        mapping.Add(methodName, handlerType);
     }
 
     public void AddHandler<T>(string methodName) where T : ICommandHandler
     {
-        mappings.Add(methodName, typeof(T));
+        mapping.Add(methodName, typeof(T));
     }
 
-    private void AddHandler(Type handlerType)
+    public void AddHandler(Type handlerType)
     {
         var attribute = handlerType.GetCustomAttribute<CommandNameAttribute>();
         var methodName = attribute?.Value ?? handlerType.Name;
@@ -41,8 +47,13 @@ public class CommandHandlerMappingBuilder : ICommandHandlerMappingBuilder
 
     public void MapHandlers()
     {
+        var assembly = Assembly.GetEntryAssembly();
+        MapHandlers(assembly!);
+    }
+
+    public void MapHandlers(Assembly assembly)
+    {
         var interfaceType = typeof(ICommandHandler);
-        var assembly = Assembly.GetEntryAssembly()!;
         var types = assembly.GetTypes();
         foreach (var handlerType in types)
         {
@@ -53,9 +64,14 @@ public class CommandHandlerMappingBuilder : ICommandHandlerMappingBuilder
         }
     }
 
-    public IReadOnlyDictionary<string, Type> Build()
+    public bool Contains(string methodName)
     {
-        return new Dictionary<string, Type>(mappings);
+        return mapping.ContainsKey(methodName);
+    }
+
+    public bool TryGetValue(string methodName, [MaybeNullWhen(false)] out Type methodType)
+    {
+        return mapping.TryGetValue(methodName, out methodType);
     }
 
 }

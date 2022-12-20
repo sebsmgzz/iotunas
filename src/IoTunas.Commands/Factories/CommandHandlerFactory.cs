@@ -1,45 +1,40 @@
 ﻿namespace IoTunas.Extensions.Commands.Factories;
 
+using IoTunas.Extensions.Commands.Collections;
 using IoTunas.Extensions.Commands.Models;
 using Microsoft.Extensions.DependencyInjection;
+using System.Diagnostics.CodeAnalysis;
 
 public class CommandHandlerFactory : ICommandHandlerFactory
 {
 
     private readonly IServiceProvider serviceProvider;
-    private readonly IReadOnlyDictionary<string, Type> mapping;
-
-    public int Count => mapping.Count;
+    private readonly CommandHandlerMapping handlersDefinition;
 
     public CommandHandlerFactory(
         IServiceProvider serviceProvider,
-        IReadOnlyDictionary<string, Type> mapping)
+        CommandHandlerMapping handlersDefinitions)
     {
         this.serviceProvider = serviceProvider;
-        this.mapping = mapping;
+        this.handlersDefinition = handlersDefinitions;
     }
 
     public bool Contains(string methodName)
     {
-        return mapping.ContainsKey(methodName);
+        return handlersDefinition.Contains(methodName);
     }
 
-    public bool TryGet(string methodName, out ICommandHandler handler)
+    public bool TryGet(string methodName, [MaybeNullWhen(false)] out ICommandHandler handler)
     {
-        if (!mapping.TryGetValue(methodName, out var methodType))
+        if (!handlersDefinition.TryGetValue(methodName, out var handlerType))
         {
             handler = null;
             return false;
         }
         var scope = serviceProvider.CreateScope();
-        var service = scope.ServiceProvider.GetService(methodType);
+        var service = scope.ServiceProvider.GetService(handlerType);
         handler = service as ICommandHandler;
         return handler != null;
-    }
-
-    public IReadOnlyDictionary<string, Type> AsReadOnlyDictionary()
-    {
-        return mapping;
     }
 
 }

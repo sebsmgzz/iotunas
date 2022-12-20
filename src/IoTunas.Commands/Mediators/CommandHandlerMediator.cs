@@ -8,19 +8,21 @@ using Microsoft.Extensions.Logging;
 public class CommandHandlerMediator : ICommandHandlerMediator
 {
 
-    private readonly IServiceProvider serviceProvider;
-    private readonly ICommandHandlerFactory handlerfactory;
+    public const string InvokedLog = "Invoked | {Name}";
+    public const string NotFoundLog = "Not found | {Name}";
+    public const string HandledLog = "Handled | {Name}";
+    public const string ErrorLog = "Error | {Name}";
+
+    private readonly ICommandHandlerFactory handlerFactory;
     private readonly IMethodResponseFactory responseFactory;
     private readonly ILogger logger;
 
     public CommandHandlerMediator(
-        IServiceProvider serviceProvider,
         ICommandHandlerFactory handlerFactory,
         IMethodResponseFactory responseFactory,
         ILogger<ICommandHandlerMediator> logger)
     {
-        this.serviceProvider = serviceProvider;
-        handlerfactory = handlerFactory;
+        this.handlerFactory = handlerFactory;
         this.responseFactory = responseFactory;
         this.logger = logger;
     }
@@ -28,25 +30,21 @@ public class CommandHandlerMediator : ICommandHandlerMediator
     public async Task<MethodResponse> HandleAsync(
         MethodRequest methodRequest, object userContext)
     {
-        logger.LogInformation($"Invoked | {methodRequest.Name}");
         try
         {
 
             // First, check if handler exists
-            if (!handlerfactory.Contains(methodRequest.Name))
+            logger.LogInformation(InvokedLog, methodRequest.Name);
+            if (!handlerFactory.Contains(methodRequest.Name))
             {
-                logger.LogWarning($"Not found | {methodRequest.Name}");
-                return responseFactory.NotFound(new
-                {
-                    status = "not found"
-                });
+                return await HandleNotFoundAsync(methodRequest, userContext);
             }
 
             // Then try to get it
             // If the handler is not implementing the interface
             // or not being registered in the DI service provider
             // throw an exception, because this should NEVER happen
-            if (!handlerfactory.TryGet(methodRequest.Name, out var handler))
+            if (!handlerFactory.TryGet(methodRequest.Name, out var handler))
             {
                 throw new MissingMethodException(
                     $"Handler for {methodRequest.Name} needs to " +
@@ -55,19 +53,37 @@ public class CommandHandlerMediator : ICommandHandlerMediator
             }
 
             // Finally, handle the invocation
-            logger.LogInformation($"Handled | {methodRequest.Name}");
+            logger.LogInformation(HandledLog, methodRequest.Name);
             return await handler.HandleAsync(methodRequest, userContext);
 
         }
         catch (Exception ex)
         {
-            logger.LogError(ex, $"Error | {methodRequest.Name}");
-            return responseFactory.InternalError(new
-            {
-                status = "internal error",
-                error = ex
-            });
+            return await HandleErrorAsync(ex, methodRequest, userContext);
         }
+    }
+
+    protected virtual async Task<MethodResponse> HandleNotFoundAsync(
+        MethodRequest methodRequest, object userContext)
+    {
+        logger.LogWarning(NotFoundLog, methodRequest.Name);
+        return await Task.FromResult(responseFactory.NotFound(new
+        {
+            status = "not found",
+            name = methodRequest.Name
+        }));
+    }
+
+    protected virtual async Task<MethodResponse> HandleErrorAsync(
+        Exception ex, MethodRequest methodRequest, object userContext)
+    {
+        logger.LogError(ex, ErrorLog, methodRequest.Name);
+        return await Task.FromResult(responseFactory.InternalError(new
+        {
+            status = "internal error",
+            name = methodRequest.Name,
+            message = ex.Message
+        }));
     }
 
 }
