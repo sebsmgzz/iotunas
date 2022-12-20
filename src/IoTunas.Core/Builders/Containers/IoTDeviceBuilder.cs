@@ -2,7 +2,7 @@
 
 using IoTunas.Core.Builders.DeviceClients;
 using IoTunas.Core.Services;
-using Microsoft.Extensions.Configuration;
+using Microsoft.Azure.Devices.Client;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using System;
@@ -10,59 +10,25 @@ using System;
 public class IoTDeviceBuilder : IoTContainerBuilderBase
 {
 
-    private Action<IDeviceClientBuilder>? configureClientAction;
-    private readonly List<Func<IServiceProvider, Task>> afterBuildActions;
+    public const string DefaultConnectionStringName = "Default";
+
+    public IDeviceClientBuilder Client { get; }
 
     public IoTDeviceBuilder(
         HostBuilderContext context,
-        IServiceCollection services)
-        : base(
-              context.Configuration,
-              context.HostingEnvironment,
-              services)
+        IServiceCollection services) : base(
+            configuration: context.Configuration,
+            environment: context.HostingEnvironment,
+            services: services)
     {
-        afterBuildActions = new List<Func<IServiceProvider, Task>>();
-    }
-
-    public void ConfigureClient(Action<IDeviceClientBuilder>? configureClientAction)
-    {
-        this.configureClientAction = configureClientAction;
-    }
-
-    public void AfterBuild(Func<IServiceProvider, Task> action)
-    {
-        afterBuildActions.Add(action);
+        Client = DeviceClientBuilder.FromConnectionString(DefaultConnectionStringName);
     }
 
     public override IServiceProvider BuildServiceProvider()
     {
-
-        // Add core services
-        Services.AddSingleton<DeviceHostService>();
-        Services.AddSingleton(provider =>
-            provider.GetRequiredService<DeviceHostService>().Client);
-        Services.AddHostedService(provider =>
-            provider.GetRequiredService<DeviceHostService>());
-        Services.AddTransient<IDeviceClientBuilder>(provider =>
-        {
-            var config = provider.GetRequiredService<IConfiguration>();
-            var builder = DeviceClientBuilder.FromConnectionString(
-                config.GetConnectionString("Default"));
-            configureClientAction?.Invoke(builder);
-            return builder;
-        });
-
-        // Add post build actions
-        var provider = Services.BuildServiceProvider();
-        var tasks = new List<Task>();
-        foreach(var action in afterBuildActions)
-        {
-            var task = action.Invoke(provider);
-            tasks.Add(task);
-        }
-        Task.WhenAll(tasks).Wait();
-        return provider;
-
+        Services.AddSingleton<DeviceClient>(provider => Client.Build());
+        Services.AddHostedService<DeviceHostService>();
+        return Services.BuildServiceProvider();
     }
 
 }

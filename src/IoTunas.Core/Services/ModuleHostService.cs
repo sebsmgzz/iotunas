@@ -1,55 +1,49 @@
 ﻿namespace IoTunas.Core.Services;
 
-using IoTunas.Core.Builders.ModuleClients;
 using Microsoft.Azure.Devices.Client;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
 using System;
 using System.Threading.Tasks;
 
-internal class ModuleHostService : IHostedService, IDisposable
+internal class ModuleHostService : IHostedService, IDisposable, IAsyncDisposable
 {
 
-    private readonly Lazy<ModuleClient> moduleClient;
+    private readonly ModuleClient client;
     private readonly ILogger logger;
 
-    public ModuleClient Client => moduleClient.Value;
-
     public ModuleHostService(
-        IModuleClientBuilder builder,
-        ILogger<DeviceHostService> logger)
+        ModuleClient client,
+        ILogger<ModuleHostService> logger)
     {
+        this.client = client;
         this.logger = logger;
-        moduleClient = new Lazy<ModuleClient>(builder.Build);
     }
 
     public async Task StartAsync(CancellationToken cancellationToken)
     {
-        await moduleClient.Value
+        const string log = "Module client connection opened.";
+        await client
             .OpenAsync(cancellationToken)
-            .ContinueWith(t =>
-                logger.LogInformation("Module client connection opened."),
-                cancellationToken);
+            .ContinueWith(t => logger.LogInformation(log), cancellationToken);
     }
 
     public async Task StopAsync(CancellationToken cancellationToken)
     {
-        if (moduleClient.IsValueCreated)
-        {
-            await moduleClient.Value
-                .CloseAsync(cancellationToken)
-                .ContinueWith(t =>
-                    logger.LogInformation("Module client connection closed."),
-                    cancellationToken);
-        }
+        const string log = "Module client connection opened.";
+        await client
+            .CloseAsync(cancellationToken)
+            .ContinueWith(t => logger.LogInformation(log), cancellationToken);
     }
 
     public void Dispose()
     {
-        if (moduleClient.IsValueCreated)
-        {
-            moduleClient.Value.Dispose();
-        }
+        client.Dispose();
+    }
+
+    public ValueTask DisposeAsync()
+    {
+        return client.DisposeAsync();
     }
 
 }

@@ -16,11 +16,10 @@ public abstract class IoTContainerBuilderBase : IIoTContainerBuilder
 
     public IoTContainerBuilderBase(
         HostBuilderContext context,
-        IServiceCollection services)
-        : this(
-              context.Configuration,
-              context.HostingEnvironment,
-              services)
+        IServiceCollection services) : this(
+            configuration: context.Configuration,
+            environment: context.HostingEnvironment,
+            services: services)
     {
     }
 

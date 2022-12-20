@@ -16,12 +16,12 @@ public static class Extensions
         Action<IoTModuleBuilder> configureAction)
     {
         return hostBuilder
+            .UseServiceProviderFactory(IoTServiceProviderFactory.ForModule)
+            .ConfigureContainer<IoTModuleBuilder>(configureAction)
             .ConfigureAppConfiguration(config =>
-                config.AddEnvironmentVariables(IoTModuleVariablePrefix))
-            .UseServiceProviderFactory(
-                IoTServiceProviderFactory.ForModule)
-            .ConfigureContainer<IoTModuleBuilder>(container =>
-                configureAction?.Invoke(container));
+            {
+                config.AddEnvironmentVariables(IoTModuleVariablePrefix);
+            });
     }
 
     public static IHostBuilder ConfigureIoTDeviceDefaults(
@@ -29,12 +29,12 @@ public static class Extensions
         Action<IoTDeviceBuilder> configureAction)
     {
         return hostBuilder
+            .UseServiceProviderFactory(IoTServiceProviderFactory.ForDevice)
+            .ConfigureContainer<IoTDeviceBuilder>(configureAction)
             .ConfigureAppConfiguration(config =>
-                config.AddEnvironmentVariables(IoTDeviceVariablePrefix))
-            .UseServiceProviderFactory(
-                IoTServiceProviderFactory.ForDevice)
-            .ConfigureContainer<IoTDeviceBuilder>(container =>
-                configureAction?.Invoke(container));
+            {
+                config.AddEnvironmentVariables(IoTDeviceVariablePrefix);
+            });
     }
 
 }
