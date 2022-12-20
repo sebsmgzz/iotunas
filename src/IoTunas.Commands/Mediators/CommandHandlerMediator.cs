@@ -8,10 +8,14 @@ using Microsoft.Extensions.Logging;
 public class CommandHandlerMediator : ICommandHandlerMediator
 {
 
-    public const string InvokedLog = "Invoked | {Name}";
-    public const string NotFoundLog = "Not found | {Name}";
-    public const string HandledLog = "Handled | {Name}";
-    public const string ErrorLog = "Error | {Name}";
+    public const string InvokedLog = "Invoked | {name}";
+    public const string NotFoundLog = "Not found | {name}";
+    public const string HandledLog = "Handled | {name}";
+    public const string ErrorLog = "Error | {name}";
+    public const string InvalidHandlerLog =
+        "Handler for {methodRequestName} needs to " +
+        "implement {interfaceName} and be registered " +
+        "in the service provider's DI to handle a direct method invocation.";
 
     private readonly ICommandHandlerFactory handlerFactory;
     private readonly IMethodResponseFactory responseFactory;
@@ -37,6 +41,7 @@ public class CommandHandlerMediator : ICommandHandlerMediator
             logger.LogInformation(InvokedLog, methodRequest.Name);
             if (!handlerFactory.Contains(methodRequest.Name))
             {
+                logger.LogWarning(NotFoundLog, methodRequest.Name);
                 return await HandleNotFoundAsync(methodRequest, userContext);
             }
 
@@ -46,10 +51,8 @@ public class CommandHandlerMediator : ICommandHandlerMediator
             // throw an exception, because this should NEVER happen
             if (!handlerFactory.TryGet(methodRequest.Name, out var handler))
             {
-                throw new MissingMethodException(
-                    $"Handler for {methodRequest.Name} needs to " +
-                    $"implement {nameof(ICommandHandler)} and be registered " +
-                    $"in the service provider's DI to handle a direct method invocation.");
+                logger.LogCritical(InvalidHandlerLog, methodRequest.Name, nameof(ICommandHandler));
+                return await HandleInvalidHandlerAsync(methodRequest, userContext);
             }
 
             // Finally, handle the invocation
@@ -59,6 +62,7 @@ public class CommandHandlerMediator : ICommandHandlerMediator
         }
         catch (Exception ex)
         {
+            logger.LogError(ex, ErrorLog, methodRequest.Name);
             return await HandleErrorAsync(ex, methodRequest, userContext);
         }
     }
@@ -66,7 +70,6 @@ public class CommandHandlerMediator : ICommandHandlerMediator
     protected virtual async Task<MethodResponse> HandleNotFoundAsync(
         MethodRequest methodRequest, object userContext)
     {
-        logger.LogWarning(NotFoundLog, methodRequest.Name);
         return await Task.FromResult(responseFactory.NotFound(new
         {
             status = "not found",
@@ -74,10 +77,19 @@ public class CommandHandlerMediator : ICommandHandlerMediator
         }));
     }
 
+    protected virtual async Task<MethodResponse> HandleInvalidHandlerAsync(
+        MethodRequest methodRequest, object userContext)
+    {
+        return await Task.FromResult(responseFactory.InternalError(new
+        {
+            status = "invalid handler",
+            name = methodRequest.Name
+        }));
+    }
+
     protected virtual async Task<MethodResponse> HandleErrorAsync(
         Exception ex, MethodRequest methodRequest, object userContext)
     {
-        logger.LogError(ex, ErrorLog, methodRequest.Name);
         return await Task.FromResult(responseFactory.InternalError(new
         {
             status = "internal error",
