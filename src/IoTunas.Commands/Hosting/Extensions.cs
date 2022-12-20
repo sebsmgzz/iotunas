@@ -1,10 +1,9 @@
-namespace IoTunas.Extensions.Commands;
+namespace IoTunas.Extensions.Commands.Hosting;
 
 using IoTunas.Core.Builders.Containers;
 using IoTunas.Extensions.Commands.Collections;
 using IoTunas.Extensions.Commands.Factories;
 using IoTunas.Extensions.Commands.Mediators;
-using IoTunas.Extensions.Commands.Hosting;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.DependencyInjection.Extensions;
 using System;
