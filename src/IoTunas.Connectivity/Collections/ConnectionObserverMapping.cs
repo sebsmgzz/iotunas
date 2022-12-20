@@ -1,17 +1,25 @@
 ﻿namespace IoTunas.Extensions.Connectivity.Builders;
 
 using IoTunas.Extensions.Connectivity.Models;
+using System.Collections;
 using System.Collections.Generic;
 using System.Reflection;
 
-public class ConnectionObserversListBuilder : IConnectionObserversListBuilder
+public class ConnectionObserverMapping : IEnumerable<Type>
 {
 
-    private readonly List<Type> types = new();
+    private readonly List<Type> types;
 
-    public int Count => types.Count;    
+    public int Count => types.Count;
 
-    private void AddObserver(Type observerType)
+    public Type this[int i] => types[i];
+
+    public ConnectionObserverMapping()
+    {
+        types = new List<Type>();
+    }
+
+    public void AddObserver(Type observerType)
     {
         if (!observerType.IsAssignableTo(typeof(IConnectionObserver)))
         {
@@ -27,10 +35,9 @@ public class ConnectionObserversListBuilder : IConnectionObserversListBuilder
         AddObserver(typeof(T));
     }
 
-    public void MapObservers()
+    public void MapObservers(Assembly assembly)
     {
         var interfaceType = typeof(IConnectionObserver);
-        var assembly = Assembly.GetEntryAssembly()!;
         var types = assembly.GetTypes();
         foreach (var observerType in types)
         {
@@ -41,9 +48,22 @@ public class ConnectionObserversListBuilder : IConnectionObserversListBuilder
         }
     }
 
-    public IReadOnlyList<Type> Build()
+    public void MapObservers()
     {
-        return types.AsReadOnly();
+        var assembly = Assembly.GetEntryAssembly();
+        MapObservers(assembly!);
+    }
+
+    public IEnumerator<Type> GetEnumerator()
+    {
+        var enumerable = (IEnumerable<Type>)types;
+        return enumerable.GetEnumerator();
+    }
+
+    IEnumerator IEnumerable.GetEnumerator()
+    {
+        var enumerable = (IEnumerable)types;
+        return enumerable.GetEnumerator();
     }
 
 }

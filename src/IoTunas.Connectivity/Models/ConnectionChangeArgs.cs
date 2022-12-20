@@ -5,18 +5,21 @@ using Microsoft.Azure.Devices.Client;
 public class ConnectionChangeArgs
 {
 
-    public ConnectionStatus Status { get; set; }
+    public ConnectionStatus Status { get; }
 
-    public ConnectionStatusChangeReason Reason { get; set; }
+    public ConnectionStatusChangeReason Reason { get; }
 
-    public ConnectionChangeArgs()
-    {
-    }
-
-    public ConnectionChangeArgs(ConnectionStatus status, ConnectionStatusChangeReason reason)
+    public ConnectionChangeArgs(
+        ConnectionStatus status, 
+        ConnectionStatusChangeReason reason)
     {
         Status = status;
         Reason = reason;
+    }
+
+    public override string ToString()
+    {
+        return $"[{Status} {Reason}]";
     }
 
 }

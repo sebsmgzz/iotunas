@@ -1,48 +1,59 @@
 ﻿namespace IoTunas.Extensions.Connectivity.Factories;
 
+using IoTunas.Extensions.Connectivity.Builders;
 using IoTunas.Extensions.Connectivity.Models;
 using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.Logging;
 using System;
 using System.Collections.Generic;
+using System.Diagnostics.CodeAnalysis;
 
 public class ConnectionObserverFactory : IConnectionObserverFactory
 {
 
-    private readonly IServiceProvider provider;
-    
-    public IReadOnlyList<Type> Mapping { get; }
+    public const string InvalidObserverLog =
+        "Connection observer {oberserTypeName} needs to " +
+        "inherit {interfaceName} and be registered " +
+        "in the service provider's DI to be invoked.";
 
+    private readonly ConnectionObserverMapping mapping;
+    private readonly IServiceProvider provider;
+    private readonly ILogger logger;
+
+    public int Count => mapping.Count;
+    
     public ConnectionObserverFactory(
         IServiceProvider provider,
-        IReadOnlyList<Type> mapping)
+        ConnectionObserverMapping mapping,
+        ILogger<IConnectionObserverFactory> logger)
     {
         this.provider = provider;
-        Mapping = mapping;
+        this.mapping = mapping;
+        this.logger = logger;
     }
 
-    public bool TryGet(Type type, out IConnectionObserver observer)
+    public IEnumerable<IConnectionObserver> GetAll()
     {
-        // Try getting the observer from the DI
-        var scope = provider.CreateScope();
-        var service = scope.ServiceProvider.GetService(type);
-        observer = service as IConnectionObserver;
-        return observer != null;
-    }
-
-    public bool TryGet<T>(out IConnectionObserver observer)
-        where T : IConnectionObserver
-    {
-        return TryGet(typeof(T), out observer);
-    }
-
-    public bool TryGet(int index, out IConnectionObserver observer)
-    {
-        if (index < Mapping.Count)
+        for(int i = 0; i < mapping.Count; i++)
         {
-            return TryGet(Mapping[index], out observer);
+            if(TryGet(i, out var observer))
+            {
+                yield return observer;
+            }
         }
-        observer = null;
-        return false;
+    }
+
+    public bool TryGet(int index, [MaybeNullWhen(false)] out IConnectionObserver observer)
+    {
+        var observerType = mapping[index];
+        var scope = provider.CreateScope();
+        var service = scope.ServiceProvider.GetService(observerType);
+        observer = service as IConnectionObserver;
+        if(observer == null)
+        {
+            logger.LogCritical(InvalidObserverLog, observerType.Name, nameof(IConnectionObserver));
+        }
+        return observer != null;
     }
 
 }
