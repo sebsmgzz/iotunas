@@ -2,20 +2,18 @@
 
 using Microsoft.Azure.Devices.Client;
 
-public class HostConnectionStrategy : IDeviceClientBuilderStrategy
+public class HostConnectionStrategy : DeviceClientBuilderStrategy
 {
 
     public string? Hostname { get; set; }
 
     public IAuthenticationMethod? AuthenticationMethod { get; set; }
 
-    public virtual DeviceClient Build(
-        ITransportSettings[] transportSettings, 
-        ClientOptions? clientOptions)
+    public override DeviceClient Build()
     {
         return DeviceClient.Create(
-            transportSettings: transportSettings,
-            options: clientOptions,
+            transportSettings: TransportSettings,
+            options: Options,
             hostname: Hostname!,
             authenticationMethod: AuthenticationMethod!);
     }

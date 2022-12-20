@@ -1,10 +1,9 @@
 ﻿namespace IoTunas.Core.Builders.ModuleClients.Strategies;
 
 using Microsoft.Azure.Devices.Client;
-using IoTunas.Core.Builders.ModuleClients;
 
 /// <inheritdoc cref="IModuleClientBuilderStrategy"/>
-public class HostConnectionStrategy : IModuleClientBuilderStrategy
+public class HostConnectionStrategy : ModuleClientBuilderStrategy
 {
 
     /// <summary>
@@ -17,13 +16,11 @@ public class HostConnectionStrategy : IModuleClientBuilderStrategy
     /// </summary>
     public IAuthenticationMethod? AuthenticationMethod { get; set; }
 
-    public virtual ModuleClient Build(
-        ITransportSettings[] transportSettings,
-        ClientOptions? clientOptions = null)
+    public override ModuleClient Build()
     {
         return ModuleClient.Create(
-            transportSettings: transportSettings,
-            options: clientOptions,
+            transportSettings: TransportSettings,
+            options: options,
             hostname: Hostname!,
             authenticationMethod: AuthenticationMethod!);
 

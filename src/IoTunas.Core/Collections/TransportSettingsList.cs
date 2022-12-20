@@ -46,4 +46,9 @@ public class TransportSettingsList : List<ITransportSettings>
         return settings;
     }
 
+    public static implicit operator ITransportSettings[](TransportSettingsList transportSettings)
+    {
+        return transportSettings.ToArray();
+    }
+
 }

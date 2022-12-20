@@ -1,19 +1,17 @@
 ﻿namespace IoTunas.Core.Builders.ModuleClients.Strategies;
 
 using Microsoft.Azure.Devices.Client;
-using IoTunas.Core.Builders.ModuleClients;
 
 /// <inheritdoc cref="IModuleClientBuilderStrategy"/>
-public class EnvironmentStrategy : IModuleClientBuilderStrategy
+public class EnvironmentStrategy : ModuleClientBuilderStrategy
 {
 
-    public virtual ModuleClient Build(
-        ITransportSettings[] transportSettings,
-        ClientOptions? clientOptions = null)
+    public override ModuleClient Build()
     {
-        return ModuleClient.CreateFromEnvironmentAsync(
-            transportSettings: transportSettings,
-            options: clientOptions).Result;
+        var task = ModuleClient.CreateFromEnvironmentAsync(
+            transportSettings: TransportSettings,
+            options: options);
+        return task.Result;
     }
 
 }

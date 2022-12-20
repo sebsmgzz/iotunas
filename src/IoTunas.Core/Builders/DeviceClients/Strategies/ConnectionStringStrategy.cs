@@ -1,20 +1,17 @@
 ﻿namespace IoTunas.Core.Builders.DeviceClients.Strategies;
 
 using Microsoft.Azure.Devices.Client;
-using System;
 
-public class ConnectionStringStrategy : IDeviceClientBuilderStrategy
+public class ConnectionStringStrategy : DeviceClientBuilderStrategy
 {
 
     public string? ConnectionString { get; set; }
 
-    public virtual DeviceClient Build(
-        ITransportSettings[] transportSettings, 
-        ClientOptions? clientOptions)
+    public override DeviceClient Build()
     {
         return DeviceClient.CreateFromConnectionString(
-            transportSettings: transportSettings,
-            options: clientOptions,
+            transportSettings: TransportSettings,
+            options: options,
             connectionString: ConnectionString!);
     }
 

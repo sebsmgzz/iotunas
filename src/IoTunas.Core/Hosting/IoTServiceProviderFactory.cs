@@ -1,6 +1,5 @@
 ﻿namespace IoTunas.Core.Hosting;
 
-using IoTunas.Core.Builders;
 using IoTunas.Core.Builders.Containers;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
@@ -10,36 +9,31 @@ public class IoTServiceProviderFactory : IServiceProviderFactory<IIoTContainerBu
 {
 
     private readonly HostBuilderContext context;
-    private readonly IoTContainer iotContainerType;
+    private readonly IoTBuilderFactory builderFactory;
 
     private IoTServiceProviderFactory(
         HostBuilderContext context,
-        IoTContainer iotContainerType)
+        IoTBuilderFactory builderFactory)
     {
         this.context = context;
-        this.iotContainerType = iotContainerType;
+        this.builderFactory = builderFactory;
     }
 
     public static IoTServiceProviderFactory ForDevice(HostBuilderContext context)
     {
-        return new IoTServiceProviderFactory(context, IoTContainer.Device);
+        return new IoTServiceProviderFactory(context,
+            (context, services) => new IoTDeviceBuilder(context, services));
     }
 
     public static IoTServiceProviderFactory ForModule(HostBuilderContext context)
     {
-        return new IoTServiceProviderFactory(context, IoTContainer.Module);
+        return new IoTServiceProviderFactory(context,
+            (context, services) => new IoTModuleBuilder(context, services));
     }
 
     public IIoTContainerBuilder CreateBuilder(IServiceCollection services)
     {
-        return iotContainerType switch
-        {
-            IoTContainer.Device => new IoTDeviceBuilder(context, services),
-            IoTContainer.Module => new IoTModuleBuilder(context, services),
-            _ => throw new NotImplementedException(
-                $"IoT container type not supported. " +
-                $"Did forgot to update {nameof(IoTServiceProviderFactory)}?"),
-        };
+        return builderFactory.Invoke(context, services);
     }
 
     public IServiceProvider CreateServiceProvider(IIoTContainerBuilder containerBuilder)

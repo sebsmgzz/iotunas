@@ -10,7 +10,7 @@ public class IoTModuleBuilder : IoTContainerBuilderBase
 {
 
     private Action<IModuleClientBuilder>? configureClientAction;
-    private List<Func<IServiceProvider, Task>> afterBuildActions;
+    private readonly List<Func<IServiceProvider, Task>> afterBuildActions;
 
     public IoTModuleBuilder(
         HostBuilderContext context,

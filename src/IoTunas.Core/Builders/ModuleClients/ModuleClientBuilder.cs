@@ -3,19 +3,19 @@
 using Microsoft.Azure.Devices.Client;
 using IoTunas.Core.Builders.ModuleClients.Strategies;
 
-internal class ModuleClientBuilder : ClientBuilderBase, IModuleClientBuilder
+internal class ModuleClientBuilder : IModuleClientBuilder
 {
 
     private IModuleClientBuilderStrategy strategy;
 
-    public ModuleClientBuilder(IModuleClientBuilderStrategy strategy)
+    private ModuleClientBuilder(IModuleClientBuilderStrategy strategy)
     {
         this.strategy = strategy;
     }
 
-    public static ModuleClientBuilder FromEnvironment()
+    public ModuleClient Build()
     {
-        return new ModuleClientBuilder(new EnvironmentStrategy());
+        return strategy.Build();
     }
 
     public void UseEnvironment()
@@ -25,52 +25,48 @@ internal class ModuleClientBuilder : ClientBuilderBase, IModuleClientBuilder
 
     public void UseConnectionString(string connectionString)
     {
-        UseConnectionString(new ConnectionStringStrategy()
+        strategy = new ConnectionStringStrategy()
         {
             ConnectionString = connectionString
-        });
+        };
     }
 
-    public void UseConnectionString(ConnectionStringStrategy strategy)
+    public void UseHostConnection(
+        string hostName, 
+        IAuthenticationMethod authenticationMethod)
     {
-        this.strategy = strategy;
-    }
-
-    public void UseHostConnection(string hostName, IAuthenticationMethod authenticationMethod)
-    {
-        UseHostConnection(new HostConnectionStrategy()
+        strategy = new HostConnectionStrategy()
         {
             Hostname = hostName,
             AuthenticationMethod = authenticationMethod
-        });
+        };
     }
 
-    public void UseHostConnection(HostConnectionStrategy strategy)
+    public void UseGatewayConnection(
+        string gatewayHostname, 
+        string hostName, 
+        IAuthenticationMethod authenticationMethod)
     {
-        this.strategy = strategy;
-    }
-
-    public void UseGatewayConnection(string gatewayHostname, string hostName, IAuthenticationMethod authenticationMethod)
-    {
-        UseGatewayConnection(new GatewayConnectionStrategy()
+        strategy = new GatewayConnectionStrategy()
         {
             GatewayHostname = gatewayHostname,
             Hostname = hostName,
             AuthenticationMethod = authenticationMethod
-        });
+        };
     }
 
-    public void UseGatewayConnection(GatewayConnectionStrategy strategy)
+    public static ModuleClientBuilder FromEnvironment()
     {
-        this.strategy = strategy;
+        var client = new ModuleClientBuilder(null);
+        client.UseEnvironment();
+        return client;
     }
 
-    public ModuleClient Build()
+    public static ModuleClientBuilder FromConnectionString(string connectionString)
     {
-        return strategy!.Build(
-            transportSettings: TransportSettings.ToArray(),
-            clientOptions: clientOptions.IsValueCreated ?
-                clientOptions.Value : null);
+        var client = new ModuleClientBuilder(null);
+        client.UseConnectionString(connectionString);
+        return client;
     }
 
 }

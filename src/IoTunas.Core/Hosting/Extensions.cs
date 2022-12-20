@@ -8,13 +8,16 @@ using System;
 public static class Extensions
 {
 
+    public const string IoTDeviceVariablePrefix = "IOT_";
+    public const string IoTModuleVariablePrefix = "IOTEDGE_";
+
     public static IHostBuilder ConfigureIoTModuleDefaults(
         this IHostBuilder hostBuilder,
         Action<IoTModuleBuilder> configureAction)
     {
         return hostBuilder
             .ConfigureAppConfiguration(config =>
-                config.AddEnvironmentVariables("IOTEDGE_"))
+                config.AddEnvironmentVariables(IoTModuleVariablePrefix))
             .UseServiceProviderFactory(
                 IoTServiceProviderFactory.ForModule)
             .ConfigureContainer<IoTModuleBuilder>(container =>
@@ -27,7 +30,7 @@ public static class Extensions
     {
         return hostBuilder
             .ConfigureAppConfiguration(config =>
-                config.AddEnvironmentVariables("IOT_"))
+                config.AddEnvironmentVariables(IoTDeviceVariablePrefix))
             .UseServiceProviderFactory(
                 IoTServiceProviderFactory.ForDevice)
             .ConfigureContainer<IoTDeviceBuilder>(container =>

@@ -34,7 +34,7 @@ internal class ModuleHostService : IHostedService, IDisposable
 
     public async Task StopAsync(CancellationToken cancellationToken)
     {
-        if (!moduleClient.IsValueCreated)
+        if (moduleClient.IsValueCreated)
         {
             await moduleClient.Value
                 .CloseAsync(cancellationToken)
@@ -46,7 +46,7 @@ internal class ModuleHostService : IHostedService, IDisposable
 
     public void Dispose()
     {
-        if (!moduleClient.IsValueCreated)
+        if (moduleClient.IsValueCreated)
         {
             moduleClient.Value.Dispose();
         }

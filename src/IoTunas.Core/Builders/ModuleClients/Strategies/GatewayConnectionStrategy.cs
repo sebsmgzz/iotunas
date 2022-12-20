@@ -1,6 +1,5 @@
 ﻿namespace IoTunas.Core.Builders.ModuleClients.Strategies;
 
-using IoTunas.Core.Builders.ModuleClients;
 using Microsoft.Azure.Devices.Client;
 
 /// <inheritdoc cref="IModuleClientBuilderStrategy"/>
@@ -12,13 +11,11 @@ public class GatewayConnectionStrategy : HostConnectionStrategy
     /// </summary>
     public string? GatewayHostname { get; set; }
 
-    public override ModuleClient Build(
-        ITransportSettings[] transportSettings,
-        ClientOptions? clientOptions = null)
+    public override ModuleClient Build()
     {
         return ModuleClient.Create(
-            transportSettings: transportSettings,
-            options: clientOptions,
+            transportSettings: TransportSettings,
+            options: options,
             hostname: Hostname!,
             authenticationMethod: AuthenticationMethod!,
             gatewayHostname: GatewayHostname!);

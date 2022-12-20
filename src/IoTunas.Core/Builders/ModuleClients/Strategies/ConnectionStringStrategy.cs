@@ -1,10 +1,9 @@
 ﻿namespace IoTunas.Core.Builders.ModuleClients.Strategies;
 
 using Microsoft.Azure.Devices.Client;
-using IoTunas.Core.Builders.ModuleClients;
 
 /// <inheritdoc cref="IModuleClientBuilderStrategy"/>
-public class ConnectionStringStrategy : IModuleClientBuilderStrategy
+public class ConnectionStringStrategy : ModuleClientBuilderStrategy
 {
 
     /// <summary>
@@ -12,13 +11,11 @@ public class ConnectionStringStrategy : IModuleClientBuilderStrategy
     /// </summary>
     public string? ConnectionString { get; set; }
 
-    public virtual ModuleClient Build(
-        ITransportSettings[] transportSettings,
-        ClientOptions? clientOptions = null)
+    public override ModuleClient Build()
     {
         return ModuleClient.CreateFromConnectionString(
-            transportSettings: transportSettings,
-            options: clientOptions,
+            transportSettings: TransportSettings,
+            options: options,
             connectionString: ConnectionString!);
     }
 
