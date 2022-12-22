@@ -1,6 +1,6 @@
 ﻿namespace IoTunas.Core.Collections;
 
-public class SimpleIntegerMapping<TInterface> : Mapping<int, TInterface, Type>
+public class SimpleIntegerMapping<TInterface> : Mapping<int, Type, TInterface>
 {
 
     protected override Type CreateDefinition(int key, Type implementationType)

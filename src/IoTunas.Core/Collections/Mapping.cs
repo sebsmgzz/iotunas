@@ -4,7 +4,7 @@ using System.Collections;
 using System.Diagnostics.CodeAnalysis;
 using System.Reflection;
 
-public abstract class Mapping<TKey, TInterface, TDefinition> :
+public abstract class Mapping<TKey, TDefinition, TInterface> :
     IMapping<TKey, TDefinition, TInterface>
     where TKey : notnull
 {

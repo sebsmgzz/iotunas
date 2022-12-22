@@ -1,6 +1,6 @@
 ﻿namespace IoTunas.Core.Collections;
 
-public class SimpleStringMapping<TInterface> : Mapping<string, TInterface, Type>
+public class SimpleStringMapping<TInterface> : Mapping<string, Type, TInterface>
 {
 
     protected override Type CreateDefinition(string key, Type implementationType)
