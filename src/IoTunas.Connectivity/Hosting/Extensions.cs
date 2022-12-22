@@ -31,10 +31,10 @@ public static class Extensions
     {
         var mapping = new ConnectionObserverMapping();
         configure?.Invoke(mapping);
-        services.AddSingleton(mapping);
+        services.AddSingleton<IConnectionObserverMapping>(mapping);
         foreach(var item in mapping)
         {
-            services.AddTransient(item.Value);
+            services.AddScoped(item.Value);
         }
         services.AddSingleton<IConnectivityMediator, ConnectivityMediator>();
         services.AddSingleton<IConnectionObserverFactory, ConnectionObserverFactory>();

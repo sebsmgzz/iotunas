@@ -33,10 +33,10 @@ public static class Extensions
     {
         var mapping = new CommandHandlerMapping();
         configureAction?.Invoke(mapping);
-        services.AddSingleton(mapping);
+        services.AddSingleton<ICommandHandlerMapping>(mapping);
         foreach(var item in mapping)
         {
-            services.AddTransient(item.Value);
+            services.AddScoped(item.Value);
         }
         services.TryAddSingleton<ICommandHandlerMediator, CommandHandlerMediator>();
         services.TryAddSingleton<IMethodResponseFactory, MethodResponseFactory>();
