@@ -1,7 +1,6 @@
 ﻿namespace IoTunas.Extensions.Commands.Mediators;
 
 using IoTunas.Extensions.Commands.Factories;
-using IoTunas.Extensions.Commands.Models;
 using Microsoft.Azure.Devices.Client;
 using Microsoft.Extensions.Logging;
 

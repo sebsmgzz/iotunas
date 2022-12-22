@@ -4,8 +4,6 @@ using IoTunas.Extensions.Connectivity.Models;
 
 public interface IConnectionObserverFactory
 {
-
-    int Count { get; }
     
     IEnumerable<IConnectionObserver> GetAll();
 

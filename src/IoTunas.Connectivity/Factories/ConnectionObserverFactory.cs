@@ -16,15 +16,13 @@ public class ConnectionObserverFactory : IConnectionObserverFactory
         "inherit {interfaceName} and be registered " +
         "in the service provider's DI to be invoked.";
 
-    private readonly ConnectionObserverMapping mapping;
+    private readonly IConnectionObserverMapping mapping;
     private readonly IServiceProvider provider;
     private readonly ILogger logger;
-
-    public int Count => mapping.Count;
     
     public ConnectionObserverFactory(
         IServiceProvider provider,
-        ConnectionObserverMapping mapping,
+        IConnectionObserverMapping mapping,
         ILogger<IConnectionObserverFactory> logger)
     {
         this.provider = provider;

@@ -14,33 +14,28 @@ public class CommandHandlerFactory : ICommandHandlerFactory
         "implement {interfaceName} and be registered " +
         "in the service provider's DI to handle a direct method invocation.";
 
-    private readonly CommandHandlerMapping handlersMapping;
-    private readonly IServiceProvider serviceProvider;
+    private readonly ICommandHandlerMapping mapping;
+    private readonly IServiceProvider provider;
     private readonly ILogger logger;
 
     public CommandHandlerFactory(
-        CommandHandlerMapping handlersMapping,
-        IServiceProvider serviceProvider,
+        ICommandHandlerMapping mapping,
+        IServiceProvider provider,
         ILogger<ICommandHandlerFactory> logger)
     {
-        this.handlersMapping = handlersMapping;
-        this.serviceProvider = serviceProvider;
+        this.mapping = mapping;
+        this.provider = provider;
         this.logger = logger;
-    }
-
-    public bool Contains(string methodName)
-    {
-        return handlersMapping.Contains(methodName);
     }
 
     public bool TryGet(string methodName, [MaybeNullWhen(false)] out ICommandHandler handler)
     {
-        if (!handlersMapping.TryGetValue(methodName, out var handlerType))
+        if (!mapping.TryGetValue(methodName, out var handlerType))
         {
             handler = null;
             return false;
         }
-        var scope = serviceProvider.CreateScope();
+        var scope = provider.CreateScope();
         var service = scope.ServiceProvider.GetService(handlerType);
         handler = service as ICommandHandler;
         if(handler == null)

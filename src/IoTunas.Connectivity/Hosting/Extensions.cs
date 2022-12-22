@@ -11,7 +11,7 @@ public static class Extensions
 
     public static void UseConnectivityServices(
         this IoTDeviceBuilder device,
-        Action<ConnectionObserverMapping>? configure)
+        Action<IConnectionObserverMapping>? configure)
     {
         device.Services.AddHostedService<DeviceConnectivityService>();
         device.Services.UseConnetivityServicesAdHoc(configure);
@@ -19,7 +19,7 @@ public static class Extensions
 
     public static void UseConnectivityServices(
         this IoTModuleBuilder module,
-        Action<ConnectionObserverMapping>? configure)
+        Action<IConnectionObserverMapping>? configure)
     {
         module.Services.AddHostedService<ModuleConnectivityService>();
         module.Services.UseConnetivityServicesAdHoc(configure);
@@ -27,11 +27,15 @@ public static class Extensions
 
     private static void UseConnetivityServicesAdHoc(
         this IServiceCollection services,
-        Action<ConnectionObserverMapping>? configure)
+        Action<IConnectionObserverMapping>? configure)
     {
         var mapping = new ConnectionObserverMapping();
         configure?.Invoke(mapping);
         services.AddSingleton(mapping);
+        foreach(var item in mapping)
+        {
+            services.AddTransient(item.Value);
+        }
         services.AddSingleton<IConnectivityMediator, ConnectivityMediator>();
         services.AddSingleton<IConnectionObserverFactory, ConnectionObserverFactory>();
     }

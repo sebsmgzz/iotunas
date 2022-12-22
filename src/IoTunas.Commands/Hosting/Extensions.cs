@@ -13,7 +13,7 @@ public static class Extensions
 
     public static void UseCommandHandlers(
         this IoTDeviceBuilder device,
-        Action<CommandHandlerMapping>? configureAction)
+        Action<ICommandHandlerMapping>? configureAction)
     {
         device.Services.AddHostedService<DeviceCommandHandlingService>();
         device.Services.AddCommandHandlerAdHoc(configureAction);
@@ -21,7 +21,7 @@ public static class Extensions
 
     public static void UseCommandHandlers(
         this IoTModuleBuilder module,
-        Action<CommandHandlerMapping>? configureAction)
+        Action<ICommandHandlerMapping>? configureAction)
     {
         module.Services.AddHostedService<ModuleCommandHandlingService>();
         module.Services.AddCommandHandlerAdHoc(configureAction);
@@ -29,11 +29,15 @@ public static class Extensions
 
     private static void AddCommandHandlerAdHoc(
         this IServiceCollection services,
-        Action<CommandHandlerMapping>? configureAction)
+        Action<ICommandHandlerMapping>? configureAction)
     {
         var mapping = new CommandHandlerMapping();
         configureAction?.Invoke(mapping);
         services.AddSingleton(mapping);
+        foreach(var item in mapping)
+        {
+            services.AddTransient(item.Value);
+        }
         services.TryAddSingleton<ICommandHandlerMediator, CommandHandlerMediator>();
         services.TryAddSingleton<IMethodResponseFactory, MethodResponseFactory>();
         services.TryAddSingleton<ICommandHandlerFactory, CommandHandlerFactory>();
