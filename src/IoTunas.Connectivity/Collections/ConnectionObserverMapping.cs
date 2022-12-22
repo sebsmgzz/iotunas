@@ -3,6 +3,6 @@
 using IoTunas.Core.Collections;
 using IoTunas.Extensions.Connectivity.Models;
 
-public class ConnectionObserverMapping : SimpleIntegerMapping<IConnectionObserver>, IConnectionObserverMapping
+public sealed class ConnectionObserverMapping : SimpleIntegerMapping<IConnectionObserver>, IConnectionObserverMapping
 {
 }
