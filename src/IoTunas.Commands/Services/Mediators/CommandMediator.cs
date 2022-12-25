@@ -12,17 +12,17 @@ public class CommandMediator : ICommandMediator
     public const string HandledLog = "Handled | {name}";
     public const string ErrorLog = "Error | {name}";
 
-    private readonly ICommandFactory handlerFactory;
-    private readonly IMethodResponseFactory responseFactory;
+    private readonly ICommandFactory commands;
+    private readonly IMethodResponseFactory responses;
     private readonly ILogger logger;
 
     public CommandMediator(
-        ICommandFactory handlerFactory,
-        IMethodResponseFactory responseFactory,
+        ICommandFactory commands,
+        IMethodResponseFactory responses,
         ILogger<ICommandMediator> logger)
     {
-        this.handlerFactory = handlerFactory;
-        this.responseFactory = responseFactory;
+        this.commands = commands;
+        this.responses = responses;
         this.logger = logger;
     }
 
@@ -32,9 +32,9 @@ public class CommandMediator : ICommandMediator
         try
         {
 
-            // Try to get handler
+            // Try to get the command
             logger.LogInformation(InvokedLog, methodRequest.Name);
-            if (!handlerFactory.TryGet(methodRequest.Name, out var handler))
+            if (!commands.TryGet(methodRequest.Name, out var handler))
             {
                 logger.LogWarning(NotFoundLog, methodRequest.Name);
                 return await HandleNotFoundAsync(methodRequest, userContext);
@@ -55,7 +55,7 @@ public class CommandMediator : ICommandMediator
     protected virtual async Task<MethodResponse> HandleNotFoundAsync(
         MethodRequest methodRequest, object userContext)
     {
-        return await Task.FromResult(responseFactory.NotFound(new
+        return await Task.FromResult(responses.NotFound(new
         {
             status = "not found",
             name = methodRequest.Name
@@ -65,7 +65,7 @@ public class CommandMediator : ICommandMediator
     protected virtual async Task<MethodResponse> HandleErrorAsync(
         Exception ex, MethodRequest methodRequest, object userContext)
     {
-        return await Task.FromResult(responseFactory.InternalError(new
+        return await Task.FromResult(responses.InternalError(new
         {
             status = "internal error",
             name = methodRequest.Name,
