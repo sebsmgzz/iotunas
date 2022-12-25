@@ -1,4 +1,4 @@
-﻿namespace IoTunas.Extensions.Connectivity.Hosting;
+﻿namespace IoTunas.Extensions.Connectivity.Hosting.Connectivity;
 
 using IoTunas.Core.Services.ClientHosts;
 using IoTunas.Extensions.Connectivity.Mediators;

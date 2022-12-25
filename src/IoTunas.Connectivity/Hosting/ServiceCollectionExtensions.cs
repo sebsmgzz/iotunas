@@ -1,5 +1,6 @@
 ﻿namespace IoTunas.Extensions.Connectivity.Hosting;
 
+using IoTunas.Extensions.Connectivity.Hosting.Connectivity;
 using Microsoft.Extensions.DependencyInjection;
 
 public static class ServiceCollectionExtensions

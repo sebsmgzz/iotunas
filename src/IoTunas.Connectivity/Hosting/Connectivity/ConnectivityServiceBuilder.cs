@@ -1,4 +1,4 @@
-﻿namespace IoTunas.Extensions.Connectivity.Hosting;
+﻿namespace IoTunas.Extensions.Connectivity.Hosting.Connectivity;
 
 using IoTunas.Extensions.Connectivity.Collections;
 using IoTunas.Extensions.Connectivity.Factories;

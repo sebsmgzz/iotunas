@@ -14,12 +14,12 @@ public class CommandFactory : ICommandFactory
         "implement {interfaceName} and be registered " +
         "in the service provider's DI to handle a direct method invocation.";
 
-    private readonly Dictionary<string, Type> mapping;
+    private readonly IReadOnlyDictionary<string, Type> mapping;
     private readonly IServiceProvider provider;
     private readonly ILogger logger;
 
     public CommandFactory(
-        Dictionary<string, Type> mapping,
+        IReadOnlyDictionary<string, Type> mapping,
         IServiceProvider provider)
     {
         this.mapping = mapping;

@@ -1,6 +1,7 @@
 ﻿namespace IoTunas.Extensions.Connectivity.Hosting;
 
 using IoTunas.Core.DependencyInjection;
+using IoTunas.Extensions.Connectivity.Hosting.Connectivity;
 
 public static class IoTBuilderExtensions
 {
