@@ -1,0 +1,30 @@
+﻿namespace IoTunas.Extensions.Telemetry.Hosting;
+
+using IoTunas.Extensions.Telemetry.Hosting.Emission;
+using IoTunas.Extensions.Telemetry.Hosting.Reception;
+using Microsoft.Extensions.DependencyInjection;
+
+public static class ServiceCollectionExtensions
+{
+
+    public static IServiceCollection AddTelemetryReceivers(
+        this IServiceCollection services,
+        Action<IReceptionServiceBuilder>? configureAction = null)
+    {
+        var builder = new ReceptionServiceBuilder();
+        configureAction?.Invoke(builder);
+        builder.Build(services);
+        return services;
+    }
+
+    public static IServiceCollection AddTelemetryEmissaries(
+        this IServiceCollection services,
+        Action<IEmissionServiceBuilder>? configureAction = null)
+    {
+        var builder = new EmissionServiceBuilder();
+        configureAction?.Invoke(builder);
+        builder.Build(services);
+        return services;
+    }
+
+}
