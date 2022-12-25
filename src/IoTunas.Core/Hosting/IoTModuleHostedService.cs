@@ -1,4 +1,4 @@
-﻿namespace IoTunas.Core.Services;
+﻿namespace IoTunas.Core.Hosting;
 
 using Microsoft.Azure.Devices.Client;
 using Microsoft.Extensions.Hosting;
@@ -6,15 +6,15 @@ using Microsoft.Extensions.Logging;
 using System;
 using System.Threading.Tasks;
 
-internal class DeviceHostService : IHostedService, IDisposable, IAsyncDisposable
+internal class IoTModuleHostedService : IHostedService, IDisposable, IAsyncDisposable
 {
 
-    private readonly DeviceClient client;
+    private readonly ModuleClient client;
     private readonly ILogger logger;
 
-    public DeviceHostService(
-        DeviceClient client,
-        ILogger<DeviceHostService> logger)
+    public IoTModuleHostedService(
+        ModuleClient client,
+        ILogger<IoTModuleHostedService> logger)
     {
         this.client = client;
         this.logger = logger;
@@ -22,7 +22,7 @@ internal class DeviceHostService : IHostedService, IDisposable, IAsyncDisposable
 
     public async Task StartAsync(CancellationToken cancellationToken)
     {
-        const string log = "Device client connection opened.";
+        const string log = "Module client connection opened.";
         await client
             .OpenAsync(cancellationToken)
             .ContinueWith(t => logger.LogInformation(log), cancellationToken);
@@ -30,7 +30,7 @@ internal class DeviceHostService : IHostedService, IDisposable, IAsyncDisposable
 
     public async Task StopAsync(CancellationToken cancellationToken)
     {
-        const string log = "Device client connection opened.";
+        const string log = "Module client connection opened.";
         await client
             .CloseAsync(cancellationToken)
             .ContinueWith(t => logger.LogInformation(log), cancellationToken);

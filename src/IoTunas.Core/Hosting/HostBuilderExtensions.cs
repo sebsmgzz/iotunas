@@ -1,11 +1,12 @@
 ﻿namespace IoTunas.Core.Hosting;
 
-using IoTunas.Core.Builders.Containers;
+using IoTunas.Core.DependencyInjection;
+using IoTunas.Core.DependencyInjection.Builders;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Hosting;
 using System;
 
-public static class Extensions
+public static class HostBuilderExtensions
 {
 
     public const string IoTDeviceVariablePrefix = "IOT_";

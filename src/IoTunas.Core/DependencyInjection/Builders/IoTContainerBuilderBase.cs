@@ -1,4 +1,4 @@
-﻿namespace IoTunas.Core.Builders.Containers;
+﻿namespace IoTunas.Core.DependencyInjection.Builders;
 
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;

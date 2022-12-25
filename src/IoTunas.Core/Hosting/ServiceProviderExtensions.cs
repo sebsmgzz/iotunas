@@ -3,7 +3,7 @@
 using Microsoft.Extensions.DependencyInjection;
 using System.Diagnostics.CodeAnalysis;
 
-public static class IServiceProviderExtensions
+public static class ServiceProviderExtensions
 {
 
     public static bool TryGetService(

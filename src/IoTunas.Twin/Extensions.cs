@@ -1,6 +1,6 @@
 ﻿namespace IoTunas.Extensions.Twin;
 
-using IoTunas.Core.Builders.Containers;
+using IoTunas.Core.DependencyInjection.Builders;
 using IoTunas.Extensions.Twin.Builders;
 using IoTunas.Extensions.Twin.Factories;
 using IoTunas.Extensions.Twin.Mediators;

@@ -1,6 +1,6 @@
 ﻿namespace IoTunas.Extensions.Connectivity.Hosting;
 
-using IoTunas.Core.Builders.Containers;
+using IoTunas.Core.DependencyInjection.Builders;
 using IoTunas.Extensions.Connectivity.Builders;
 using IoTunas.Extensions.Connectivity.Factories;
 using IoTunas.Extensions.Connectivity.Mediators;

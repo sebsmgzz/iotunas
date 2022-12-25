@@ -1,4 +1,4 @@
-﻿namespace IoTunas.Core.Builders.ModuleClients;
+﻿namespace IoTunas.Core.ClientBuilders.Module;
 
 using Microsoft.Azure.Devices.Client;
 

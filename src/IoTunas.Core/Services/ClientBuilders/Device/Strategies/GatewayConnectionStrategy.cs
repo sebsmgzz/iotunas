@@ -1,4 +1,4 @@
-﻿namespace IoTunas.Core.Builders.DeviceClients.Strategies;
+﻿namespace IoTunas.Core.ClientBuilders.Device.Strategies;
 
 using Microsoft.Azure.Devices.Client;
 

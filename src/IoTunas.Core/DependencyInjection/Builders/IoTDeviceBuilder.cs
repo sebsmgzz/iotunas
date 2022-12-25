@@ -1,8 +1,7 @@
-﻿namespace IoTunas.Core.Builders.Containers;
+﻿namespace IoTunas.Core.DependencyInjection.Builders;
 
-using IoTunas.Core.Builders.DeviceClients;
-using IoTunas.Core.Services;
-using Microsoft.Azure.Devices.Client;
+using IoTunas.Core.ClientBuilders.Device;
+using IoTunas.Core.Hosting;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using System;
@@ -26,8 +25,8 @@ public class IoTDeviceBuilder : IoTContainerBuilderBase
 
     public override IServiceProvider BuildServiceProvider()
     {
-        Services.AddSingleton<DeviceClient>(provider => Client.Build());
-        Services.AddHostedService<DeviceHostService>();
+        Services.AddSingleton(provider => Client.Build());
+        Services.AddHostedService<IoTDeviceHostedService>();
         return Services.BuildServiceProvider();
     }
 

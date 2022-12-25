@@ -1,6 +1,6 @@
-﻿namespace IoTunas.Core.Builders.DeviceClients;
+﻿namespace IoTunas.Core.ClientBuilders.Device;
 
-using IoTunas.Core.Builders.DeviceClients.Strategies;
+using IoTunas.Core.ClientBuilders.Device.Strategies;
 using Microsoft.Azure.Devices.Client;
 
 internal class DeviceClientBuilder : IDeviceClientBuilder

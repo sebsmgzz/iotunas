@@ -1,7 +1,7 @@
-﻿namespace IoTunas.Core.Builders.ModuleClients;
+﻿namespace IoTunas.Core.ClientBuilders.Module;
 
 using Microsoft.Azure.Devices.Client;
-using IoTunas.Core.Builders.ModuleClients.Strategies;
+using IoTunas.Core.ClientBuilders.Module.Strategies;
 
 internal class ModuleClientBuilder : IModuleClientBuilder
 {

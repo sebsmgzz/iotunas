@@ -1,6 +1,6 @@
-﻿namespace IoTunas.Core.Hosting;
+﻿namespace IoTunas.Core.DependencyInjection;
 
-using IoTunas.Core.Builders.Containers;
+using IoTunas.Core.DependencyInjection.Builders;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using System;
@@ -9,11 +9,11 @@ public class IoTServiceProviderFactory : IServiceProviderFactory<IIoTContainerBu
 {
 
     private readonly HostBuilderContext context;
-    private readonly IoTBuilderFactory builderFactory;
+    private readonly IoTContainerBuilderFactory builderFactory;
 
     private IoTServiceProviderFactory(
         HostBuilderContext context,
-        IoTBuilderFactory builderFactory)
+        IoTContainerBuilderFactory builderFactory)
     {
         this.context = context;
         this.builderFactory = builderFactory;
