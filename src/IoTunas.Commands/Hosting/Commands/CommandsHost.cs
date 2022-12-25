@@ -28,12 +28,12 @@ public class CommandsHost : IHostedService
         var mediator = provider.GetRequiredService<ICommandMediator>();
         if (clientHost.IsEdgeCapable)
         {
-            var client = provider.GetRequiredService<DeviceClient>();
+            var client = provider.GetRequiredService<ModuleClient>();
             await client.SetMethodDefaultHandlerAsync(mediator.HandleAsync, this, cancellationToken);
         }
         else
         {
-            var client = provider.GetRequiredService<ModuleClient>();
+            var client = provider.GetRequiredService<DeviceClient>();
             await client.SetMethodDefaultHandlerAsync(mediator.HandleAsync, this, cancellationToken);
         }
     }
@@ -42,12 +42,12 @@ public class CommandsHost : IHostedService
     {
         if (clientHost.IsEdgeCapable)
         {
-            var client = provider.GetRequiredService<DeviceClient>();
+            var client = provider.GetRequiredService<ModuleClient>();
             await client.SetMethodDefaultHandlerAsync(null, null, cancellationToken);
         }
         else
         {
-            var client = provider.GetRequiredService<ModuleClient>();
+            var client = provider.GetRequiredService<DeviceClient>();
             await client.SetMethodDefaultHandlerAsync(null, null, cancellationToken);
         }
     }

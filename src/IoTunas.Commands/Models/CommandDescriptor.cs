@@ -46,7 +46,7 @@ public class CommandDescriptor
 
     public override string ToString()
     {
-        return $"[{typeof(CommandDescriptor)}: {MethodName}]";
+        return $"[{nameof(CommandDescriptor)}: {MethodName}]";
     }
 
     public static bool operator ==(CommandDescriptor? left, CommandDescriptor? right)
