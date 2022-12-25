@@ -19,12 +19,14 @@ public class MessageFactory : IMessageFactory
 
     public Message Create(string stringMessage)
     {
-        return Create(Encoding.ASCII.GetBytes(stringMessage));
+        var bytesMessage = Encoding.ASCII.GetBytes(stringMessage);
+        return Create(bytesMessage);
     }
 
-    public Message Create(object objectMessage)
+    public Message Create(object? objectMessage)
     {
-        return Create(JsonConvert.SerializeObject(objectMessage));
+        string stringMessage = JsonConvert.SerializeObject(objectMessage);
+        return Create(stringMessage);
     }
 
 }
