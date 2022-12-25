@@ -9,9 +9,9 @@ public static class ServiceCollectionExtensions
 
     public static IServiceCollection AddCommandHandling(
         this IServiceCollection services,
-        Action<ICommandServiceBuilder>? configureAction = null)
+        Action<ICommandsServiceBuilder>? configureAction = null)
     {
-        var builder = new CommandServiceBuilder();
+        var builder = new CommandsServiceBuilder();
         configureAction?.Invoke(builder);
         builder.Build(services);
         return services;

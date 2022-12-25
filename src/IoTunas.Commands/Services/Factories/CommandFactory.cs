@@ -1,4 +1,4 @@
-﻿namespace IoTunas.Extensions.Commands.Factories;
+﻿namespace IoTunas.Extensions.Commands.Services.Factories;
 
 using IoTunas.Extensions.Commands.Models;
 using Microsoft.Extensions.DependencyInjection;

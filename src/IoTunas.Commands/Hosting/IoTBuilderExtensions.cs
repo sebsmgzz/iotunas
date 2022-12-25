@@ -10,7 +10,7 @@ public static class IoTBuilderExtensions
 
     public static void UseCommandHandlers(
         this IIoTBuilder builder,
-        Action<ICommandServiceBuilder>? configureAction = null)
+        Action<ICommandsServiceBuilder>? configureAction = null)
     {
         builder.Services.AddCommandHandling(configureAction);
     }

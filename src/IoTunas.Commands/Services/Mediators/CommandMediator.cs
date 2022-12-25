@@ -1,4 +1,4 @@
-﻿namespace IoTunas.Extensions.Commands.Mediators;
+﻿namespace IoTunas.Extensions.Commands.Services.Mediators;
 
 using IoTunas.Extensions.Commands.Factories;
 using Microsoft.Azure.Devices.Client;

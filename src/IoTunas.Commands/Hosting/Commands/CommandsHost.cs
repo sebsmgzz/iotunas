@@ -1,7 +1,7 @@
 ﻿namespace IoTunas.Extensions.Commands.Hosting.Commands;
 
 using IoTunas.Core.Services.ClientHosts;
-using IoTunas.Extensions.Commands.Mediators;
+using IoTunas.Extensions.Commands.Services.Mediators;
 using Microsoft.Azure.Devices.Client;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;

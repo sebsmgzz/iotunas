@@ -1,16 +1,16 @@
 ﻿namespace IoTunas.Extensions.Commands.Hosting.Commands;
 
 using IoTunas.Extensions.Commands.Collections;
-using IoTunas.Extensions.Commands.Factories;
-using IoTunas.Extensions.Commands.Mediators;
+using IoTunas.Extensions.Commands.Services.Factories;
+using IoTunas.Extensions.Commands.Services.Mediators;
 using Microsoft.Extensions.DependencyInjection;
 
-public class CommandServiceBuilder : ICommandServiceBuilder
+public class CommandsServiceBuilder : ICommandsServiceBuilder
 {
 
     public CommandServiceCollection Commands { get; }
 
-    public CommandServiceBuilder()
+    public CommandsServiceBuilder()
     {
         Commands = new CommandServiceCollection();
     }

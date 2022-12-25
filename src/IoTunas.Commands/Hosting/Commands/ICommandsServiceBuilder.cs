@@ -2,7 +2,7 @@
 
 using IoTunas.Extensions.Commands.Collections;
 
-public interface ICommandServiceBuilder
+public interface ICommandsServiceBuilder
 {
 
     CommandServiceCollection Commands { get; }
