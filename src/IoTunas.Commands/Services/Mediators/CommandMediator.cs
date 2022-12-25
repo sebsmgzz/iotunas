@@ -4,7 +4,7 @@ using IoTunas.Extensions.Commands.Factories;
 using Microsoft.Azure.Devices.Client;
 using Microsoft.Extensions.Logging;
 
-public class CommandHandlerMediator : ICommandHandlerMediator
+public class CommandMediator : ICommandMediator
 {
 
     public const string InvokedLog = "Invoked | {name}";
@@ -12,14 +12,14 @@ public class CommandHandlerMediator : ICommandHandlerMediator
     public const string HandledLog = "Handled | {name}";
     public const string ErrorLog = "Error | {name}";
 
-    private readonly ICommandHandlerFactory handlerFactory;
+    private readonly ICommandFactory handlerFactory;
     private readonly IMethodResponseFactory responseFactory;
     private readonly ILogger logger;
 
-    public CommandHandlerMediator(
-        ICommandHandlerFactory handlerFactory,
+    public CommandMediator(
+        ICommandFactory handlerFactory,
         IMethodResponseFactory responseFactory,
-        ILogger<ICommandHandlerMediator> logger)
+        ILogger<ICommandMediator> logger)
     {
         this.handlerFactory = handlerFactory;
         this.responseFactory = responseFactory;

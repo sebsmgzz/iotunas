@@ -2,7 +2,7 @@
 
 using Microsoft.Azure.Devices.Client;
 
-public interface ICommandHandlerMediator
+public interface ICommandMediator
 {
 
     Task<MethodResponse> HandleAsync(

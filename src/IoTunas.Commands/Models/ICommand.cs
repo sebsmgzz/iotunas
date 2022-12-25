@@ -3,7 +3,7 @@
 using Microsoft.Azure.Devices.Client;
 using System.Threading.Tasks;
 
-public interface ICommandHandler
+public interface ICommand
 {
 
     Task<MethodResponse> HandleAsync(

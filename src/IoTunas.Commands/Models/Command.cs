@@ -4,7 +4,7 @@ using Microsoft.Azure.Devices.Client;
 using Newtonsoft.Json;
 using System.Threading.Tasks;
 
-public abstract class CommandHandler<T> : ICommandHandler
+public abstract class Command<T> : ICommand
 {
 
     public async Task<MethodResponse> HandleAsync(
