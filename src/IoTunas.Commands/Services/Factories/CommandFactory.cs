@@ -34,17 +34,14 @@ public class CommandFactory : ICommandFactory
             command = null;
             return false;
         }
-        if(provider.TryGetService<ICommand>(commandType, out var service))
-        {
-            command = service;
-            return true;
-        }
-        else
+        if(!provider.TryGetService<ICommand>(commandType, out var service))
         {
             logger.LogCritical(InvalidHandlerLog, methodName, nameof(ICommand));
             command = null;
             return false;
         }
+        command = service;
+        return true;
     }
 
 }

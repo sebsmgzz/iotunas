@@ -48,17 +48,13 @@ public class ConnectionObserverFactory : IConnectionObserverFactory
             return false;
         }
         var type = listing[index];
-        if(provider.TryGetService<IConnectionObserver>(type, out var service))
-        {
-            observer = service;
-            return true;
-        }
-        else
+        if(!provider.TryGetService<IConnectionObserver>(type, out observer))
         {
             logger.LogCritical(InvalidObserverLog, type.Name, nameof(IConnectionObserver));
             observer = null;
             return false;
         }
+        return observer != null;
     }
 
 }
