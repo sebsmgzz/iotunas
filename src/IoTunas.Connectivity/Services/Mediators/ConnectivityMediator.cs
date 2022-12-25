@@ -31,13 +31,10 @@ public class ConnectivityMediator : IConnectivityMediator
         ConnectionStatus status, ConnectionStatusChangeReason reason)
     {
         logger.LogInformation(ObserverdLog, status, reason);
-        var tasks = new List<Task>();
         var args = new ConnectionChangeArgs(status, reason);
-        foreach (var observer in factory.GetAll())
-        {
-            var task = observer.HandleConnectionChangeAsync(args);
-            tasks.Add(task);
-        }
+        var tasks = factory
+            .GetAll()
+            .Select(observer => observer.HandleConnectionChangeAsync(args));
         await Task.WhenAll(tasks);
     }
 

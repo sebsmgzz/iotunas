@@ -1,6 +1,6 @@
 ﻿namespace IoTunas.Extensions.Connectivity.Factories;
 
-using IoTunas.Extensions.Connectivity.Builders;
+using IoTunas.Core.Hosting;
 using IoTunas.Extensions.Connectivity.Models;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
@@ -12,27 +12,26 @@ public class ConnectionObserverFactory : IConnectionObserverFactory
 {
 
     public const string InvalidObserverLog =
-        "Connection observer {oberserTypeName} needs to " +
+        "Connection observer {observerTypeName} needs to " +
         "inherit {interfaceName} and be registered " +
         "in the service provider's DI to be invoked.";
 
-    private readonly IConnectionObserverMapping mapping;
+    private readonly List<Type> listing;
     private readonly IServiceProvider provider;
     private readonly ILogger logger;
     
     public ConnectionObserverFactory(
-        IServiceProvider provider,
-        IConnectionObserverMapping mapping,
-        ILogger<IConnectionObserverFactory> logger)
+        List<Type> listing,
+        IServiceProvider provider)
     {
         this.provider = provider;
-        this.mapping = mapping;
-        this.logger = logger;
+        this.listing = listing;
+        logger = provider.GetRequiredService<ILogger<IConnectionObserverFactory>>();
     }
 
     public IEnumerable<IConnectionObserver> GetAll()
     {
-        for(int i = 0; i < mapping.Count; i++)
+        for(int i = 0; i < listing.Count; i++)
         {
             if(TryGet(i, out var observer))
             {
@@ -43,15 +42,23 @@ public class ConnectionObserverFactory : IConnectionObserverFactory
 
     public bool TryGet(int index, [MaybeNullWhen(false)] out IConnectionObserver observer)
     {
-        var observerType = mapping[index];
-        var scope = provider.CreateScope();
-        var service = scope.ServiceProvider.GetService(observerType);
-        observer = service as IConnectionObserver;
-        if(observer == null)
+        if(index < 0 || listing.Count <= index)
         {
-            logger.LogCritical(InvalidObserverLog, observerType.Name, nameof(IConnectionObserver));
+            observer = null;
+            return false;
         }
-        return observer != null;
+        var type = listing[index];
+        if(provider.TryGetService<IConnectionObserver>(type, out var service))
+        {
+            observer = service;
+            return true;
+        }
+        else
+        {
+            logger.LogCritical(InvalidObserverLog, type.Name, nameof(IConnectionObserver));
+            observer = null;
+            return false;
+        }
     }
 
 }
