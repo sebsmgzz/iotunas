@@ -5,7 +5,7 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using System;
 
-public abstract class IoTContainerBuilderBase : IIoTContainerBuilder
+public abstract class IoTBuilderBase : IIoTBuilder
 {
 
     private readonly HostBuilderContext context;
@@ -16,7 +16,7 @@ public abstract class IoTContainerBuilderBase : IIoTContainerBuilder
 
     public IServiceCollection Services { get; }
 
-    public IoTContainerBuilderBase(
+    public IoTBuilderBase(
         HostBuilderContext context,
         IServiceCollection services)
     {

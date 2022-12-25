@@ -14,7 +14,7 @@ public class IoTModuleHost : IoTHostBase, IIoTModuleHost
     private readonly IServiceProvider provider;
     private readonly Lazy<ModuleClient> client;
 
-    public bool EdgeCapable => true;
+    public bool IsEdgeCapable => true;
 
     public ModuleClient Client => client.Value;
 

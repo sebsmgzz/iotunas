@@ -3,7 +3,7 @@
 using IoTunas.Core.DependencyInjection;
 using IoTunas.Core.Services.ClientBuilders.Modules;
 
-public interface IIoTModuleBuilder : IIoTContainerBuilder
+public interface IIoTModuleBuilder : IIoTBuilder
 {
     
     IModuleClientBuilder Client { get; }

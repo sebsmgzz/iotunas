@@ -9,7 +9,7 @@ using Microsoft.Extensions.Hosting;
 using System;
 using IoTunas.Core.Services.ClientHosts.Modules;
 
-public class IoTModuleBuilder : IoTContainerBuilderBase, IIoTModuleBuilder
+public class IoTModuleBuilder : IoTBuilderBase, IIoTModuleBuilder
 {
 
     public IModuleClientBuilder Client { get; }

@@ -16,7 +16,7 @@ public class IoTDeviceHost : IoTHostBase, IIoTDeviceHost
     private readonly IServiceProvider provider;
     private readonly Lazy<DeviceClient> client;
 
-    public bool EdgeCapable => false;
+    public bool IsEdgeCapable => false;
 
     public DeviceClient Client => client.Value;
 

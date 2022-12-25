@@ -5,7 +5,7 @@ using Microsoft.Extensions.Hosting;
 public interface IIoTClientHost : IHostedService
 {
     
-    public bool EdgeCapable { get; }
+    public bool IsEdgeCapable { get; }
 
     CancellationToken ClientOpened { get; }
     
