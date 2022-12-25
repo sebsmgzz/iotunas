@@ -3,7 +3,8 @@
 using IoTunas.Core.DependencyInjection;
 using IoTunas.Core.DependencyInjection.Devices;
 using IoTunas.Core.DependencyInjection.Modules;
-using IoTunas.Core.Services.ClientHosts;
+using IoTunas.Core.Services.ClientHosts.Devices;
+using IoTunas.Core.Services.ClientHosts.Modules;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Hosting;
 using System;
