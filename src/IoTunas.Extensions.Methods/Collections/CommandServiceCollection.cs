@@ -1,8 +1,8 @@
-﻿namespace IoTunas.Extensions.Commands.Collections;
+﻿namespace IoTunas.Extensions.Methods.Collections;
 
 using IoTunas.Core.Hosting;
-using IoTunas.Extensions.Commands.Models;
-using IoTunas.Extensions.Commands.Reflection;
+using IoTunas.Extensions.Methods.Models;
+using IoTunas.Extensions.Methods.Reflection;
 using System.Collections;
 using System.Collections.Generic;
 using System.Reflection;

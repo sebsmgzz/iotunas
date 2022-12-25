@@ -1,6 +1,6 @@
-﻿namespace IoTunas.Extensions.Commands.Services.Factories;
+﻿namespace IoTunas.Extensions.Methods.Services.Factories;
 
-using IoTunas.Extensions.Commands.Models;
+using IoTunas.Extensions.Methods.Models;
 
 public interface ICommandFactory
 {

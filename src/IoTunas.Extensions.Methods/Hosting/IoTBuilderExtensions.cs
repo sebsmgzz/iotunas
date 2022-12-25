@@ -1,8 +1,7 @@
-﻿namespace IoTunas.Extensions.Commands.Hosting;
+﻿namespace IoTunas.Extensions.Methods.Hosting;
 
 using IoTunas.Core.DependencyInjection;
-using IoTunas.Extensions.Commands.Collections;
-using IoTunas.Extensions.Commands.Hosting.Commands;
+using IoTunas.Extensions.Methods.Hosting.Commands;
 using System;
 
 public static class IoTBuilderExtensions

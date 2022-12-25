@@ -1,6 +1,6 @@
-namespace IoTunas.Extensions.Commands.Hosting;
+namespace IoTunas.Extensions.Methods.Hosting;
 
-using IoTunas.Extensions.Commands.Hosting.Commands;
+using IoTunas.Extensions.Methods.Hosting.Commands;
 using Microsoft.Extensions.DependencyInjection;
 using System;
 

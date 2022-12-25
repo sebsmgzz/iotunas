@@ -1,6 +1,6 @@
-﻿namespace IoTunas.Extensions.Commands.Hosting.Commands;
+﻿namespace IoTunas.Extensions.Methods.Hosting.Commands;
 
-using IoTunas.Extensions.Commands.Collections;
+using IoTunas.Extensions.Methods.Collections;
 
 public interface ICommandsServiceBuilder
 {

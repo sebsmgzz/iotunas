@@ -1,6 +1,6 @@
-﻿namespace IoTunas.Extensions.Commands.Reflection;
+﻿namespace IoTunas.Extensions.Methods.Reflection;
 
-using IoTunas.Extensions.Commands.Models;
+using IoTunas.Extensions.Methods.Models;
 using System.Diagnostics.CodeAnalysis;
 using System.Reflection;
 
