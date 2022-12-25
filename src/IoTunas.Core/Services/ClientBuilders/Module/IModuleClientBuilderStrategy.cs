@@ -1,17 +1,17 @@
-﻿namespace IoTunas.Core.ClientBuilders.Module.Strategies;
+﻿namespace IoTunas.Core.Services.ClientBuilders.Modules;
 
 using Microsoft.Azure.Devices.Client;
 
 /// <summary>
-/// Represents the strategy used to build a module client.
+/// Represents the strategy used to build a client.
 /// </summary>
 public interface IModuleClientBuilderStrategy
 {
 
     /// <summary>
-    /// Builds the module client.
+    /// Builds a client meant to run in an IoT module.
     /// </summary>
     /// <returns>The module client.</returns>
-    ModuleClient Build();
+    ModuleClient BuildModuleClient();
 
 }

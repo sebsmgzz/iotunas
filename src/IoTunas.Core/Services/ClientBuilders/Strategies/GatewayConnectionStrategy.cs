@@ -1,8 +1,7 @@
-﻿namespace IoTunas.Core.ClientBuilders.Module.Strategies;
+﻿namespace IoTunas.Core.Services.ClientBuilders.Strategies;
 
 using Microsoft.Azure.Devices.Client;
 
-/// <inheritdoc cref="IModuleClientBuilderStrategy"/>
 public class GatewayConnectionStrategy : HostConnectionStrategy
 {
 
@@ -11,7 +10,7 @@ public class GatewayConnectionStrategy : HostConnectionStrategy
     /// </summary>
     public string? GatewayHostname { get; set; }
 
-    public override ModuleClient Build()
+    public override ModuleClient BuildModuleClient()
     {
         return ModuleClient.Create(
             transportSettings: TransportSettings,

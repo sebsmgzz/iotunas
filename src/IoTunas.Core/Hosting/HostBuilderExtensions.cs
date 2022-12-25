@@ -1,7 +1,9 @@
 ﻿namespace IoTunas.Core.Hosting;
 
 using IoTunas.Core.DependencyInjection;
-using IoTunas.Core.DependencyInjection.Builders;
+using IoTunas.Core.DependencyInjection.Devices;
+using IoTunas.Core.DependencyInjection.Modules;
+using IoTunas.Core.Services.ClientHosts;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Hosting;
 using System;
@@ -9,33 +11,42 @@ using System;
 public static class HostBuilderExtensions
 {
 
-    public const string IoTDeviceVariablePrefix = "IOT_";
-    public const string IoTModuleVariablePrefix = "IOTEDGE_";
+    public static IHostBuilder ConfigureIoTModuleDefaults(this IHostBuilder hostBuilder)
+    {
+        return hostBuilder
+            .UseServiceProviderFactory(context => new IoTModuleServiceProviderFactory(context))
+            .ConfigureAppConfiguration(config =>
+            {
+                config.AddEnvironmentVariables(IoTModuleHost.IoTVariablePrefix);
+            });
+    }
 
     public static IHostBuilder ConfigureIoTModuleDefaults(
         this IHostBuilder hostBuilder,
-        Action<IoTModuleBuilder> configureAction)
+        Action<IIoTModuleBuilder> configureAction)
     {
         return hostBuilder
-            .UseServiceProviderFactory(IoTServiceProviderFactory.ForModule)
-            .ConfigureContainer<IoTModuleBuilder>(configureAction)
+            .ConfigureIoTModuleDefaults()
+            .ConfigureContainer<IIoTModuleBuilder>(configureAction);
+    }
+
+    public static IHostBuilder ConfigureIoTDeviceDefaults(this IHostBuilder hostBuilder)
+    {
+        return hostBuilder
+            .UseServiceProviderFactory(context => new IoTDeviceServiceProviderFactory(context))
             .ConfigureAppConfiguration(config =>
             {
-                config.AddEnvironmentVariables(IoTModuleVariablePrefix);
+                config.AddEnvironmentVariables(IoTDeviceHost.IoTVariablePrefix);
             });
     }
 
     public static IHostBuilder ConfigureIoTDeviceDefaults(
         this IHostBuilder hostBuilder,
-        Action<IoTDeviceBuilder> configureAction)
+        Action<IIoTDeviceBuilder> configureAction)
     {
         return hostBuilder
-            .UseServiceProviderFactory(IoTServiceProviderFactory.ForDevice)
-            .ConfigureContainer<IoTDeviceBuilder>(configureAction)
-            .ConfigureAppConfiguration(config =>
-            {
-                config.AddEnvironmentVariables(IoTDeviceVariablePrefix);
-            });
+            .ConfigureIoTDeviceDefaults()
+            .ConfigureContainer<IIoTDeviceBuilder>(configureAction);
     }
 
 }

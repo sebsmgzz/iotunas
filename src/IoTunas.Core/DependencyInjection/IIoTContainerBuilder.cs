@@ -1,4 +1,4 @@
-﻿namespace IoTunas.Core.DependencyInjection.Builders;
+﻿namespace IoTunas.Core.DependencyInjection;
 
 using System;
 

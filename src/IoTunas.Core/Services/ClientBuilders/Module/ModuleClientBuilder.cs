@@ -1,21 +1,25 @@
-﻿namespace IoTunas.Core.ClientBuilders.Module;
+﻿namespace IoTunas.Core.Services.ClientBuilders.Modules;
 
+using IoTunas.Core.Services.ClientBuilders.Strategies;
 using Microsoft.Azure.Devices.Client;
-using IoTunas.Core.ClientBuilders.Module.Strategies;
 
 internal class ModuleClientBuilder : IModuleClientBuilder
 {
 
     private IModuleClientBuilderStrategy strategy;
 
-    private ModuleClientBuilder(IModuleClientBuilderStrategy strategy)
+    public ModuleClientBuilder() : this(new EmptyStrategy())
+    {
+    }
+
+    public ModuleClientBuilder(IModuleClientBuilderStrategy strategy)
     {
         this.strategy = strategy;
     }
 
     public ModuleClient Build()
     {
-        return strategy.Build();
+        return strategy.BuildModuleClient();
     }
 
     public void UseEnvironment()
@@ -53,20 +57,6 @@ internal class ModuleClientBuilder : IModuleClientBuilder
             Hostname = hostName,
             AuthenticationMethod = authenticationMethod
         };
-    }
-
-    public static ModuleClientBuilder FromEnvironment()
-    {
-        var client = new ModuleClientBuilder(null);
-        client.UseEnvironment();
-        return client;
-    }
-
-    public static ModuleClientBuilder FromConnectionString(string connectionString)
-    {
-        var client = new ModuleClientBuilder(null);
-        client.UseConnectionString(connectionString);
-        return client;
     }
 
 }

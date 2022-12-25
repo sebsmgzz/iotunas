@@ -1,6 +1,7 @@
 ﻿namespace IoTunas.Extensions.Telemetry.Hosting;
 
-using IoTunas.Core.DependencyInjection.Builders;
+using IoTunas.Core.DependencyInjection.Devices;
+using IoTunas.Core.DependencyInjection.Modules;
 using IoTunas.Extensions.Telemetry.Collections;
 using IoTunas.Extensions.Telemetry.Factories;
 using IoTunas.Extensions.Telemetry.Mediators;

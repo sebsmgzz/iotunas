@@ -1,4 +1,4 @@
-﻿namespace IoTunas.Core.Hosting;
+﻿namespace IoTunas.Core.Services.ClientHosts;
 
 using Microsoft.Azure.Devices.Client;
 using Microsoft.Extensions.Hosting;
@@ -6,15 +6,17 @@ using Microsoft.Extensions.Logging;
 using System;
 using System.Threading.Tasks;
 
-internal class IoTDeviceHostedService : IHostedService, IDisposable, IAsyncDisposable
+internal class IoTDeviceHost : IHostedService, IDisposable, IAsyncDisposable
 {
+
+    public const string IoTVariablePrefix = "IOT_";
 
     private readonly DeviceClient client;
     private readonly ILogger logger;
 
-    public IoTDeviceHostedService(
+    public IoTDeviceHost(
         DeviceClient client,
-        ILogger<IoTDeviceHostedService> logger)
+        ILogger<IoTDeviceHost> logger)
     {
         this.client = client;
         this.logger = logger;

@@ -1,9 +1,9 @@
-﻿namespace IoTunas.Core.ClientBuilders.Module.Strategies;
+﻿namespace IoTunas.Core.Services.ClientBuilders.Strategies;
 
 using IoTunas.Core.Collections;
 using Microsoft.Azure.Devices.Client;
 
-public abstract class ModuleClientBuilderStrategy : IModuleClientBuilderStrategy
+public abstract class ClientBuilderStrategyBase
 {
 
     protected ClientOptions? options;
@@ -12,11 +12,9 @@ public abstract class ModuleClientBuilderStrategy : IModuleClientBuilderStrategy
 
     public ClientOptions? Options => options ??= new ClientOptions();
 
-    public ModuleClientBuilderStrategy()
+    public ClientBuilderStrategyBase()
     {
         TransportSettings = new TransportSettingsList();
     }
-
-    public abstract ModuleClient Build();
 
 }

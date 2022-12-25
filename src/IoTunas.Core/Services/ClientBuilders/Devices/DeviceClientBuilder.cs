@@ -1,6 +1,6 @@
-﻿namespace IoTunas.Core.ClientBuilders.Device;
+﻿namespace IoTunas.Core.Services.ClientBuilders.Devices;
 
-using IoTunas.Core.ClientBuilders.Device.Strategies;
+using IoTunas.Core.Services.ClientBuilders.Strategies;
 using Microsoft.Azure.Devices.Client;
 
 internal class DeviceClientBuilder : IDeviceClientBuilder
@@ -8,14 +8,18 @@ internal class DeviceClientBuilder : IDeviceClientBuilder
 
     private IDeviceClientBuilderStrategy strategy;
 
-    private DeviceClientBuilder(IDeviceClientBuilderStrategy strategy)
+    public DeviceClientBuilder() : this(new EmptyStrategy())
+    {
+    }
+
+    public DeviceClientBuilder(IDeviceClientBuilderStrategy strategy)
     {
         this.strategy = strategy;
     }
 
     public DeviceClient Build()
     {
-        return strategy!.Build();
+        return strategy!.BuildDeviceClient();
     }
 
     public void UseConnectionString(string connectionString)
@@ -43,13 +47,6 @@ internal class DeviceClientBuilder : IDeviceClientBuilder
             Hostname = hostName,
             AuthenticationMethod = authenticationMethod
         };
-    }
-
-    public static IDeviceClientBuilder FromConnectionString(string connectionString)
-    {
-        var builder = new DeviceClientBuilder(null);
-        builder.UseConnectionString(connectionString);
-        return builder;
     }
 
 }
