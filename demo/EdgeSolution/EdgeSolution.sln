@@ -1,0 +1,55 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.3.32929.385
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "IoTunas.Demos.Template", "modules\Template\IoTunas.Demos.Template.csproj", "{41C1956B-D0A3-418E-84CF-15071BF2967A}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "IoTunas.Core", "..\..\src\IoTunas.Core\IoTunas.Core.csproj", "{807822F0-2C83-440B-89F6-B0C7D864EE2B}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "IoTunas.Extensions.Connectivity", "..\..\src\IoTunas.Extensions.Connectivity\IoTunas.Extensions.Connectivity.csproj", "{272A0828-9F1F-4A3F-81BA-EFE6E2639D09}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "IoTunas.Extensions.Methods", "..\..\src\IoTunas.Extensions.Methods\IoTunas.Extensions.Methods.csproj", "{B2D22189-DF5F-4DA2-92D7-F06B0C2D33E8}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "IoTunas.Extensions.Telemetry", "..\..\src\IoTunas.Extensions.Telemetry\IoTunas.Extensions.Telemetry.csproj", "{EB6521DC-5834-4D41-99FA-4B50CABE3C57}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "IoTunas.Extensions.Twin", "..\..\src\IoTunas.Extensions.Twin\IoTunas.Extensions.Twin.csproj", "{ACA502D5-5F05-4901-ADD9-045FA1DE2C66}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{41C1956B-D0A3-418E-84CF-15071BF2967A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{41C1956B-D0A3-418E-84CF-15071BF2967A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{41C1956B-D0A3-418E-84CF-15071BF2967A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{41C1956B-D0A3-418E-84CF-15071BF2967A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{807822F0-2C83-440B-89F6-B0C7D864EE2B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{807822F0-2C83-440B-89F6-B0C7D864EE2B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{807822F0-2C83-440B-89F6-B0C7D864EE2B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{807822F0-2C83-440B-89F6-B0C7D864EE2B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{272A0828-9F1F-4A3F-81BA-EFE6E2639D09}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{272A0828-9F1F-4A3F-81BA-EFE6E2639D09}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{272A0828-9F1F-4A3F-81BA-EFE6E2639D09}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{272A0828-9F1F-4A3F-81BA-EFE6E2639D09}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B2D22189-DF5F-4DA2-92D7-F06B0C2D33E8}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B2D22189-DF5F-4DA2-92D7-F06B0C2D33E8}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B2D22189-DF5F-4DA2-92D7-F06B0C2D33E8}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B2D22189-DF5F-4DA2-92D7-F06B0C2D33E8}.Release|Any CPU.Build.0 = Release|Any CPU
+		{EB6521DC-5834-4D41-99FA-4B50CABE3C57}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{EB6521DC-5834-4D41-99FA-4B50CABE3C57}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{EB6521DC-5834-4D41-99FA-4B50CABE3C57}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{EB6521DC-5834-4D41-99FA-4B50CABE3C57}.Release|Any CPU.Build.0 = Release|Any CPU
+		{ACA502D5-5F05-4901-ADD9-045FA1DE2C66}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{ACA502D5-5F05-4901-ADD9-045FA1DE2C66}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{ACA502D5-5F05-4901-ADD9-045FA1DE2C66}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{ACA502D5-5F05-4901-ADD9-045FA1DE2C66}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {7FD05737-5DAD-44DE-B181-61BAA3020BD5}
+	EndGlobalSection
+EndGlobal
