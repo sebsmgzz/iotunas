@@ -16,6 +16,6 @@ public interface IEmissaryController
 
     void Stop(bool force = false);
 
-    void SendMessage(IEmissary emissary)
+    void SendMessage(IEmissary emissary);
 
 }
