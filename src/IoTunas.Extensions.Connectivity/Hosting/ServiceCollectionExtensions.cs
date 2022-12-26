@@ -5,10 +5,14 @@ using Microsoft.Extensions.DependencyInjection;
 
 public static class ServiceCollectionExtensions
 {
+    public static IServiceCollection AddConnectionObservers(this IServiceCollection services)
+    {
+        return services.AddConnectionObservers(builder => builder.Observers.Map());
+    }
 
     public static IServiceCollection AddConnectionObservers(
         this IServiceCollection services,
-        Action<IConnectivityServiceBuilder>? configureAction = null)
+        Action<IConnectivityServiceBuilder> configureAction)
     {
         var builder = new ConnectivityServiceBuilder();
         configureAction?.Invoke(builder);

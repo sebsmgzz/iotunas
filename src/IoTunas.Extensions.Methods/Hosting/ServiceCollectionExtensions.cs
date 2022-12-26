@@ -7,9 +7,17 @@ using System;
 public static class ServiceCollectionExtensions
 {
 
+    public static IServiceCollection AddCommandHandling(this IServiceCollection services)
+    {
+        var builder = new CommandsServiceBuilder();
+        builder.Commands.Map();
+        builder.Build(services);
+        return services;
+    }
+
     public static IServiceCollection AddCommandHandling(
         this IServiceCollection services,
-        Action<ICommandsServiceBuilder>? configureAction = null)
+        Action<ICommandsServiceBuilder> configureAction)
     {
         var builder = new CommandsServiceBuilder();
         configureAction?.Invoke(builder);

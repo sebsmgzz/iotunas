@@ -6,10 +6,14 @@ using System;
 
 public static class IoTBuilderExtensions
 {
+    public static void UseCommandHandlers(this IIoTBuilder builder)
+    {
+        builder.Services.AddCommandHandling();
+    }
 
     public static void UseCommandHandlers(
         this IIoTBuilder builder,
-        Action<ICommandsServiceBuilder>? configureAction = null)
+        Action<ICommandsServiceBuilder> configureAction)
     {
         builder.Services.AddCommandHandling(configureAction);
     }
