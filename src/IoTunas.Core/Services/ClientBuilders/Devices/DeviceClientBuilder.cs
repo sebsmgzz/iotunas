@@ -1,5 +1,6 @@
 ﻿namespace IoTunas.Core.Services.ClientBuilders.Devices;
 
+using IoTunas.Core.Collections;
 using IoTunas.Core.Services.ClientBuilders.Strategies;
 using Microsoft.Azure.Devices.Client;
 
@@ -8,7 +9,11 @@ internal class DeviceClientBuilder : IDeviceClientBuilder
 
     private IDeviceClientBuilderStrategy strategy;
 
-    public DeviceClientBuilder() : this(new EmptyStrategy())
+    public ClientOptions Options => strategy.Options;
+
+    public TransportSettingsList Transports => strategy.Transports;
+
+    public DeviceClientBuilder() : this(new EmptyBuilder())
     {
     }
 
@@ -24,7 +29,7 @@ internal class DeviceClientBuilder : IDeviceClientBuilder
 
     public void UseConnectionString(string connectionString)
     {
-        strategy = new ConnectionStringStrategy()
+        strategy = new ConnectionStringBuilder()
         {
             ConnectionString = connectionString
         };
@@ -32,7 +37,7 @@ internal class DeviceClientBuilder : IDeviceClientBuilder
 
     public void UseHostConnection(string hostName, IAuthenticationMethod authenticationMethod)
     {
-        strategy = new HostConnectionStrategy()
+        strategy = new HostConnectionBuilder()
         {
             Hostname = hostName,
             AuthenticationMethod = authenticationMethod
@@ -41,7 +46,7 @@ internal class DeviceClientBuilder : IDeviceClientBuilder
 
     public void UseGatewayConnection(string gatewayHostname, string hostName, IAuthenticationMethod authenticationMethod)
     {
-        strategy = new GatewayConnectionStrategy()
+        strategy = new GatewayConnectionBuilder()
         {
             GatewayHostname = gatewayHostname,
             Hostname = hostName,

@@ -4,7 +4,7 @@ using IoTunas.Core.Services.ClientBuilders.Devices;
 using IoTunas.Core.Services.ClientBuilders.Modules;
 using Microsoft.Azure.Devices.Client;
 
-public class HostConnectionStrategy : ClientBuilderStrategyBase, 
+public class HostConnectionBuilder : ClientBuilderBase, 
     IDeviceClientBuilderStrategy, IModuleClientBuilderStrategy
 {
 
@@ -21,7 +21,7 @@ public class HostConnectionStrategy : ClientBuilderStrategyBase,
     public virtual ModuleClient BuildModuleClient()
     {
         return ModuleClient.Create(
-            transportSettings: TransportSettings,
+            transportSettings: Transports,
             options: options,
             hostname: Hostname!,
             authenticationMethod: AuthenticationMethod!);
@@ -31,7 +31,7 @@ public class HostConnectionStrategy : ClientBuilderStrategyBase,
     public virtual DeviceClient BuildDeviceClient()
     {
         return DeviceClient.Create(
-            transportSettings: TransportSettings,
+            transportSettings: Transports,
             options: options,
             hostname: Hostname!,
             authenticationMethod: AuthenticationMethod!);

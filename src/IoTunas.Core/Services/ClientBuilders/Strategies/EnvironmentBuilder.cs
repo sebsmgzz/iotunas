@@ -3,13 +3,13 @@
 using IoTunas.Core.Services.ClientBuilders.Modules;
 using Microsoft.Azure.Devices.Client;
 
-public class EnvironmentStrategy : ClientBuilderStrategyBase, IModuleClientBuilderStrategy
+public class EnvironmentBuilder : ClientBuilderBase, IModuleClientBuilderStrategy
 {
 
     public virtual ModuleClient BuildModuleClient()
     {
         var task = ModuleClient.CreateFromEnvironmentAsync(
-            transportSettings: TransportSettings,
+            transportSettings: Transports,
             options: options);
         return task.Result;
     }

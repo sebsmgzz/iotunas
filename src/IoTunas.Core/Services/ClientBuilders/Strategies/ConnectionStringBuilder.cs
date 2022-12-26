@@ -4,7 +4,7 @@ using IoTunas.Core.Services.ClientBuilders.Devices;
 using IoTunas.Core.Services.ClientBuilders.Modules;
 using Microsoft.Azure.Devices.Client;
 
-public class ConnectionStringStrategy : ClientBuilderStrategyBase, 
+public class ConnectionStringBuilder : ClientBuilderBase, 
     IDeviceClientBuilderStrategy, IModuleClientBuilderStrategy
 {
 
@@ -16,7 +16,7 @@ public class ConnectionStringStrategy : ClientBuilderStrategyBase,
     public virtual DeviceClient BuildDeviceClient()
     {
         return DeviceClient.CreateFromConnectionString(
-            transportSettings: TransportSettings,
+            transportSettings: Transports,
             options: options,
             connectionString: ConnectionString!);
     }
@@ -24,7 +24,7 @@ public class ConnectionStringStrategy : ClientBuilderStrategyBase,
     public virtual ModuleClient BuildModuleClient()
     {
         return ModuleClient.CreateFromConnectionString(
-            transportSettings: TransportSettings,
+            transportSettings: Transports,
             options: options,
             connectionString: ConnectionString!);
     }

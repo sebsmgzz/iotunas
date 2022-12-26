@@ -2,7 +2,7 @@
 
 using Microsoft.Azure.Devices.Client;
 
-public class GatewayConnectionStrategy : HostConnectionStrategy
+public class GatewayConnectionBuilder : HostConnectionBuilder
 {
 
     /// <summary>
@@ -13,7 +13,7 @@ public class GatewayConnectionStrategy : HostConnectionStrategy
     public override ModuleClient BuildModuleClient()
     {
         return ModuleClient.Create(
-            transportSettings: TransportSettings,
+            transportSettings: Transports,
             options: options,
             hostname: Hostname!,
             authenticationMethod: AuthenticationMethod!,

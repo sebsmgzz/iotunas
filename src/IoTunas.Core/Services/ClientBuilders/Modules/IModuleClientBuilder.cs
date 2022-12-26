@@ -1,8 +1,9 @@
 ﻿namespace IoTunas.Core.Services.ClientBuilders.Modules;
 
+using IoTunas.Core.Services.ClientBuilders.Strategies;
 using Microsoft.Azure.Devices.Client;
 
-public interface IModuleClientBuilder
+public interface IModuleClientBuilder : IClientBuilder
 {
 
     ModuleClient Build();

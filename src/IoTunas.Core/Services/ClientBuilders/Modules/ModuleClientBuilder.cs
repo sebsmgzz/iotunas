@@ -1,5 +1,6 @@
 ﻿namespace IoTunas.Core.Services.ClientBuilders.Modules;
 
+using IoTunas.Core.Collections;
 using IoTunas.Core.Services.ClientBuilders.Strategies;
 using Microsoft.Azure.Devices.Client;
 
@@ -8,7 +9,11 @@ internal class ModuleClientBuilder : IModuleClientBuilder
 
     private IModuleClientBuilderStrategy strategy;
 
-    public ModuleClientBuilder() : this(new EmptyStrategy())
+    public ClientOptions Options => strategy.Options;
+
+    public TransportSettingsList Transports => strategy.Transports;
+
+    public ModuleClientBuilder() : this(new EmptyBuilder())
     {
     }
 
@@ -24,12 +29,12 @@ internal class ModuleClientBuilder : IModuleClientBuilder
 
     public void UseEnvironment()
     {
-        strategy = new EnvironmentStrategy();
+        strategy = new EnvironmentBuilder();
     }
 
     public void UseConnectionString(string connectionString)
     {
-        strategy = new ConnectionStringStrategy()
+        strategy = new ConnectionStringBuilder()
         {
             ConnectionString = connectionString
         };
@@ -39,7 +44,7 @@ internal class ModuleClientBuilder : IModuleClientBuilder
         string hostName, 
         IAuthenticationMethod authenticationMethod)
     {
-        strategy = new HostConnectionStrategy()
+        strategy = new HostConnectionBuilder()
         {
             Hostname = hostName,
             AuthenticationMethod = authenticationMethod
@@ -51,7 +56,7 @@ internal class ModuleClientBuilder : IModuleClientBuilder
         string hostName, 
         IAuthenticationMethod authenticationMethod)
     {
-        strategy = new GatewayConnectionStrategy()
+        strategy = new GatewayConnectionBuilder()
         {
             GatewayHostname = gatewayHostname,
             Hostname = hostName,
