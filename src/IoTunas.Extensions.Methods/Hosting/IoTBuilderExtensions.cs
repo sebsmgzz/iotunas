@@ -6,16 +6,16 @@ using System;
 
 public static class IoTBuilderExtensions
 {
-    public static void UseCommandHandlers(this IIoTBuilder builder)
+    public static void UseCommands(this IIoTBuilder builder)
     {
-        builder.Services.AddCommandHandling();
+        builder.Services.AddCommands();
     }
 
-    public static void UseCommandHandlers(
+    public static void UseCommands(
         this IIoTBuilder builder,
         Action<ICommandsServiceBuilder> configureAction)
     {
-        builder.Services.AddCommandHandling(configureAction);
+        builder.Services.AddCommands(configureAction);
     }
 
 }

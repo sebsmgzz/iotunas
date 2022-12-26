@@ -7,7 +7,7 @@ using System;
 public static class ServiceCollectionExtensions
 {
 
-    public static IServiceCollection AddCommandHandling(this IServiceCollection services)
+    public static IServiceCollection AddCommands(this IServiceCollection services)
     {
         var builder = new CommandsServiceBuilder();
         builder.Commands.Map();
@@ -15,7 +15,7 @@ public static class ServiceCollectionExtensions
         return services;
     }
 
-    public static IServiceCollection AddCommandHandling(
+    public static IServiceCollection AddCommands(
         this IServiceCollection services,
         Action<ICommandsServiceBuilder> configureAction)
     {
