@@ -98,20 +98,24 @@ public class EmissaryController : IEmissaryController
         }
 
         // Create and call new broker
-        if (factory.TryGetValue(descriptor.Type, out var broker))
+        if (factory.TryGetValue(descriptor.Type, out var emissary))
         {
-            cts = new CancellationTokenSource(TimeSpan.FromMilliseconds(25));
-            var messages = broker.HandleAsync(cts.Token).Result;
-            sendMessageTask = clientHost.IsEdgeCapable ?
-                SendModuleMessagesAsync(messages, cts.Token) :
-                SendDeviceMessagesAsync(messages, cts.Token);
+            SendMessage(emissary);
         }
         else
         {
             logger.LogCritical(EmissaryNotFoundLog, descriptor.OutputName);
-            Stop(force: true);
         }
 
+    }
+
+    public void SendMessage(IEmissary emissary)
+    {
+        cts = new CancellationTokenSource();
+        var messages = emissary.HandleAsync(cts.Token).Result;
+        sendMessageTask = clientHost.IsEdgeCapable ?
+            SendModuleMessagesAsync(messages, cts.Token) :
+            SendDeviceMessagesAsync(messages, cts.Token);
     }
 
     private Task SendModuleMessagesAsync(
