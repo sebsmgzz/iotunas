@@ -30,7 +30,7 @@ public class EmissaryController : IEmissaryController
     private Task sendMessageTask;
     private CancellationTokenSource cts;
 
-    public EmissaryDescriptor Descriptor { get; }
+    public EmissaryDescriptor Descriptor => descriptor;
 
     public TimeSpan Period { get; set; }
 
