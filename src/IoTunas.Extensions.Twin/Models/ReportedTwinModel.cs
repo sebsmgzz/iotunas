@@ -3,7 +3,7 @@
 using System.ComponentModel;
 using System.Runtime.CompilerServices;
 
-public abstract class ReportedTwinModel : IReportedTwinModel
+public abstract class ReportedTwinModel : IReportedTwinModel, INotifyPropertyChanging, INotifyPropertyChanged
 {
     
     public event PropertyChangedEventHandler? PropertyChanged;
@@ -21,7 +21,7 @@ public abstract class ReportedTwinModel : IReportedTwinModel
         PropertyChanging?.Invoke(this, args);
     }
 
-    protected bool SetProperty<T>(ref T oldValue, ref T newValue, [CallerMemberName] string propertyName = "")
+    protected bool SetProperty<T>(ref T oldValue, T newValue, [CallerMemberName] string propertyName = "")
     {
         var isDifferent = !EqualityComparer<T>.Default.Equals(oldValue, newValue);
         if (isDifferent)

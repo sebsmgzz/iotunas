@@ -15,7 +15,7 @@ public abstract class Receiver<T> : IReceiver
         return await HandleAsync(payloadModel, userContext);
     }
 
-    public abstract Task<MessageResponse> HandleAsync(T? model, object userContext);
+    public abstract Task<MessageResponse> HandleAsync(T model, object userContext);
 
 
 }

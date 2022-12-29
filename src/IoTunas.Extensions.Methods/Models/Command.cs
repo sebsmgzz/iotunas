@@ -19,6 +19,6 @@ public abstract class Command<T> : ICommand
     }
 
     public abstract Task<MethodResponse> HandleAsync(
-        T? payloadModel, object userContext);
+        T payloadModel, object userContext);
 
 }
