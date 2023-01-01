@@ -6,29 +6,29 @@ public static class IoTBuilderExtensions
 {
 
     public static void UseTelemetryServices(
-        this IIoTBuilder builder,
+        this IIoTBuilder iotBuilder,
         Action<ITelemetryServiceBuilder>? configureAction = null)
     {
-        builder.Services.AddTelemetryServices(configureAction);
+        iotBuilder.Services.AddTelemetryServices(configureAction);
     }
 
-    public static void MapTelemetryServices(this IIoTBuilder builder)
+    public static void MapTelemetryServices(this IIoTBuilder iotBuilder)
     {
-        builder.Services.AddTelemetryServices(builder =>
+        iotBuilder.UseTelemetryServices(builder =>
         {
             builder.Receivers.Map();
             builder.Providers.Map();
         });
     }
 
-    public static void MapTelemetryReceivers(this IIoTBuilder builder)
+    public static void MapTelemetryReceivers(this IIoTBuilder iotBuilder)
     {
-        builder.Services.AddTelemetryReceptionOnly(builder => builder.Receivers.Map());
+        iotBuilder.Services.AddTelemetryReceptionOnly(builder => builder.Receivers.Map());
     }
 
-    public static void MapTelemetryEmissions(this IIoTBuilder builder)
+    public static void MapTelemetryEmissions(this IIoTBuilder iotBuilder)
     {
-        builder.Services.AddTelemetryEmissionOnly(builder => builder.Providers.Map());
+        iotBuilder.Services.AddTelemetryEmissionOnly(builder => builder.Providers.Map());
     }
 
 }
