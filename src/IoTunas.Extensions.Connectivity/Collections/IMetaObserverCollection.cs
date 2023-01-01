@@ -1,6 +1,6 @@
 ﻿namespace IoTunas.Extensions.Connectivity.Collections;
 
-using IoTunas.Extensions.Connectivity.Models;
+using IoTunas.Extensions.Connectivity.Models.Observables;
 using System;
 using System.Reflection;
 

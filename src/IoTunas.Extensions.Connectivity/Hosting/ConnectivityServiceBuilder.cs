@@ -1,7 +1,7 @@
 ﻿namespace IoTunas.Extensions.Connectivity.Hosting;
 
 using IoTunas.Extensions.Connectivity.Collections;
-using IoTunas.Extensions.Connectivity.Observable;
+using IoTunas.Extensions.Connectivity.Observables;
 using Microsoft.Extensions.DependencyInjection;
 
 public class ConnectivityServiceBuilder : IConnectivityServiceBuilder

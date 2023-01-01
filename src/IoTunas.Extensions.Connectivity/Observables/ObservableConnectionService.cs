@@ -1,4 +1,4 @@
-﻿namespace IoTunas.Extensions.Connectivity.Observable;
+﻿namespace IoTunas.Extensions.Connectivity.Observables;
 
 using IoTunas.Core.Services.ClientHosts;
 using Microsoft.Azure.Devices.Client;

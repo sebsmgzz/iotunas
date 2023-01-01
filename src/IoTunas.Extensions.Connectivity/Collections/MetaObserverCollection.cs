@@ -1,10 +1,10 @@
 ﻿namespace IoTunas.Extensions.Connectivity.Collections;
 
-using IoTunas.Extensions.Connectivity.Models;
 using System.Reflection;
 using System.Collections;
 using System.Diagnostics.CodeAnalysis;
 using IoTunas.Core.Reflection;
+using IoTunas.Extensions.Connectivity.Models.Observables;
 
 public class MetaObserverCollection : IMetaObserverCollection
 {

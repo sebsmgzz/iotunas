@@ -1,4 +1,4 @@
-﻿namespace IoTunas.Extensions.Connectivity.Models;
+﻿namespace IoTunas.Extensions.Connectivity.Models.Observables;
 
 using Microsoft.Azure.Devices.Client;
 
@@ -10,7 +10,7 @@ public class ConnectionChangeArgs
     public ConnectionStatusChangeReason Reason { get; }
 
     public ConnectionChangeArgs(
-        ConnectionStatus status, 
+        ConnectionStatus status,
         ConnectionStatusChangeReason reason)
     {
         Status = status;

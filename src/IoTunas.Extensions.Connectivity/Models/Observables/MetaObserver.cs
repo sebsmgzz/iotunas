@@ -1,4 +1,4 @@
-﻿namespace IoTunas.Extensions.Connectivity.Models;
+﻿namespace IoTunas.Extensions.Connectivity.Models.Observables;
 
 using IoTunas.Core.Seedwork;
 

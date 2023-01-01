@@ -1,5 +1,4 @@
-﻿namespace IoTunas.Extensions.Connectivity.Models;
-
+﻿namespace IoTunas.Extensions.Connectivity.Models.Observables;
 public interface IConnectionObserver
 {
 

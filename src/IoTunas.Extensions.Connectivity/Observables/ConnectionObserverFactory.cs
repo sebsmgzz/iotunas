@@ -1,7 +1,7 @@
-﻿namespace IoTunas.Extensions.Connectivity.Observable;
+﻿namespace IoTunas.Extensions.Connectivity.Observables;
 
 using IoTunas.Core.DependencyInjection;
-using IoTunas.Extensions.Connectivity.Models;
+using IoTunas.Extensions.Connectivity.Models.Observables;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
 using System;
