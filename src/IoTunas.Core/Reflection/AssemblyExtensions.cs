@@ -1,4 +1,5 @@
-﻿namespace IoTunas.Core.Hosting;
+﻿namespace IoTunas.Core.Reflection;
+
 using System.Reflection;
 
 public static class AssemblyExtensions
@@ -8,14 +9,7 @@ public static class AssemblyExtensions
         this Assembly assembly,
         Type baseType)
     {
-        var types = assembly.GetTypes();
-        foreach (var type in types)
-        {
-            if (type.IsAssignableTo(baseType))
-            {
-                yield return type;
-            }
-        }
+        return assembly.GetTypes().Where(type => type.IsAssignableTo(baseType));
     }
 
     public static IEnumerable<Type> GetDerivedTypes<TBaseType>(this Assembly assembly)

@@ -4,6 +4,7 @@ using System.Reflection;
 using System.Collections;
 using System.Diagnostics.CodeAnalysis;
 using IoTunas.Extensions.Telemetry.Models.Reception;
+using IoTunas.Core.Reflection;
 
 public class MetaReceiverCollection : IMetaReceiverCollection
 {
@@ -60,9 +61,10 @@ public class MetaReceiverCollection : IMetaReceiverCollection
 
     public void Map(Assembly assembly)
     {
-        foreach (var meta in MetaReceiver.GetAll(assembly))
+        var types = assembly.GetDerivedTypes<ITelemetryReceiver>();
+        foreach (var type in types)
         {
-            Add(meta);
+            Add(type);
         }
     }
 

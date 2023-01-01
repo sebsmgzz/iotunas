@@ -5,6 +5,8 @@ using System.Collections;
 using IoTunas.Extensions.Telemetry.Models.Emission;
 using System.Diagnostics.CodeAnalysis;
 using IoTunas.Extensions.Telemetry.Emission;
+using IoTunas.Core.Reflection;
+using IoTunas.Core.Collections;
 
 public class MetaProviderCollection : IMetaProviderCollection
 {
@@ -61,9 +63,10 @@ public class MetaProviderCollection : IMetaProviderCollection
 
     public void Map(Assembly assembly)
     {
-        foreach (var meta in MetaProvider.GetAll(assembly))
+        var types = assembly.GetDerivedTypes<ITelemetryProvider<ITelemetry>>();
+        foreach (var type in types)
         {
-            Add(meta);
+            Add(type);
         }
     }
 

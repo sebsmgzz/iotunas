@@ -46,16 +46,4 @@ public class MetaProvider
         return TelemetryOutputAttribute.GetOutputOrDefault(Type);
     }
 
-    public static IEnumerable<MetaProvider> GetAll(Assembly assembly)
-    {
-        foreach (var type in assembly.GetTypes())
-        {
-            if (InheritedType<ITelemetryProvider<ITelemetry>>.IsValid(type))
-            {
-                yield return new MetaProvider(type);
-            }
-        }
-
-    }
-
 }
