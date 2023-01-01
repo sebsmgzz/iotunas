@@ -4,7 +4,7 @@ using IoTunas.Extensions.Methods.Models;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
 using System.Diagnostics.CodeAnalysis;
-using IoTunas.Core.Hosting;
+using IoTunas.Core.DependencyInjection;
 
 public class CommandFactory : ICommandFactory
 {
@@ -34,7 +34,7 @@ public class CommandFactory : ICommandFactory
             command = null;
             return false;
         }
-        if(!provider.TryGetService<ICommand>(commandType, out var service))
+        if(!provider.TryGetCastedService<ICommand>(commandType, out var service))
         {
             logger.LogCritical(InvalidHandlerLog, methodName, nameof(ICommand));
             command = null;

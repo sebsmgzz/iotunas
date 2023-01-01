@@ -1,6 +1,6 @@
 ﻿namespace IoTunas.Extensions.Connectivity.Factories;
 
-using IoTunas.Core.Hosting;
+using IoTunas.Core.DependencyInjection;
 using IoTunas.Extensions.Connectivity.Models;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
@@ -48,7 +48,7 @@ public class ConnectionObserverFactory : IConnectionObserverFactory
             return false;
         }
         var type = listing[index];
-        if(!provider.TryGetService<IConnectionObserver>(type, out observer))
+        if(!provider.TryGetCastedService<IConnectionObserver>(type, out observer))
         {
             logger.LogCritical(InvalidObserverLog, type.Name, nameof(IConnectionObserver));
             observer = null;
