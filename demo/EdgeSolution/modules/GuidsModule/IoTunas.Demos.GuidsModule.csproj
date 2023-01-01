@@ -13,4 +13,12 @@
     <PackageReference Include="Microsoft.Azure.Devices.Client" Version="1.41.3" />
     <PackageReference Include="Microsoft.Extensions.Hosting" Version="6.0.1" />
   </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\..\..\..\src\IoTunas.Core\IoTunas.Core.csproj" />
+    <ProjectReference Include="..\..\..\..\src\IoTunas.Extensions.Connectivity\IoTunas.Extensions.Connectivity.csproj" />
+    <ProjectReference Include="..\..\..\..\src\IoTunas.Extensions.Methods\IoTunas.Extensions.Methods.csproj" />
+    <ProjectReference Include="..\..\..\..\src\IoTunas.Extensions.Telemetry\IoTunas.Extensions.Telemetry.csproj" />
+    <ProjectReference Include="..\..\..\..\src\IoTunas.Extensions.Twin\IoTunas.Extensions.Twin.csproj" />
+  </ItemGroup>
 </Project>

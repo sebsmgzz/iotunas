@@ -19,8 +19,7 @@ Host
 
     });
     builder.UseConnectionObservers();
-    builder.UseTelemetryEmission();
-    builder.UseTelemetryReception();
+    builder.MapTelemetryServices();
 
 })
 .ConfigureServices(services =>

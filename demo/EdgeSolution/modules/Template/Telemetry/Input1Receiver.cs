@@ -1,54 +1,62 @@
 ﻿namespace IoTunas.Demos.Template.Telemetry;
 
 using IoTunas.Demos.Template.Services;
-using IoTunas.Extensions.Telemetry.Factories;
-using IoTunas.Extensions.Telemetry.Models;
+using IoTunas.Extensions.Telemetry.Emission;
+using IoTunas.Extensions.Telemetry.Models.Reception;
 using IoTunas.Extensions.Telemetry.Reflection;
 using Microsoft.Azure.Devices.Client;
 using System.Text;
 using System.Threading.Tasks;
 
-[ReceiverDescriptor("input1")]
-public class Input1Receiver : IReceiver
+[TelemetryInput("input1")]
+public class Input1Receiver : ITelemetryReceiver
 {
 
     public const string Log = "Received message: {counterValue}, Body: [{messageString}]";
 
     private readonly ICounterService counter;
-    private readonly IEmissaryControllerFactory factory;
+    private readonly ITelemetrySender sender;
     private readonly ILogger logger;
 
-
     public Input1Receiver(
-        ICounterService counter, 
-        IEmissaryControllerFactory factory,
+        ICounterService counter,
+        ITelemetrySender sender,
         ILogger<Input1Receiver> logger)
     {
         this.counter = counter;
-        this.factory = factory;
+        this.sender = sender;
         this.logger = logger;
     }
 
-    public Task<MessageResponse> HandleAsync(Message message, object userContext)
+    public async Task<MessageResponse> HandleAsync(Message message, object userContext)
     {
 
-        // Update counter
-        var messageBytes = message.GetBytes();
-        var messageString = Encoding.UTF8.GetString(messageBytes);
-        var counterValue = counter.Increment();
-
-        // Pipe message
-        if(factory.TryGet(typeof(Output1Emissor), out var controller))
+        // Pipe telemetry
+        var isSuccess = await sender.SendAsync<Output1Provider>(provider =>
         {
-            controller.SendMessage(new Output1Emissor()
-            {
-                Message = message
-            });
+            provider.Message = message;
+        });
+
+        // React after telemetry has been sent
+        if (isSuccess)
+        {
+
+            // Update counter
+            var messageBytes = message.GetBytes();
+            var messageString = Encoding.UTF8.GetString(messageBytes);
+            var counterValue = counter.Increment();
+
+            // Log and return result
+            logger.LogInformation(Log, counterValue, messageString);
+            return MessageResponse.Completed;
+
+        }
+        else
+        {
+            // TODO: Log it
+            return MessageResponse.Abandoned;
         }
 
-        // Log and return result
-        logger.LogInformation(Log, counterValue, messageString);
-        return Task.FromResult(MessageResponse.Completed);
     }
 
 }

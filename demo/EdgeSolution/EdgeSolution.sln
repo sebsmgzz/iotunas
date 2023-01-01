@@ -15,6 +15,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "IoTunas.Extensions.Telemetr
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "IoTunas.Extensions.Twin", "..\..\src\IoTunas.Extensions.Twin\IoTunas.Extensions.Twin.csproj", "{ACA502D5-5F05-4901-ADD9-045FA1DE2C66}"
 EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "IoTunas.Demos.GuidsModule", "modules\GuidsModule\IoTunas.Demos.GuidsModule.csproj", "{994F6DA2-ABC0-495F-98E0-DECF88A92943}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -45,6 +47,10 @@ Global
 		{ACA502D5-5F05-4901-ADD9-045FA1DE2C66}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{ACA502D5-5F05-4901-ADD9-045FA1DE2C66}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{ACA502D5-5F05-4901-ADD9-045FA1DE2C66}.Release|Any CPU.Build.0 = Release|Any CPU
+		{994F6DA2-ABC0-495F-98E0-DECF88A92943}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{994F6DA2-ABC0-495F-98E0-DECF88A92943}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{994F6DA2-ABC0-495F-98E0-DECF88A92943}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{994F6DA2-ABC0-495F-98E0-DECF88A92943}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
