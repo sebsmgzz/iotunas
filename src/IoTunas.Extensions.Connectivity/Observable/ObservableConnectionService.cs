@@ -1,18 +1,17 @@
-﻿namespace IoTunas.Extensions.Connectivity.Hosting.Connectivity;
+﻿namespace IoTunas.Extensions.Connectivity.Observable;
 
 using IoTunas.Core.Services.ClientHosts;
-using IoTunas.Extensions.Connectivity.Mediators;
 using Microsoft.Azure.Devices.Client;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using System.Threading;
 
-public class ConnectivityHost : IHostedService
+public class ObservableConnectionService : IHostedService
 {
 
     private readonly IServiceProvider provider;
 
-    public ConnectivityHost(IServiceProvider provider)
+    public ObservableConnectionService(IServiceProvider provider)
     {
         this.provider = provider;
     }

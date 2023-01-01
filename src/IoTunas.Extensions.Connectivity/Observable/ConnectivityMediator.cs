@@ -1,6 +1,5 @@
-﻿namespace IoTunas.Extensions.Connectivity.Mediators;
+﻿namespace IoTunas.Extensions.Connectivity.Observable;
 
-using IoTunas.Extensions.Connectivity.Factories;
 using IoTunas.Extensions.Connectivity.Models;
 using Microsoft.Azure.Devices.Client;
 using Microsoft.Extensions.Logging;

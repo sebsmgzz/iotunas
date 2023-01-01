@@ -18,7 +18,7 @@ Host
     {
 
     });
-    builder.UseConnectionObservers();
+    builder.MapConnectivityServices();
     builder.MapTelemetryServices();
 
 })

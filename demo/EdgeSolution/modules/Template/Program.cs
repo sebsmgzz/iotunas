@@ -15,7 +15,7 @@ Host
 
     // Configure extensions
     builder.UseCommands();
-    builder.UseConnectionObservers();
+    builder.MapConnectivityServices();
     builder.MapTelemetryServices();
 
 })

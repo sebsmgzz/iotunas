@@ -1,6 +1,6 @@
 ﻿namespace IoTunas.Extensions.Methods.Collections;
 
-using IoTunas.Core.Hosting;
+using IoTunas.Core.Reflection;
 using IoTunas.Extensions.Methods.Models;
 using IoTunas.Extensions.Methods.Reflection;
 using System.Collections;

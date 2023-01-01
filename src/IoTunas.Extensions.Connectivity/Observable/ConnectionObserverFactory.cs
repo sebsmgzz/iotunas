@@ -1,4 +1,4 @@
-﻿namespace IoTunas.Extensions.Connectivity.Factories;
+﻿namespace IoTunas.Extensions.Connectivity.Observable;
 
 using IoTunas.Core.DependencyInjection;
 using IoTunas.Extensions.Connectivity.Models;
@@ -19,7 +19,7 @@ public class ConnectionObserverFactory : IConnectionObserverFactory
     private readonly IReadOnlyList<Type> listing;
     private readonly IServiceProvider provider;
     private readonly ILogger logger;
-    
+
     public ConnectionObserverFactory(
         IReadOnlyList<Type> listing,
         IServiceProvider provider)
@@ -31,9 +31,9 @@ public class ConnectionObserverFactory : IConnectionObserverFactory
 
     public IEnumerable<IConnectionObserver> GetAll()
     {
-        for(int i = 0; i < listing.Count; i++)
+        for (int i = 0; i < listing.Count; i++)
         {
-            if(TryGet(i, out var observer))
+            if (TryGet(i, out var observer))
             {
                 yield return observer;
             }
@@ -42,13 +42,13 @@ public class ConnectionObserverFactory : IConnectionObserverFactory
 
     public bool TryGet(int index, [MaybeNullWhen(false)] out IConnectionObserver observer)
     {
-        if(index < 0 || listing.Count <= index)
+        if (index < 0 || listing.Count <= index)
         {
             observer = null;
             return false;
         }
         var type = listing[index];
-        if(!provider.TryGetCastedService<IConnectionObserver>(type, out observer))
+        if (!provider.TryGetCastedService(type, out observer))
         {
             logger.LogCritical(InvalidObserverLog, type.Name, nameof(IConnectionObserver));
             observer = null;
