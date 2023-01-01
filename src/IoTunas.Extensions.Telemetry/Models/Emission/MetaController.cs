@@ -8,29 +8,22 @@ using System;
 public class MetaController
 {
 
-    private readonly Lazy<TelemetryLoop> loop;
-
     public InheritedType<ITelemetryController<ITelemetry>> Type { get; }
 
     public MetaProvider Provider { get; }
 
-    public TelemetryLoop Loop => loop.Value;
+    public TelemetryLoop Loop { get; }
 
-    public MetaController(Type type, MetaProvider provider)
-        : this(new InheritedType<ITelemetryController<ITelemetry>>(type), provider)
+    public MetaController(Type type, MetaProvider provider) 
+        : this(type, provider, TelemetryLoopAttribute.GetLoopOrEmpty(type))
     {
     }
 
-    public MetaController(InheritedType<ITelemetryController<ITelemetry>> type, MetaProvider provider)
+    public MetaController(Type type, MetaProvider provider, TelemetryLoop loop)
     {
         Type = type;
         Provider = provider;
-        loop = new Lazy<TelemetryLoop>(CreateLoop);
-    }
-
-    private TelemetryLoop CreateLoop()
-    {
-        return TelemetryLoopAttribute.GetLoopOrEmpty(Type.Value);
+        Loop = loop;
     }
 
     public static bool HasLoop(MetaProvider provider)

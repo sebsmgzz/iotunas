@@ -2,30 +2,22 @@
 
 using IoTunas.Core.Seedwork;
 using IoTunas.Extensions.Telemetry.Reflection;
-using System.Reflection;
 
 public class MetaReceiver
 {
 
-    private readonly Lazy<TelemetryInput> input;
-
     public InheritedType<ITelemetryReceiver> Type { get; }
 
-    public TelemetryInput Input => input.Value;
+    public TelemetryInput Input { get; }
 
-    public MetaReceiver(Type type) : this(new InheritedType<ITelemetryReceiver>(type))
+    public MetaReceiver(Type type) : this(type, TelemetryInputAttribute.GetInputOrDefault(type))
     {
     }
 
-    public MetaReceiver(InheritedType<ITelemetryReceiver> type)
+    public MetaReceiver(Type type, TelemetryInput input)
     {
         Type = type;
-        input = new Lazy<TelemetryInput>(CreateInput);
-    }
-
-    private TelemetryInput CreateInput()
-    {
-        return TelemetryInputAttribute.GetInputOrDefault(Type);
+        Input = input;
     }
 
 }

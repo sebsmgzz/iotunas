@@ -4,25 +4,22 @@ using IoTunas.Core.Seedwork;
 using IoTunas.Extensions.Telemetry.Emission;
 using IoTunas.Extensions.Telemetry.Reflection;
 using System;
-using System.Reflection;
 
 public class MetaProvider
 {
 
-    private readonly Lazy<TelemetryOutput> output;
-
     public InheritedType<ITelemetryProvider<ITelemetry>> Type { get; }
 
-    public TelemetryOutput Output => output.Value;
+    public TelemetryOutput Output { get; }
 
-    public MetaProvider(Type type) : this(new InheritedType<ITelemetryProvider<ITelemetry>>(type))
+    public MetaProvider(Type type) : this(type, TelemetryOutputAttribute.GetOutputOrDefault(type))
     {
     }
 
-    public MetaProvider(InheritedType<ITelemetryProvider<ITelemetry>> type)
+    public MetaProvider(Type type, TelemetryOutput output)
     {
         Type = type;
-        output = new Lazy<TelemetryOutput>(CreateOutput);
+        Output = output;
     }
 
     internal Type GetControllerAbstraction()
@@ -39,11 +36,6 @@ public class MetaProvider
         var propertyInfo = Type.Value.GetProperty(propertyName);
         var type = propertyInfo?.GetValue(null) as Type;
         return type!;
-    }
-
-    private TelemetryOutput CreateOutput()
-    {
-        return TelemetryOutputAttribute.GetOutputOrDefault(Type);
     }
 
 }
