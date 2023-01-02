@@ -1,7 +1,6 @@
-﻿namespace IoTunas.Extensions.Methods.Hosting.Commands;
+﻿namespace IoTunas.Extensions.Methods.Commands;
 
 using IoTunas.Core.Services.ClientHosts;
-using IoTunas.Extensions.Methods.Services.Mediators;
 using Microsoft.Azure.Devices.Client;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
@@ -9,13 +8,13 @@ using System;
 using System.Threading;
 using System.Threading.Tasks;
 
-public class CommandsHost : IHostedService
+public class CommandsService : IHostedService
 {
 
     private readonly IServiceProvider provider;
     private readonly IIoTClientHost clientHost;
 
-    public CommandsHost(
+    public CommandsService(
         IServiceProvider provider,
         IIoTClientHost clientHost)
     {

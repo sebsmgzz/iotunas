@@ -1,9 +1,8 @@
-﻿namespace IoTunas.Extensions.Methods.Models;
+﻿namespace IoTunas.Extensions.Methods.Commands;
 
 using Microsoft.Azure.Devices.Client;
-using System.Threading.Tasks;
 
-public interface ICommand
+public interface ICommandMediator
 {
 
     Task<MethodResponse> HandleAsync(

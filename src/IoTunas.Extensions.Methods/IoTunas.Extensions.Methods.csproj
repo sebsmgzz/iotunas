@@ -4,35 +4,7 @@
 		<TargetFramework>net6.0</TargetFramework>
 		<ImplicitUsings>enable</ImplicitUsings>
 		<Nullable>enable</Nullable>
-		<Version>0.0.0</Version>
-		<PackageId>IoTunas.Extensions.Commands</PackageId>
-		<Description>Direct method services for the IoTunas.Core DI system. For azure IoTedge.</Description>
-		<PackageTags>iot;azure;iotedge;edge;tunas;commands</PackageTags>
-		<Authors>sebsmgzz</Authors>
-		<Company>IoTunas</Company>
-		<PackageProjectUrl>https://github.com/sebsmgzz/IoTunas/</PackageProjectUrl>
-		<RepositoryUrl>https://github.com/sebsmgzz/IoTunas/</RepositoryUrl>
-		<RepositoryType>git</RepositoryType>
-		<PackageIcon>commands.ico</PackageIcon>
-		<PackageReadmeFile>README.md</PackageReadmeFile>
-		<PackageLicenseFile>LICENSE</PackageLicenseFile>
-		<PackageRequireLicenseAcceptance>True</PackageRequireLicenseAcceptance>
 	</PropertyGroup>
-
-	<ItemGroup>
-		<None Include="..\..\assets\icons\commands.ico">
-			<Pack>True</Pack>
-			<PackagePath>\</PackagePath>
-		</None>
-		<None Include="..\..\README.md">
-			<Pack>True</Pack>
-			<PackagePath>\</PackagePath>
-		</None>
-		<None Include="..\..\LICENSE">
-			<Pack>True</Pack>
-			<PackagePath>\</PackagePath>
-		</None>
-	</ItemGroup>
 	
 	<ItemGroup>
 		<PackageReference Include="Microsoft.Azure.Devices.Client" Version="1.40.*" />

@@ -47,7 +47,7 @@ public class InheritedType<TBase> : ValueObject
         return attribute.Value;
     }
 
-    public static explicit operator InheritedType<TBase>(Type type)
+    public static implicit operator InheritedType<TBase>(Type type)
     {
         return new InheritedType<TBase>(type);
     }

@@ -1,6 +1,6 @@
 ﻿namespace IoTunas.Demos.Template.Connectivity;
 
-using IoTunas.Extensions.Connectivity.Models;
+using IoTunas.Extensions.Connectivity.Models.Observables;
 using Microsoft.Extensions.Logging;
 using System.Threading.Tasks;
 

@@ -1,10 +1,10 @@
-﻿namespace IoTunas.Extensions.Methods.Services.Factories;
+﻿namespace IoTunas.Extensions.Methods.Commands;
 
-using IoTunas.Extensions.Methods.Models;
-using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
 using System.Diagnostics.CodeAnalysis;
 using IoTunas.Core.DependencyInjection;
+using IoTunas.Extensions.Methods.Models.Commands;
+using IoTunas.Extensions.Methods.Collections;
 
 public class CommandFactory : ICommandFactory
 {
@@ -19,12 +19,13 @@ public class CommandFactory : ICommandFactory
     private readonly ILogger logger;
 
     public CommandFactory(
-        IReadOnlyDictionary<string, Type> mapping,
-        IServiceProvider provider)
+        IReadOnlyMetaCommandCollection commands,
+        IServiceProvider provider,
+        ILogger<ICommandFactory> logger)
     {
-        this.mapping = mapping;
         this.provider = provider;
-        logger = provider.GetRequiredService<ILogger<ICommandFactory>>();
+        this.logger = logger;
+        mapping = commands.AsMapping();
     }
 
     public bool TryGet(string methodName, [MaybeNullWhen(false)] out ICommand command)
@@ -34,7 +35,7 @@ public class CommandFactory : ICommandFactory
             command = null;
             return false;
         }
-        if(!provider.TryGetCastedService<ICommand>(commandType, out var service))
+        if (!provider.TryGetCastedService<ICommand>(commandType, out var service))
         {
             logger.LogCritical(InvalidHandlerLog, methodName, nameof(ICommand));
             command = null;

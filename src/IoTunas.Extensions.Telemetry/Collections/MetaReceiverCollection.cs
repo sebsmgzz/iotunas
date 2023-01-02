@@ -1,99 +1,43 @@
 ﻿namespace IoTunas.Extensions.Telemetry.Collections;
 
-using System.Reflection;
-using System.Collections;
-using System.Diagnostics.CodeAnalysis;
 using IoTunas.Extensions.Telemetry.Models.Reception;
-using IoTunas.Core.Reflection;
+using IoTunas.Core.Collections;
+using System;
+using System.Collections.Generic;
 
-public class MetaReceiverCollection : IMetaReceiverCollection
+public class MetaReceiverCollection : MetaTypeCollection<MetaReceiver>, IMetaReceiverCollection
 {
 
-    private readonly HashSet<MetaReceiver> receivers;
-
-    public int Count => receivers.Count;
-
-    public MetaReceiverCollection()
+    public override MetaReceiver? Get(Type type)
     {
-        receivers = new HashSet<MetaReceiver>();
+        return items.FirstOrDefault(receiver => receiver?.Type.Equals(type) ?? false, null);
     }
 
-    public MetaReceiver? Get(Type type)
-    {
-        return receivers.FirstOrDefault(p => p?.Type.Equals(type) ?? false, null);
-    }
-
-    public bool TryGet(Type type, [MaybeNullWhen(false)] out MetaReceiver receiver)
-    {
-        receiver = Get(type);
-        return receiver != null;
-    }
-
-    public bool Add(MetaReceiver receiver)
-    {
-        return receivers.Add(receiver);
-    }
-
-    public bool Add(Type type)
+    public override bool Add(Type type)
     {
         return Add(new MetaReceiver(type));
     }
 
-    public bool Add<TType>() where TType : ITelemetryReceiver
+    public bool Add(Type type, string inputName)
     {
-        return Add(typeof(TType));
+        var input = new TelemetryInput(inputName);
+        return Add(new MetaReceiver(type, input));
     }
 
-    public bool Remove(MetaReceiver receiver)
+    public bool Remove(string inputName)
     {
-        return receivers.Remove(receiver);
+        var removedCount = items.RemoveWhere(receiver => receiver.Input.Name == inputName);
+        return removedCount > 0;
     }
 
-    public bool Remove(Type type)
-    {
-        return TryGet(type, out var receiver) && receivers.Remove(receiver);
-    }
-
-    public bool Remove<TType>() where TType : ITelemetryReceiver
-    {
-        return Remove(typeof(TType));
-    }
-
-    public void Map(Assembly assembly)
-    {
-        var types = assembly.GetDerivedTypes<ITelemetryReceiver>();
-        foreach (var type in types)
-        {
-            Add(type);
-        }
-    }
-
-    public void Map()
-    {
-        var assembly = Assembly.GetEntryAssembly();
-        Map(assembly!);
-    }
-
-    public Dictionary<string, Type> AsInputMapping()
+    public IReadOnlyDictionary<string, Type> AsMapping()
     {
         var mapping = new Dictionary<string, Type>();
-        foreach (var receiver in receivers)
+        foreach (var receiver in this)
         {
             mapping.Add(receiver.Input.Name, receiver.Type);
         }
         return mapping;
-    }
-
-    public IEnumerator<MetaReceiver> GetEnumerator()
-    {
-        var enumerable = (IEnumerable<MetaReceiver>)receivers;
-        return enumerable.GetEnumerator();
-    }
-
-    IEnumerator IEnumerable.GetEnumerator()
-    {
-        var enumerable = (IEnumerable)receivers;
-        return enumerable.GetEnumerator();
     }
 
 }

@@ -1,4 +1,4 @@
-﻿namespace IoTunas.Extensions.Methods.Services.Factories;
+﻿namespace IoTunas.Extensions.Methods.Commands;
 
 using Microsoft.Azure.Devices.Client;
 using Newtonsoft.Json;

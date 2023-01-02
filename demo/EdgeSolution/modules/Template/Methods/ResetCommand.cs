@@ -2,8 +2,8 @@
 
 using System.Threading.Tasks;
 using IoTunas.Demos.Template.Services;
-using IoTunas.Extensions.Methods.Models;
-using IoTunas.Extensions.Methods.Services.Factories;
+using IoTunas.Extensions.Methods.Commands;
+using IoTunas.Extensions.Methods.Models.Commands;
 using Microsoft.Azure.Devices.Client;
 
 public class ResetCommand : ICommand

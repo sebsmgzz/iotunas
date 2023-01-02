@@ -1,27 +1,28 @@
 namespace IoTunas.Extensions.Methods.Hosting;
 
-using IoTunas.Extensions.Methods.Hosting.Commands;
 using Microsoft.Extensions.DependencyInjection;
 using System;
 
 public static class ServiceCollectionExtensions
 {
 
-    public static IServiceCollection AddCommands(this IServiceCollection services)
+    public static IServiceCollection AddMethodServices(
+        this IServiceCollection services,
+        Action<IMethodsServiceBuilder>? configureAction = null)
     {
-        var builder = new CommandsServiceBuilder();
-        builder.Commands.Map();
-        builder.Build(services);
+        var builder = new MethodsServiceBuilder();
+        configureAction?.Invoke(builder);
+        builder.AddCommandServices(services);
         return services;
     }
 
-    public static IServiceCollection AddCommands(
+    public static IServiceCollection AddCommandsOnly(
         this IServiceCollection services,
-        Action<ICommandsServiceBuilder> configureAction)
+        Action<IMethodsServiceBuilder>? configureAction = null)
     {
-        var builder = new CommandsServiceBuilder();
+        var builder = new MethodsServiceBuilder();
         configureAction?.Invoke(builder);
-        builder.Build(services);
+        builder.AddCommandServices(services);
         return services;
     }
 

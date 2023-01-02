@@ -19,7 +19,7 @@ public class MetaControllerCollection : IMetaControllerCollection
 
     public MetaController? Get(Type type)
     {
-        return controllers.FirstOrDefault(p => p?.Type.Equals(type) ?? false, null);
+        return controllers.FirstOrDefault(controller => controller?.Type.Equals(type) ?? false, null);
     }
 
     public bool TryGet(Type type, [MaybeNullWhen(false)] out MetaController controller)

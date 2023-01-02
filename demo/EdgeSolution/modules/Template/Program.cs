@@ -14,7 +14,7 @@ Host
     builder.Client.Transports.AddMqtt(TransportType.Mqtt_Tcp_Only);
 
     // Configure extensions
-    builder.UseCommands();
+    builder.MapCommandServices();
     builder.MapConnectivityServices();
     builder.MapTelemetryServices();
 

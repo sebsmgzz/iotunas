@@ -1,12 +1,12 @@
 ﻿namespace IoTunas.Demos.GuidsModule.Methods;
 
 using IoTunas.Demos.GuidsModule.Services.Guids;
-using IoTunas.Extensions.Methods.Models;
-using IoTunas.Extensions.Methods.Services.Factories;
+using IoTunas.Extensions.Methods.Commands;
+using IoTunas.Extensions.Methods.Models.Commands;
 using Microsoft.Azure.Devices.Client;
 using System.Threading.Tasks;
 
-public class GetClusters : Command<GetClusterPayload>
+public class GetClusters : JsonCommand<GetClusterPayload>
 {
 
     private readonly IMethodResponseFactory responses;

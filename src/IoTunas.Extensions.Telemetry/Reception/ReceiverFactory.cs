@@ -25,7 +25,7 @@ public class ReceiverFactory : IReceiverFactory
     {
         this.provider = provider;
         this.logger = logger;
-        mapping = receivers.AsInputMapping();
+        mapping = receivers.AsMapping();
     }
 
     public bool TryGet(string inputName, [MaybeNullWhen(false)] out ITelemetryReceiver broker)
